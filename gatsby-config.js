@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: "FOMO Crypto Calculator"
+    title: "FOMO Crypto Calculator",
+    description: "Accurately quantify your regret.",
+    siteUrl: "https://fomocryptocalculator.com"
   },
   plugins: [
     "gatsby-plugin-netlify-cms",
