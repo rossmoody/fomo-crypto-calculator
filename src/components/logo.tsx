@@ -5,8 +5,8 @@ function Logo() {
     <svg width="222" height="31" fill="none" xmlns="http://www.w3.org/2000/svg">
       <title>FOMO Crypto Calculator Logo</title>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M129.032 0L63.351 2.254l.297 8.65-1.225.03.491 19.458 67.825-1.713-.492-19.458-.898.023L129.032 0z"
         fill="#E76756"
       />

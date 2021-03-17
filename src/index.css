@@ -1,13 +1,113 @@
+:root {
+  --divider: #e3e4e4;
+  --text: #192635;
+  --primary: #e76756;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* Remove number counter */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Regular styles */
+
+h1 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 51px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--divider);
+}
+
+.logo {
+  margin-bottom: -24px;
+}
+
+.hero {
+  padding: 52px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__text {
+  max-width: 600px;
+}
+
+.highlight {
+  color: white;
+  background: var(--primary);
+  display: inline-flex;
+  position: relative;
+  margin: 0 8px;
+  align-items: center;
+  height: 44px;
+}
+
+.input {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+#fiat {
+  width: 72px;
+  padding: 0 0 0 30px;
+}
+
+.fiat::before {
+  content: "$";
+  position: absolute;
+  left: 8px;
+}
+
+#date {
+  width: 190px;
+  padding: 0 12px;
+}
+
+.date::after {
+  content: ",";
+  position: absolute;
+  right: 12px;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }
