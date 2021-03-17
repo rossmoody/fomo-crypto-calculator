@@ -1,11 +1,11 @@
 import React from "react"
-import { Logo } from "../components"
+import { FomoLogo } from "../components"
 
 function Header() {
   return (
     <header className="nav">
       <div className="logo">
-        <Logo />
+        <FomoLogo />
       </div>
     </header>
   )

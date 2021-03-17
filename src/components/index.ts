@@ -1,3 +1,3 @@
-import Logo from "./Logo"
+import FomoLogo from "./FomoLogo"
 
-export { Logo }
+export { FomoLogo }
