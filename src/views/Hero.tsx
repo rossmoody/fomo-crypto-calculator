@@ -18,6 +18,7 @@ function Hero() {
               id="fiat"
               className="input"
               defaultValue={100}
+              autoFocus
             />
           </span>
           into cryptocurrency on{" "}

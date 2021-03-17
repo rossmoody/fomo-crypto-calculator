@@ -1,6 +1,6 @@
 import React from "react"
 
-function Logo() {
+function FomoLogo() {
   return (
     <svg width="222" height="31" fill="none" xmlns="http://www.w3.org/2000/svg">
       <title>FOMO Crypto Calculator Logo</title>
@@ -22,4 +22,4 @@ function Logo() {
   )
 }
 
-export default Logo
+export default FomoLogo
