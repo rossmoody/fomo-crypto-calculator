@@ -1,11 +1,15 @@
 {
-  "name": "my-gatsby-site",
+  "name": "fomo-crypto-calculator",
   "version": "1.0.0",
   "private": true,
-  "description": "My Gatsby Site",
+  "description": "FOMO Crypto Calculator",
   "author": "rossmoody",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "crypto",
+    "cryptocurrency",
+    "bitcoin",
+    "ethereum"
   ],
   "scripts": {
     "develop": "gatsby develop",
