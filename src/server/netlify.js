@@ -1,6 +1,6 @@
-exports.handler = async function (event, context) {
+export async function handler(event, context) {
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: "Hello World" })
+    body: JSON.stringify({ message: "Hi there" })
   }
 }
