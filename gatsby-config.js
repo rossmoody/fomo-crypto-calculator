@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "FOMO Crypto Calculator",
-    description: "Accurately quantify your regret.",
+    description: "Accurately quantify your crypto regret.",
     siteUrl: "https://fomocryptocalculator.com"
   },
   plugins: [
