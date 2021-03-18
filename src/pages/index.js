@@ -1,5 +1,13 @@
 import * as React from "react"
 
+async function test() {
+  const response = await fetch("/.netlify/functions/netlify")
+  const body = await response.json()
+  console.log(body)
+}
+
+test()
+
 const IndexPage = () => {
   return (
     <>
