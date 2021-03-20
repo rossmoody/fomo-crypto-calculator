@@ -1,16 +1,28 @@
-import * as React from "react"
-import test from "../components/ticker"
+import React, { useState, useEffect } from "react"
+// import getCryptoData from "../controllers/coin-controller"
+import { Header } from "../components"
 
 const IndexPage = () => {
-  test()
+  const [cryptoData, setCryptoData] = useState()
+  const [date, setDate] = useState("30-12-2017")
+  const [investment, setInvestment] = useState(100)
+
+  useEffect(() => {
+    if (!cryptoData) {
+      console.log("hello")
+      // getCryptoData(date, investment).then(result => {
+      //   setCryptoData(result)
+      //   console.log(result)
+      // })
+    }
+  })
+
   return (
     <>
       <header>
-        <h1>Header section</h1>
+        <Header />
       </header>
-      <main>
-        <h1>Main section</h1>
-      </main>
+      <main>{JSON.stringify(cryptoData)}</main>
     </>
   )
 }
