@@ -1,13 +1,14 @@
 import React from "react"
-import Logo from "../logo"
+import Logo from "../logo/logo"
+import * as S from "./styled-header"
 
 const Header = () => {
   return (
-    <header className="nav">
-      <div className="logo">
+    <S.Heading>
+      <S.Logo>
         <Logo />
-      </div>
-    </header>
+      </S.Logo>
+    </S.Heading>
   )
 }
 

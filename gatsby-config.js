@@ -5,6 +5,7 @@ module.exports = {
     siteUrl: "https://fomocryptocalculator.com"
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-image",
     {
