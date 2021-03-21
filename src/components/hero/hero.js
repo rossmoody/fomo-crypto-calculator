@@ -27,10 +27,11 @@ const Hero = ({ date, investment }) => {
           into one cryptocurrency on
           <S.PseudoInput>
             <S.Input
-              defaultValue="2017-10-10"
+              defaultValue="2017-10-18" // need dd-mm-yyyy
               type="date"
               id="date"
               size={6}
+              min="2009-09-01" // Bitcoin release day
               onKeyUp={e => date(e.target.value)}
             />
           </S.PseudoInput>

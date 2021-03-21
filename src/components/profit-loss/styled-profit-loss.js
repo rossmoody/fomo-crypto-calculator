@@ -3,6 +3,7 @@ import styled from "styled-components"
 const Section = styled.section`
   display: flex;
   justify-content: center;
+  border-top: 1px solid ${props => props.theme.divider};
 `
 
 const Container = styled.div`
