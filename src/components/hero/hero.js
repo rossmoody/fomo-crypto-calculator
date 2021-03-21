@@ -23,7 +23,7 @@ const Hero = () => {
           </S.PseudoInput>
           into cryptocurrency on
           <S.PseudoInput>
-            <S.Input type="date" id="date" size={6} defaultValue="2016-01-01" />
+            <S.Input defaultValue="2017-10-10" type="date" id="date" size={6} />
           </S.PseudoInput>
           today it would be worth...
         </S.Headline>
