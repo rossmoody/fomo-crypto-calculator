@@ -2,7 +2,6 @@ import React from "react"
 import * as S from "./styled-coin"
 
 const Coin = ({ coin }) => {
-  console.log(coin)
   return (
     <S.Coin>
       <S.Image>
