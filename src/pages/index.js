@@ -26,7 +26,7 @@ const IndexPage = () => {
         setProfitLoss(setCoins, result, date, investment)
       })
     }
-  }, [])
+  })
 
   useEffect(() => {
     if (!todaysMarketData) return
@@ -34,7 +34,7 @@ const IndexPage = () => {
     console.log("Date", date)
     console.log("Investment", investment)
     setProfitLoss(setCoins, todaysMarketData, date, investment)
-  }, [date, investment])
+  }, [date, investment, todaysMarketData])
 
   return (
     <ThemeContainer>

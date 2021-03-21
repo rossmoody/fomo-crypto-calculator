@@ -5,7 +5,7 @@ const Coin = ({ coin }) => {
   return (
     <S.Coin>
       <S.Image>
-        <img src={coin.image} />
+        <img src={coin.image} alt={coin.name} />
       </S.Image>
       <S.Title>
         <span>{coin.name}</span>
