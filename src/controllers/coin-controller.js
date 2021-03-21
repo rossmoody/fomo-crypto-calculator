@@ -20,8 +20,11 @@ class Coin {
     try {
       const price = await coingecko.get(`/${this.id}/history?date=${date}`)
       this.past_price = price.data.market_data.current_price.usd
-      this.coins_owned = investment / this.past_price
+      this.coins_owned = (investment / this.past_price).toFixed(3)
       this.profit_loss = Math.round(this.coins_owned * this.current_price)
+      this.roi = Math.round(
+        ((this.profit_loss - investment) / investment) * 100
+      )
       return this
     } catch (err) {
       // console.log("Coin didn't exist yet: ", this.name)

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const Hero = styled.div`
+const Hero = styled.main`
   padding: 52px 24px;
   display: flex;
   justify-content: center;

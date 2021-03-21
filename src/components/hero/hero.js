@@ -6,7 +6,7 @@ function resizeInputWidth() {
   fiat.style.width = (fiat.value.length + 1) * 18 + "px"
 }
 
-const Hero = () => {
+const Hero = ({ date, investment }) => {
   return (
     <S.Hero>
       <S.HeroInner>
@@ -14,16 +14,25 @@ const Hero = () => {
           If I invested
           <S.PseudoInput fiat>
             <S.Input
-              onKeyUp={resizeInputWidth}
+              onKeyUp={e => {
+                resizeInputWidth()
+                investment(e.target.value)
+              }}
               type="number"
               id="fiat"
               defaultValue={100}
               fiat
             />
           </S.PseudoInput>
-          into cryptocurrency on
+          into one cryptocurrency on
           <S.PseudoInput>
-            <S.Input defaultValue="2017-10-10" type="date" id="date" size={6} />
+            <S.Input
+              defaultValue="2017-10-10"
+              type="date"
+              id="date"
+              size={6}
+              onKeyUp={e => date(e.target.value)}
+            />
           </S.PseudoInput>
           today it would be worth...
         </S.Headline>

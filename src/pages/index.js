@@ -3,35 +3,43 @@ import ThemeContainer from "./theme-provider"
 import getCryptoData from "../controllers/coin-controller"
 import { Header, Hero, ProfitLoss } from "../components"
 
-async function setProfitLoss(callback, data, date, investment) {
-  const processedCoins = data.map(coin => {
+async function setProfitLoss(setCoinState, coins, date, investment) {
+  const processedCoins = coins.map(coin => {
     return coin.calculateProfitLoss(date, investment)
   })
 
   Promise.all(processedCoins).then(coin => {
-    callback(coin.filter(i => i))
+    setCoinState(coin.filter(i => i))
   })
 }
 
 const IndexPage = () => {
-  let todaysMarketData
-  const [coins, setCoins] = useState()
+  const [todaysMarketData, setTodaysMarketData] = useState()
   const [date, setDate] = useState("30-12-2015")
-  const [investment, setInvestment] = useState(100)
+  const [investment, setInvestment] = useState(5)
+  const [coins, setCoins] = useState()
 
   useEffect(() => {
     if (!todaysMarketData) {
       getCryptoData().then(result => {
-        todaysMarketData = result
-        setProfitLoss(setCoins, todaysMarketData, date, investment)
+        setTodaysMarketData(result)
+        setProfitLoss(setCoins, result, date, investment)
       })
     }
   }, [])
 
+  useEffect(() => {
+    if (!todaysMarketData) return
+
+    console.log("Date", date)
+    console.log("Investment", investment)
+    setProfitLoss(setCoins, todaysMarketData, date, investment)
+  }, [date, investment])
+
   return (
     <ThemeContainer>
       <Header />
-      <Hero />
+      <Hero date={setDate} investment={setInvestment} />
       <ProfitLoss coins={coins} />
     </ThemeContainer>
   )
