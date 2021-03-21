@@ -37,7 +37,9 @@ const GlobalStyle = createGlobalStyle`
 const defaultTheme = {
   divider: "#e3e4e4;",
   text: "#192635",
-  primary: "#e76756"
+  subdued: "#748497",
+  primary: "#e76756",
+  success: "#4db23c"
 }
 
 const ThemeContainer = props => {

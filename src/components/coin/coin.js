@@ -4,9 +4,9 @@ import * as S from "./styled-coin"
 const Coin = ({ coin }) => {
   return (
     <S.Coin>
-      <S.Image>
-        <img src={coin.image} alt={coin.name} />
-      </S.Image>
+      <S.ImageContainer>
+        <S.Image src={coin.image} alt={coin.name} />
+      </S.ImageContainer>
       <S.Title>
         <span>{coin.name}</span>
         <S.CoinsOwned>
@@ -14,8 +14,8 @@ const Coin = ({ coin }) => {
         </S.CoinsOwned>
       </S.Title>
       <S.Profit>
-        <span>${coin.profit_loss}</span>
-        <span>+{coin.roi}%</span>
+        <span>${coin.profit_loss.toLocaleString()}</span>
+        <S.Roi>+{coin.roi.toLocaleString()}%</S.Roi>
       </S.Profit>
     </S.Coin>
   )
