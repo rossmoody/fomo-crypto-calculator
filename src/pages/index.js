@@ -14,6 +14,7 @@ async function setProfitLoss(setCoinState, marketData, date, investment) {
 
   let coins = await processedCoins
   coins = coins.filter(i => i)
+  coins = coins.sort((a, b) => b.profit_loss - a.profit_loss)
   setCoinState(coins)
 }
 
