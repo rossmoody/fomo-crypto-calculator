@@ -34,7 +34,7 @@ class Coin {
 
 const getCryptoData = async () => {
   const todaysTop100 = await coingecko.get(
-    "/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
+    "/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false"
   )
 
   return todaysTop100.data.map(coin => {

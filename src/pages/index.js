@@ -15,8 +15,8 @@ async function setProfitLoss(setCoinState, coins, date, investment) {
 
 const IndexPage = () => {
   const [todaysMarketData, setTodaysMarketData] = useState()
-  const [date, setDate] = useState("30-12-2015")
-  const [investment, setInvestment] = useState(5)
+  const [date, setDate] = useState("18-10-2017")
+  const [investment, setInvestment] = useState(100)
   const [coins, setCoins] = useState()
 
   useEffect(() => {
@@ -31,8 +31,8 @@ const IndexPage = () => {
   useEffect(() => {
     if (!todaysMarketData) return
 
-    console.log("Date", date)
-    console.log("Investment", investment)
+    console.log("Date being passed in dd-mm-yyyy: ", date)
+    console.log("Money passed in: ", investment)
     setProfitLoss(setCoins, todaysMarketData, date, investment)
   }, [date, investment, todaysMarketData])
 

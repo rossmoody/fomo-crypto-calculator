@@ -1,5 +1,20 @@
 import React from "react"
 import * as S from "./styled-hero"
+import { format } from "date-fns"
+
+let timer
+
+function handleDate(date, callback) {
+  clearTimeout(timer)
+  timer = setTimeout(() => {
+    try {
+      const dateObj = format(new Date(date), "dd-MM-yyyy")
+      callback(dateObj)
+    } catch (error) {
+      return null
+    }
+  }, 700)
+}
 
 function resizeInputWidth() {
   const fiat = document.querySelector("#fiat")
@@ -27,12 +42,11 @@ const Hero = ({ date, investment }) => {
           into one cryptocurrency on
           <S.PseudoInput>
             <S.Input
-              defaultValue="2017-10-18" // need dd-mm-yyyy
+              defaultValue="2017-10-18"
               type="date"
               id="date"
               size={6}
-              min="2009-09-01" // Bitcoin release day
-              onKeyUp={e => date(e.target.value)}
+              onKeyUp={e => handleDate(e.target.value, date)}
             />
           </S.PseudoInput>
           today it would be worth...
