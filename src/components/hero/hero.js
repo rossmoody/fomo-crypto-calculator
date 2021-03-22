@@ -30,12 +30,24 @@ function handleDate(date, callback) {
     } catch (error) {
       return
     }
-  }, 1000)
+  }, 700)
 }
 
-function resizeInputWidth() {
+function handleInvestment(money, callback) {
+  clearTimeout(timer)
   const fiat = document.querySelector("#fiat")
   fiat.style.width = (fiat.value.length + 1) * 18 + "px"
+
+  const value = parseInt(money, 10)
+  if (value < 1 || !value) return
+
+  timer = setTimeout(() => {
+    try {
+      callback(money)
+    } catch (error) {
+      return
+    }
+  }, 700)
 }
 
 const Hero = ({ date, investment }) => {
@@ -47,8 +59,7 @@ const Hero = ({ date, investment }) => {
           <S.PseudoInput fiat>
             <S.Input
               onChange={e => {
-                resizeInputWidth()
-                investment(e.target.value)
+                handleInvestment(e.target.value, investment)
               }}
               type="number"
               id="fiat"

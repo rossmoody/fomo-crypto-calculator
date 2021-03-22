@@ -1,6 +1,10 @@
 import React from "react"
 import * as S from "./styled-coin"
 
+function isPositive(coin) {
+  if (Math.sign(coin.roi) > 0) return true
+}
+
 const Coin = ({ coin }) => {
   return (
     <S.Coin>
@@ -15,7 +19,10 @@ const Coin = ({ coin }) => {
       </S.Title>
       <S.Profit>
         <span>${coin.profit_loss.toLocaleString()}</span>
-        <S.Roi>+{coin.roi.toLocaleString()}%</S.Roi>
+        <S.Roi positive={isPositive(coin)}>
+          {isPositive(coin) && "+"}
+          {coin.roi.toLocaleString()}%
+        </S.Roi>
       </S.Profit>
     </S.Coin>
   )

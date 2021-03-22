@@ -44,7 +44,7 @@ const Input = styled.input`
   height: 44px;
 
   background: ${props => props.theme.primary};
-  width: ${props => (props.fiat ? "72px" : "185px")};
+  width: ${props => (props.fiat ? "72px" : "180px")};
   padding: ${props => (props.fiat ? "0 0 0 30px" : "0 12px")};
 `
 

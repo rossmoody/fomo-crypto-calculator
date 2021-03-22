@@ -45,7 +45,8 @@ const Profit = styled.div`
 const Roi = styled.span`
   font-weight: 400;
   font-size: 15px;
-  color: ${props => props.theme.success};
+  color: ${props =>
+    props.positive ? props.theme.positive : props.theme.negative};
 `
 
 export { Coin, CoinsOwned, Image, ImageContainer, Profit, Roi, Title }

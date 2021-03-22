@@ -20,7 +20,7 @@ async function setProfitLoss(setCoinState, marketData, date, investment) {
 
 const IndexPage = () => {
   const [todaysMarketData, setTodaysMarketData] = useState()
-  const [date, setDate] = useState("18-10-2017")
+  const [date, setDate] = useState("01-01-2010")
   const [investment, setInvestment] = useState(100)
   const [coins, setCoins] = useState()
 
