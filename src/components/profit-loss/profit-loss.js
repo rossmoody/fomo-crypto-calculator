@@ -4,6 +4,7 @@ import * as S from "./styled-profit-loss"
 
 const ProfitLoss = ({ coins }) => {
   if (!coins) return <div>Loader</div>
+  if (coins.length === 0) return <div>No results</div>
 
   return (
     <S.Section>

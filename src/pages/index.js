@@ -3,14 +3,18 @@ import ThemeContainer from "./theme-provider"
 import getCryptoData from "../controllers/coin-controller"
 import { Header, Hero, ProfitLoss } from "../components"
 
-async function setProfitLoss(setCoinState, coins, date, investment) {
-  const processedCoins = coins.map(coin => {
-    return coin.calculateProfitLoss(date, investment)
-  })
+async function setProfitLoss(setCoinState, marketData, date, investment) {
+  setCoinState(false) // Set false for loader
 
-  Promise.all(processedCoins).then(coin => {
-    setCoinState(coin.filter(i => i))
-  })
+  const processedCoins = Promise.all(
+    marketData.map(coin => {
+      return coin.calculateProfitLoss(date, investment)
+    })
+  )
+
+  let coins = await processedCoins
+  coins = coins.filter(i => i)
+  setCoinState(coins)
 }
 
 const IndexPage = () => {
@@ -30,9 +34,8 @@ const IndexPage = () => {
 
   useEffect(() => {
     if (!todaysMarketData) return
-
-    console.log("Date being passed in dd-mm-yyyy: ", date)
-    console.log("Money passed in: ", investment)
+    console.log("state date:", date)
+    console.log("state money:", investment)
     setProfitLoss(setCoins, todaysMarketData, date, investment)
   }, [date, investment, todaysMarketData])
 

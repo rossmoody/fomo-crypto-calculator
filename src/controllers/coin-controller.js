@@ -27,6 +27,7 @@ class Coin {
       )
       return this
     } catch (err) {
+      return null
       // console.log("Coin didn't exist yet: ", this.name)
     }
   }

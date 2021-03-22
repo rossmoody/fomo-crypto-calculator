@@ -1,19 +1,36 @@
 import React from "react"
 import * as S from "./styled-hero"
-import { format } from "date-fns"
 
 let timer
+let today = new Date()
 
 function handleDate(date, callback) {
   clearTimeout(timer)
+  const splitDate = date.split("-")
+  const [year, month, day] = splitDate
+  if (!year || !day || !month) {
+    console.log("Fill out date")
+    return
+  }
+  if (parseInt(year, 10) > today.getFullYear()) {
+    console.log("We cant predict the future") // This needs improved
+    return
+  }
+  if (parseInt(year, 10) < 2009) {
+    console.log("Bitcoin, the first cryptocurrency was create January 3, 2009.")
+    return
+  }
+
+  console.log(year, month, day)
+  const newDate = `${day}-${month}-${year}`
+
   timer = setTimeout(() => {
     try {
-      const dateObj = format(new Date(date), "dd-MM-yyyy")
-      callback(dateObj)
+      callback(newDate)
     } catch (error) {
-      return null
+      return
     }
-  }, 700)
+  }, 1000)
 }
 
 function resizeInputWidth() {
@@ -29,7 +46,7 @@ const Hero = ({ date, investment }) => {
           If I invested
           <S.PseudoInput fiat>
             <S.Input
-              onKeyUp={e => {
+              onChange={e => {
                 resizeInputWidth()
                 investment(e.target.value)
               }}
@@ -42,11 +59,10 @@ const Hero = ({ date, investment }) => {
           into one cryptocurrency on
           <S.PseudoInput>
             <S.Input
-              defaultValue="2017-10-18"
               type="date"
+              defaultValue="2017-10-18"
               id="date"
-              size={6}
-              onKeyUp={e => handleDate(e.target.value, date)}
+              onChange={e => handleDate(e.target.value, date)}
             />
           </S.PseudoInput>
           today it would be worth...
