@@ -21,7 +21,6 @@ function handleDate(date, callback) {
     return
   }
 
-  console.log(year, month, day)
   const newDate = `${day}-${month}-${year}`
 
   timer = setTimeout(() => {
