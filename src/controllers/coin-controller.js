@@ -45,7 +45,7 @@ class Coin {
           }
         }
       }
-      // console.log("Coin didn't exist yet: ", this.id)
+      console.log(`${this.id} didn't exist on ${date}`)
     }
   }
 }

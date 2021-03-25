@@ -18,9 +18,11 @@ async function setProfitLoss(setCoinState, marketData, date, investment) {
   setCoinState(coins)
 }
 
+// Earliest date for Bitcoin from CoinGecko -> 01-05-2013
+
 const IndexPage = () => {
   const [todaysMarketData, setTodaysMarketData] = useState()
-  const [date, setDate] = useState("10-11-2017")
+  const [date, setDate] = useState("01-06-2016") // dd-mm-yyyy
   const [investment, setInvestment] = useState(100)
   const [coins, setCoins] = useState()
 
