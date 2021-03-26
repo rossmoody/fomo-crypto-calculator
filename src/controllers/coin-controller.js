@@ -40,8 +40,8 @@ class Coin {
           history: date
         }
       })
-
       if (!response.data.hasOwnProperty("market_data")) return
+      console.log(response.data.market_data.current_price.usd)
       this.past_price = response.data.market_data.current_price.usd
       this.doBigBrainMath(investment)
       return this
