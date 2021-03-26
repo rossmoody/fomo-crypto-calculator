@@ -43,7 +43,7 @@ class Coin {
 
       if (!response.data) return
       this.past_price = response.data
-      this.setProfitLoss(investment)
+      this.doBigBrainMath(investment)
       return this
     }
   }
@@ -51,7 +51,7 @@ class Coin {
 
 const getCryptoData = async () => {
   const response = await axios.get("/.netlify/functions/top100")
-
+  console.log(response.data)
   return response.data.map(coin => {
     return new Coin(
       coin.current_price,
