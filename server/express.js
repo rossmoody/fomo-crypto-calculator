@@ -21,7 +21,7 @@ app.get("/.netlify/functions/history", async (req, res) => {
   const response = await coingecko.get(
     `/${req.query.id}/history?date=${req.query.history}`
   )
-  const price = response.data.market_data?.current_price.usd
+  const price = response.data
   res.send(JSON.stringify(price))
 })
 

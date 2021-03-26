@@ -11,7 +11,7 @@ exports.handler = async function (event, context) {
   const response = await coingecko.get(
     `/${event.queryStringParamaters.id}/history?date=${event.queryStringParamaters.history}`
   )
-  const price = response.data.market_data?.current_price.usd
+  const price = response.data
 
   return {
     statusCode: 200,
