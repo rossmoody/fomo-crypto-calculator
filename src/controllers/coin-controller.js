@@ -45,12 +45,16 @@ class Coin {
           }
         }
       }
-      console.log(`${this.id} didn't exist on ${date}`)
+      // console.log(`${this.id} didn't exist on ${date}`)
     }
   }
 }
 
 const getCryptoData = async () => {
+  const response = await axios.get("/.netlify/functions/netlify")
+  const data = response.data
+  console.log(data)
+
   const todaysTop100 = await coingecko.get(
     "/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
   )

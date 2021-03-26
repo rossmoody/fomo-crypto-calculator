@@ -4,6 +4,10 @@ module.exports = {
     description: "Accurately quantify your crypto regret.",
     siteUrl: "https://fomocryptocalculator.com"
   },
+  proxy: {
+    prefix: "/.netlify/functions",
+    url: "http://localhost:3000"
+  },
   plugins: [
     `gatsby-plugin-styled-components`,
     "gatsby-plugin-netlify-cms",
