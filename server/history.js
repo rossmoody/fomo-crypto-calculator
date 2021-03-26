@@ -8,8 +8,8 @@ const coingecko = axios.create({
 })
 
 exports.handler = async function (event, context) {
-  const id = event.queryStringParamaters.id
-  const history = event.queryStringParamaters.history
+  const id = event.queryStringParameters.id
+  const history = event.queryStringParameters.history
   const response = await coingecko.get("/" + id + "/history?date=" + history)
 
   const price = response.data
