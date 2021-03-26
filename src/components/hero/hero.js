@@ -62,7 +62,7 @@ const Hero = ({ date, investment }) => {
           <S.PseudoInput>
             <S.Input
               type="date"
-              defaultValue="2017-06-01"
+              defaultValue="2012-06-01"
               id="date"
               onChange={e => handleDate(e.target.value, date)}
             />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import ThemeContainer from "./theme-provider"
 import getCryptoData from "../controllers/coin-controller"
-import { Header, Hero, ProfitLoss } from "../components"
+import { Header, Hero, ProfitLoss, Footer } from "../components"
 
 async function setProfitLoss(setCoinState, marketData, date, investment) {
   setCoinState(false) // Set false for loader
@@ -22,7 +22,7 @@ async function setProfitLoss(setCoinState, marketData, date, investment) {
 
 const IndexPage = () => {
   const [todaysMarketData, setTodaysMarketData] = useState()
-  const [date, setDate] = useState("01-06-2016") // dd-mm-yyyy
+  const [date, setDate] = useState("01-06-2012") // dd-mm-yyyy
   const [investment, setInvestment] = useState(100)
   const [coins, setCoins] = useState()
 
@@ -47,6 +47,7 @@ const IndexPage = () => {
       <Header />
       <Hero date={setDate} investment={setInvestment} />
       <ProfitLoss coins={coins} />
+      <Footer />
     </ThemeContainer>
   )
 }

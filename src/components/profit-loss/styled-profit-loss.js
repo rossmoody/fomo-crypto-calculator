@@ -1,20 +1,33 @@
 import styled from "styled-components"
+import ReactLoader from "react-loader-spinner"
 
 const Section = styled.section`
   display: flex;
   justify-content: center;
-  border-top: 1px solid ${props => props.theme.divider};
 `
 
 const Container = styled.div`
-  max-width: 600px;
+  display: flex;
   width: 100%;
+  max-width: 600px;
+  justify-content: center;
 `
 
 const UnorderedList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 `
 
-export { Container, Section, UnorderedList }
+const Loader = styled(ReactLoader)`
+  & svg {
+    display: flex;
+    height: 48px;
+    width: 48px;
+    margin: 48px;
+    fill: ${props => props.theme.primary};
+  }
+`
+
+export { Container, Loader, Section, UnorderedList }

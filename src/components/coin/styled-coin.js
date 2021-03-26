@@ -6,7 +6,7 @@ const Coin = styled.li`
   font-size: 18px;
   font-weight: 500;
   word-break: break-word;
-  border-bottom: 1px solid ${props => props.theme.divider};
+  border-top: 1px solid ${props => props.theme.divider};
 `
 
 const ImageContainer = styled.div`
