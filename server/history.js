@@ -9,8 +9,10 @@ const coingecko = axios.create({
 
 exports.handler = async function (event, context) {
   const response = await coingecko.get(
-    `/${event.queryStringParamaters.id}/history?date=${event.queryStringParamaters.history}`
+    `/${event.queryStringParamaters[id]}/history?date=${event.queryStringParamaters[history]}`
   )
+  console.log("response.data", response.data)
+  console.log("response", response)
   const price = response.data.market_data?.current_price.usd
 
   return {

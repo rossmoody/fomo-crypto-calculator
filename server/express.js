@@ -26,5 +26,5 @@ app.get("/.netlify/functions/history", async (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Llistening at http://localhost:${port}`)
 })
