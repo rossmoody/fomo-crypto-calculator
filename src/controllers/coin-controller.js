@@ -52,7 +52,7 @@ class Coin {
 
 const getCryptoData = async () => {
   const response = await axios.get("/.netlify/functions/netlify")
-  const data = response.data
+  const data = response.body
   console.log(data)
 
   const todaysTop100 = await coingecko.get(
