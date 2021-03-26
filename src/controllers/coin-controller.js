@@ -41,8 +41,8 @@ class Coin {
         }
       })
 
-      if (!response.data.market_data?.current_price.usd) return
-      this.past_price = response.data.market_data?.current_price.usd
+      if (!response.data.hasOwnProperty("market_data")) return
+      this.past_price = response.data.market_data.current_price.usd
       this.doBigBrainMath(investment)
       return this
     }
