@@ -8,16 +8,13 @@ const coingecko = axios.create({
 })
 
 exports.handler = async function (event, context) {
-  console.log("event", event)
-  console.log("event.query", event.query)
-  console.log("context", context)
-  // const response = await coingecko.get(
-  //   `/${event.query.id}/history?date=${event.query.history}`
-  // )
-  // const price = response.data.market_data?.current_price.usd
+  const response = await coingecko.get(
+    `/${event.queryStringParamaters.id}/history?date=${event.queryStringParamaters.history}`
+  )
+  const price = response.data.market_data?.current_price.usd
 
-  // return {
-  //   statusCode: 200,
-  //   body: JSON.stringify(price)
-  // }
+  return {
+    statusCode: 200,
+    body: JSON.stringify(price)
+  }
 }
