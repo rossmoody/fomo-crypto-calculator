@@ -6,14 +6,14 @@ import { Header, Hero, ProfitLoss } from "../components"
 async function setProfitLoss(setCoinState, marketData, date, investment) {
   setCoinState(false) // Set false for loader
 
-  const processedCoins = Promise.all(
+  const processedCoins = await Promise.all(
     marketData.map(coin => {
       return coin.calculateProfitLoss(date, investment)
     })
   )
 
-  let coins = await processedCoins
-  coins = coins.filter(i => i)
+  let coins = processedCoins.filter(i => i)
+  if (!coins) console.log("No new coins tos how")
   coins = coins.sort((a, b) => b.profit_loss - a.profit_loss)
   setCoinState(coins)
 }

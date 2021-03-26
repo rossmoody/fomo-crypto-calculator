@@ -1,20 +1,28 @@
+const axios = require("axios")
 const express = require("express")
 const app = express()
 const port = 3000
 
-app.get("/.netlify/functions/netlify", async (req, res) => {
-  // const response = await fetch(
-  //   "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
-  //   {
-  //     headers: {
-  //       "X-CMC_PRO_API_KEY": process.env.COIN_MARKET_KEY
-  //     }
-  //   }
-  // )
-  // const body = await response.text()
-  //   console.log(req)
+const coingecko = axios.create({
+  baseURL: "https://api.coingecko.com/api/v3/coins",
+  headers: {
+    "Content-Type": "application/json"
+  }
+})
 
-  res.send(JSON.stringify("Hello world"))
+app.get("/.netlify/functions/top100", async (req, res) => {
+  const response = await coingecko.get(
+    "/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
+  )
+  res.send(JSON.stringify(response.data))
+})
+
+app.get("/.netlify/functions/history", async (req, res) => {
+  const response = await coingecko.get(
+    `/${req.query.id}/history?date=${req.query.history}`
+  )
+  const price = response.data.market_data?.current_price.usd
+  res.send(JSON.stringify(price))
 })
 
 app.listen(port, () => {

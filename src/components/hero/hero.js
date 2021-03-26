@@ -24,11 +24,7 @@ function handleDate(date, callback) {
   const newDate = `${day}-${month}-${year}`
 
   timer = setTimeout(() => {
-    try {
-      callback(newDate)
-    } catch (error) {
-      return
-    }
+    callback(newDate)
   }, 700)
 }
 
@@ -41,11 +37,7 @@ function handleInvestment(money, callback) {
   if (value < 1 || !value) return
 
   timer = setTimeout(() => {
-    try {
-      callback(money)
-    } catch (error) {
-      return
-    }
+    callback(money)
   }, 700)
 }
 
