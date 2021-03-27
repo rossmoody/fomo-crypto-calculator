@@ -32,25 +32,28 @@ class Coin {
             return this
           }
         }
-      } else return
-    } else {
-      const response = await axios.get("/.netlify/functions/history", {
-        params: {
-          id: this.id,
-          history: date
-        }
-      })
-      if (!response.data.hasOwnProperty("market_data")) return
-      this.past_price = response.data.market_data.current_price.usd
-      this.doBigBrainMath(investment)
-      return this
+      }
+
+      return null
     }
+
+    const response = await axios.get("/.netlify/functions/history", {
+      params: {
+        id: this.id,
+        history: date
+      }
+    })
+
+    if (!response.data.hasOwnProperty("market_data")) return
+    this.past_price = response.data.market_data.current_price.usd
+    this.doBigBrainMath(investment)
+    return this
   }
 }
 
 const getCryptoData = async () => {
   const response = await axios.get("/.netlify/functions/top100")
-  console.log(response.data)
+
   return response.data.map(coin => {
     return new Coin(
       coin.current_price,

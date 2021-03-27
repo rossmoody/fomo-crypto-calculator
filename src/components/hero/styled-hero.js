@@ -24,13 +24,15 @@ const PseudoInput = styled.span`
   display: inline-flex;
   align-items: center;
   position: relative;
-  color: white;
+  border-bottom: 2px solid ${props => props.theme.divider};
+  margin: 0 8px;
 
   &::before {
+    color: ${props => props.theme.primary};
     position: absolute;
     content: "${props => (props.fiat ? "$" : ",")}";
-    left: ${props => (props.fiat ? "16px" : null)};
-    right: ${props => (props.fiat ? null : "16px")};
+    left: ${props => (props.fiat ? "12px" : null)};
+    right: ${props => (props.fiat ? null : "4px")};
   }
 `
 
@@ -38,14 +40,11 @@ const Input = styled.input`
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
-  color: white;
+  color: ${props => props.theme.primary};
   border: none;
   margin: 0 8px;
-  height: 44px;
-
-  background: ${props => props.theme.primary};
   width: ${props => (props.fiat ? "72px" : "180px")};
-  padding: ${props => (props.fiat ? "0 0 0 30px" : "0 12px")};
+  padding: ${props => (props.fiat ? "0 0 0 28px" : "0 12px 0 0")};
 `
 
 export { Headline, Hero, HeroInner, Input, PseudoInput }
