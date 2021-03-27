@@ -31,6 +31,7 @@ const PseudoInput = styled.span`
   position: relative;
   border-bottom: 2px solid ${props => props.theme.divider};
   margin: 0 8px;
+  height: 48px;
 
   &::before {
     position: absolute;

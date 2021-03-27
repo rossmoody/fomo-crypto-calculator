@@ -22,14 +22,18 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  #date {
+    -webkit-appearance: none;
+  }
+  
   input[type="date"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
-  }
-
-  input[type="number"] {
-    -moz-appearance: textfield;
   }
 `
 
