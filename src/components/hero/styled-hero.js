@@ -42,7 +42,7 @@ const Input = styled.input`
   font-weight: inherit;
   color: ${props => props.theme.primary};
   border: none;
-  margin: 0 8px;
+  margin: ${props => (props.fiat ? "0 0 0 8px" : "0 8px")};
   width: ${props => (props.fiat ? "72px" : "180px")};
   padding: ${props => (props.fiat ? "0 0 0 28px" : "0 12px 0 0")};
 `
