@@ -20,7 +20,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.12.0",
-    "date-fns": "^2.19.0",
     "express": "^4.17.1",
     "gatsby": "^3.0.1",
     "gatsby-plugin-google-analytics": "^3.1.0",
@@ -36,7 +35,6 @@
     "netlify-cms-app": "^2.14.29",
     "nodemon": "^2.0.7",
     "react": "^17.0.1",
-    "react-datepicker": "^3.6.0",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-loader-spinner": "^4.0.0",
