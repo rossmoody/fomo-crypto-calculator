@@ -5,10 +5,15 @@ const Footer = () => {
   return (
     <S.Footer>
       <S.Item>
-        📣 Help improve this site with <a href="#">your ideas on GitHub. </a>
+        <span role="img" aria-label="Announcement">
+          📣
+        </span>{" "}
+        Help improve this site with{" "}
+        <a href="https://www.github.com">your ideas on GitHub. </a>
       </S.Item>
       <S.Item>
-        Made by <a href="#">Ross Moody</a> for fun in 2021
+        Made by <a href="https://www.twitter.com/_rossmoody">Ross Moody</a> for
+        fun in 2021
       </S.Item>
     </S.Footer>
   )

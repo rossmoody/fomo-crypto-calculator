@@ -65,7 +65,7 @@ const getCryptoData = async () => {
       )
     })
   } catch (error) {
-    console.log("Error getting market data")
+    console.log("Error getting market data", error)
   }
 }
 

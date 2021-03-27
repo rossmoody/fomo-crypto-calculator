@@ -8,16 +8,16 @@ async function setProfitLoss(setCoinState, marketData, date, investment) {
 
   if (date.hasOwnProperty("response")) {
     switch (date.response) {
-      case "error":
-        setCoinState("error")
-        return
-
       case "future":
         setCoinState("future")
         return
 
       case "past":
         setCoinState("past")
+        return
+
+      default:
+        setCoinState("error")
         return
     }
   }
@@ -33,8 +33,6 @@ async function setProfitLoss(setCoinState, marketData, date, investment) {
   setCoinState(coins)
 }
 
-// Earliest date for Bitcoin from CoinGecko -> 01-05-2013
-
 const IndexPage = () => {
   const [todaysMarketData, setTodaysMarketData] = useState()
   const [date, setDate] = useState("01-06-2012") // dd-mm-yyyy
@@ -43,17 +41,15 @@ const IndexPage = () => {
 
   useEffect(() => {
     if (!todaysMarketData) {
-      getCryptoData().then(result => {
-        setTodaysMarketData(result)
-        setProfitLoss(setCoins, result, date, investment)
+      getCryptoData().then(cryptoData => {
+        setTodaysMarketData(cryptoData)
+        setProfitLoss(setCoins, cryptoData, date, investment)
       })
     }
   })
 
   useEffect(() => {
     if (!todaysMarketData) return
-    console.log("state date:", date)
-    console.log("state money:", investment)
     setProfitLoss(setCoins, todaysMarketData, date, investment)
   }, [date, investment, todaysMarketData])
 

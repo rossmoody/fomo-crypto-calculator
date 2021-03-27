@@ -37,7 +37,10 @@ const PredictFuture = () => {
   return (
     <ProfitLossContainer>
       <p>
-        We can't predict the future. <span role="img">😢</span>
+        We can't predict the future.{" "}
+        <span aria-label="Sad face" role="img">
+          😢
+        </span>
       </p>
     </ProfitLossContainer>
   )
