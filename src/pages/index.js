@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from "react"
-import ThemeContainer from "./theme-provider"
-import getCryptoData from "../controllers/coin-controller"
+import ThemeContainer from "../theme/theme-provider"
+import getCryptoData from "../api/api"
 import { Header, Hero, ProfitLoss, Footer } from "../components"
 
 async function setProfitLoss(setCoinState, marketData, date, investment) {
   setCoinState(false) // Set false for loader
+
+  if (date.hasOwnProperty("response")) {
+    switch (date.response) {
+      case "error":
+        setCoinState("error")
+        return
+
+      case "future":
+        setCoinState("future")
+        return
+
+      case "past":
+        setCoinState("past")
+        return
+    }
+  }
 
   const processedCoins = await Promise.all(
     marketData.map(coin => {
@@ -13,7 +29,6 @@ async function setProfitLoss(setCoinState, marketData, date, investment) {
   )
 
   let coins = processedCoins.filter(i => i)
-  if (!coins) console.log("No new coins tos how")
   coins = coins.sort((a, b) => b.profit_loss - a.profit_loss)
   setCoinState(coins)
 }

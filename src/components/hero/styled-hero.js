@@ -8,16 +8,21 @@ const Hero = styled.main`
 `
 
 const HeroInner = styled.div`
-  max-width: 600px;
+  max-width: ${props => props.theme.breakpoints.lg};
 `
 
 const Headline = styled.h1`
-  font-size: 32px;
+  font-size: 38px;
   font-style: normal;
   font-weight: 700;
-  line-height: 51px;
+  line-height: 56px;
   letter-spacing: -0.02em;
   text-align: center;
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
+    font-size: 32px;
+    line-height: 48px;
+  }
 `
 
 const PseudoInput = styled.span`
@@ -28,23 +33,27 @@ const PseudoInput = styled.span`
   margin: 0 8px;
 
   &::before {
-    color: ${props => props.theme.primary};
     position: absolute;
     content: "${props => (props.fiat ? "$" : ",")}";
-    left: ${props => (props.fiat ? "12px" : null)};
+    color: ${props => props.theme.primary};
+    left: ${props => (props.fiat ? "2px" : null)};
     right: ${props => (props.fiat ? null : "4px")};
   }
 `
 
 const Input = styled.input`
+  border: none;
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
   color: ${props => props.theme.primary};
-  border: none;
-  margin: ${props => (props.fiat ? "0 0 0 8px" : "0 8px")};
-  width: ${props => (props.fiat ? "72px" : "180px")};
-  padding: ${props => (props.fiat ? "0 0 0 28px" : "0 12px 0 0")};
+  padding-left: ${props => (props.fiat ? "28px" : "")};
+  width: ${props => (props.fiat ? "74px" : "238px")};
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
+    padding-left: ${props => (props.fiat ? "24px" : "")};
+    width: ${props => (props.fiat ? "60px" : "200px")};
+  }
 `
 
 export { Headline, Hero, HeroInner, Input, PseudoInput }

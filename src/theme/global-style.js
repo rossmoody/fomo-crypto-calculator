@@ -1,5 +1,4 @@
-import React from "react"
-import { ThemeProvider, createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -34,22 +33,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const defaultTheme = {
-  divider: "#e3e4e4;",
-  text: "#192635",
-  subdued: "#748497",
-  primary: "#e76756",
-  positive: "#4db23c",
-  negative: "#F94B4B"
-}
-
-const ThemeContainer = props => {
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle />
-      {props.children}
-    </ThemeProvider>
-  )
-}
-
-export default ThemeContainer
+export default GlobalStyle

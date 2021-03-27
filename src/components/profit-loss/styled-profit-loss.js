@@ -9,7 +9,7 @@ const Section = styled.section`
 const Container = styled.div`
   display: flex;
   width: 100%;
-  max-width: 600px;
+  max-width: ${props => props.theme.breakpoints.lg};
   justify-content: center;
 `
 

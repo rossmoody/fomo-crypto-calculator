@@ -9,7 +9,8 @@ const Heading = styled.header`
 `
 
 const Logo = styled.div`
-  margin-bottom: -24px;
+  margin-bottom: -20px;
+  width: 250px;
 `
 
 export { Heading, Logo }

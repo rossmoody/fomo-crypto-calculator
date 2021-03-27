@@ -2,8 +2,7 @@ import React from "react"
 
 const Logo = () => {
   return (
-    <svg width="217" height="31" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <title>FOMO Crypto Calculator Logo</title>
+    <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 217 31">
       <path
         fill="#E76756"
         d="M59.351 2.254l64.682-2.22.617 17.99-64.682 2.22z"

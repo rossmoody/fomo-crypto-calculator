@@ -1,43 +1,46 @@
 import React from "react"
 import * as S from "./styled-hero"
 
-let timer
-let today = new Date()
+let handleTimer
+const today = new Date()
 
 function handleDate(date, callback) {
-  clearTimeout(timer)
+  clearTimeout(handleTimer)
   const splitDate = date.split("-")
   const [year, month, day] = splitDate
-  if (!year || !day || !month) {
-    console.log("Fill out date")
-    return
-  }
-  if (parseInt(year, 10) > today.getFullYear()) {
-    console.log("We cant predict the future") // This needs improved
-    return
-  }
-  if (parseInt(year, 10) < 2009) {
-    console.log("Bitcoin, the first cryptocurrency was create January 3, 2009.")
-    return
-  }
-
   const newDate = `${day}-${month}-${year}`
 
-  timer = setTimeout(() => {
+  handleTimer = setTimeout(() => {
+    if (!year || !day || !month) {
+      callback({ response: "error" })
+      return
+    }
+
+    if (parseInt(year, 10) > today.getFullYear()) {
+      callback({ response: "future" })
+      return
+    }
+
+    if (parseInt(year, 10) < 2009) {
+      callback({ response: "past" })
+      return
+    }
+
     callback(newDate)
   }, 700)
 }
 
-function handleInvestment(money, callback) {
-  clearTimeout(timer)
-  const fiat = document.querySelector("#fiat")
-  fiat.style.width = (fiat.value.length + 1) * 18 + "px"
+function handleInvestment(ele, callback) {
+  clearTimeout(handleTimer)
 
-  const value = parseInt(money, 10)
-  if (value < 1 || !value) return
+  const input = ele.target
+  input.style.width = (input.value.length + 1) * 18 + "px"
 
-  timer = setTimeout(() => {
-    callback(money)
+  const value = parseInt(input.value, 10)
+  if (value < 1 || NaN) return
+
+  handleTimer = setTimeout(() => {
+    callback(input.value)
   }, 700)
 }
 
@@ -49,8 +52,8 @@ const Hero = ({ date, investment }) => {
           If I invested
           <S.PseudoInput fiat>
             <S.Input
-              onChange={e => {
-                handleInvestment(e.target.value, investment)
+              onChange={event => {
+                handleInvestment(event, investment)
               }}
               type="number"
               id="fiat"
@@ -64,7 +67,7 @@ const Hero = ({ date, investment }) => {
               type="date"
               defaultValue="2012-06-01"
               id="date"
-              onChange={e => handleDate(e.target.value, date)}
+              onChange={event => handleDate(event.target.value, date)}
             />
           </S.PseudoInput>
           today it would be worth...
