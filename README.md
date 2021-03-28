@@ -1,6 +1,6 @@
 # 🚀 Fomo Crypto Calculator
 
-A [cryptocurrency calculator](https://www.fomocryptocalculator.com) website to pinpoint the precise amount of regret in dollars you should have for not investing earlier.
+A [cryptocurrency calculator website](https://www.fomocryptocalculator.com) to pinpoint the precise amount of regret in dollars you should have for not investing earlier.
 
 # Quick start
 
