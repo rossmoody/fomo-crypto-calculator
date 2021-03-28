@@ -11,18 +11,28 @@ const coingecko = axios.create({
 })
 
 app.get("/.netlify/functions/top100", async (req, res) => {
-  const response = await coingecko.get(
-    "/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
-  )
-  res.send(JSON.stringify(response.data))
+  try {
+    const response = await coingecko.get(
+      "/markets?vs_currency=usd&order=market_cap_desc&per_page=500&page=1&sparkline=false"
+    )
+    res.send(JSON.stringify(response.data))
+  } catch (error) {
+    console.log(error)
+    res.send(null)
+  }
 })
 
 app.get("/.netlify/functions/history", async (req, res) => {
-  const response = await coingecko.get(
-    `/${req.query.id}/history?date=${req.query.history}`
-  )
-  const price = response.data
-  res.send(JSON.stringify(price))
+  try {
+    const response = await coingecko.get(
+      `/${req.query.id}/history?date=${req.query.history}`
+    )
+    const price = response.data
+    res.send(JSON.stringify(price))
+  } catch (error) {
+    console.log(error.message)
+    res.send(null)
+  }
 })
 
 app.listen(port, () => {

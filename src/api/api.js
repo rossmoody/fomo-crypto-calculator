@@ -54,7 +54,6 @@ class Coin {
 const getCryptoData = async () => {
   try {
     const response = await axios.get("/.netlify/functions/top100")
-
     return response.data.map(coin => {
       return new Coin(
         coin.current_price,
@@ -66,6 +65,7 @@ const getCryptoData = async () => {
     })
   } catch (error) {
     console.log("Error getting market data", error)
+    return null
   }
 }
 

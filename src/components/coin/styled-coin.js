@@ -47,6 +47,10 @@ const Profit = styled.span`
   grid-area: profit;
   width: 120px;
   text-align: end;
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
+    width: 160px;
+  }
 `
 
 const Roi = styled.span`
@@ -58,6 +62,7 @@ const Roi = styled.span`
 
   @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
     font-size: 15px;
+    width: 160px;
   }
 `
 
