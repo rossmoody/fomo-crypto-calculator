@@ -63,7 +63,7 @@ const Hero = ({ setDate, setInvestment }) => {
           <S.DateSpan>
             <S.DateInput
               type="date"
-              defaultValue="2012-06-01"
+              defaultValue="2016-06-01"
               id="date"
               onChange={event => handleDate(event.target.value, setDate)}
             />

@@ -46,7 +46,7 @@ const IndexPage = () => {
     if (!todaysMarketData) {
       getCryptoData().then(cryptoData => {
         setTodaysMarketData(cryptoData)
-        calculateAllCoins(cryptoData, "01-06-2012", investment).then(result => {
+        calculateAllCoins(cryptoData, "01-06-2016", investment).then(result => {
           setCoins(result)
         })
       })
