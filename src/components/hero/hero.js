@@ -30,17 +30,17 @@ function handleDate(date, callback) {
   }, 700)
 }
 
-function handleInvestment(ele, callback) {
+function handleInvestment(money, callback) {
   clearTimeout(timer)
 
-  const input = ele.target
-  input.style.width = (input.value.length + 1) * 18 + "px"
+  const inputSpan = document.querySelector("#fiat")
+  inputSpan.style.width = (money.length + 1) * 24 + "px"
 
-  const value = parseInt(input.value, 10)
+  const value = parseInt(money, 10)
   if (value < 1 || isNaN(value)) return
 
   timer = setTimeout(() => {
-    callback(input.value)
+    callback(money)
   }, 700)
 }
 
@@ -50,26 +50,24 @@ const Hero = ({ setDate, setInvestment }) => {
       <S.HeroInner>
         <S.Headline>
           If I invested
-          <S.PseudoInput fiat>
-            <S.Input
+          <S.MoneySpan id="fiat">
+            <S.MoneyInput
               onChange={event => {
-                handleInvestment(event, setInvestment)
+                handleInvestment(event.target.value, setInvestment)
               }}
               type="number"
-              id="fiat"
               defaultValue={100}
-              fiat
             />
-          </S.PseudoInput>
+          </S.MoneySpan>
           into one cryptocurrency on
-          <S.PseudoInput>
-            <S.Input
+          <S.DateSpan>
+            <S.DateInput
               type="date"
               defaultValue="2012-06-01"
               id="date"
               onChange={event => handleDate(event.target.value, setDate)}
             />
-          </S.PseudoInput>
+          </S.DateSpan>
           today it would be worth...
         </S.Headline>
       </S.HeroInner>

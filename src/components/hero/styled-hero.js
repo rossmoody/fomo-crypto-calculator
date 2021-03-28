@@ -25,36 +25,66 @@ const Headline = styled.h1`
   }
 `
 
-const PseudoInput = styled.span`
+const BaseInputSpan = styled.span`
   display: inline-flex;
   align-items: center;
   position: relative;
   border-bottom: 2px solid ${props => props.theme.divider};
-  margin: 0 8px;
+  margin: 0 12px;
   height: 48px;
+  justify-content: center;
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
+    width: 44px;
+  }
 
   &::before {
     position: absolute;
-    content: "${props => (props.fiat ? "$" : ",")}";
     color: ${props => props.theme.primary};
-    left: ${props => (props.fiat ? "2px" : null)};
-    right: ${props => (props.fiat ? null : "4px")};
   }
 `
 
-const Input = styled.input`
+const MoneySpan = styled(BaseInputSpan)`
+  width: 120px;
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
+    width: 100px;
+  }
+
+  &::before {
+    content: "$";
+    left: 0;
+  }
+`
+
+const DateSpan = styled(BaseInputSpan)`
+  width: 250px;
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
+    width: 220px;
+  }
+
+  &::before {
+    content: ",";
+    right: 4px;
+  }
+`
+
+const BaseInput = styled.input`
   border: none;
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
+  width: inherit;
+  background: none;
+  text-align: center;
   color: ${props => props.theme.primary};
-  padding-left: ${props => (props.fiat ? "28px" : "")};
-  width: ${props => (props.fiat ? "74px" : "238px")};
-
-  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
-    padding-left: ${props => (props.fiat ? "24px" : "")};
-    width: ${props => (props.fiat ? "60px" : "200px")};
-  }
 `
 
-export { Headline, Hero, HeroInner, Input, PseudoInput }
+const MoneyInput = styled(BaseInput)`
+  padding: 0 0 0 16px;
+`
+
+const DateInput = styled(BaseInput)``
+
+export { DateInput, DateSpan, Headline, Hero, HeroInner, MoneyInput, MoneySpan }
