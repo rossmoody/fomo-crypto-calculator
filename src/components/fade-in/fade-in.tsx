@@ -17,12 +17,10 @@ const Wrapper = styled.div`
   }
 `
 
-const FadeIn = ({ duration = 300, delay = 0, children, ...delegated }) => {
+const FadeIn = ({ duration = 300, delay = 0, children }) => {
   return (
     <Wrapper
-      {...delegated}
       style={{
-        ...(delegated.style || {}),
         animationDuration: duration + "ms",
         animationDelay: delay + "ms"
       }}

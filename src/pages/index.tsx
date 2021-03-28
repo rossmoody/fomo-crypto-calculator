@@ -23,9 +23,11 @@ async function calculateAllCoins(marketData, date, investment) {
     })
   )
 
-  let coins = processedCoins.filter(i => i)
-  coins = coins.sort((a, b) => b.profit_loss - a.profit_loss)
-  return coins
+  const coinsWithPastPrice = processedCoins.filter(i => i)
+  const sortedCoins = coinsWithPastPrice.sort(
+    (a, b) => b.profit_loss - a.profit_loss
+  )
+  return sortedCoins
 }
 
 function calculateCurrentCoins(coins, investment) {
@@ -37,20 +39,21 @@ function calculateCurrentCoins(coins, investment) {
   })
 }
 
+async function init() {
+  const cryptoData = await getCryptoData()
+  return calculateAllCoins(cryptoData, "01-06-2016", 100)
+}
+
 const IndexPage = () => {
-  const [todaysMarketData, setTodaysMarketData] = useState()
+  let todaysMarketData: Array<any> | string
   const [investment, setInvestment] = useState(100)
-  const [coins, setCoins] = useState()
+  const [coins, setCoins] = useState<boolean | Array<any> | string>(false)
 
   useEffect(() => {
-    if (!todaysMarketData) {
-      getCryptoData().then(cryptoData => {
-        setTodaysMarketData(cryptoData)
-        calculateAllCoins(cryptoData, "01-06-2016", investment).then(result => {
-          setCoins(result)
-        })
-      })
-    }
+    init().then(result => {
+      todaysMarketData = result
+      setCoins(result)
+    })
   })
 
   return (

@@ -53,7 +53,11 @@ const Profit = styled.span`
   }
 `
 
-const Roi = styled.span`
+interface RoiProps {
+  positive: boolean
+}
+
+const Roi = styled.span<RoiProps>`
   grid-area: roi;
   width: 120px;
   text-align: end;

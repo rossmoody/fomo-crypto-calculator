@@ -39,5 +39,8 @@
     "react-helmet": "^6.1.0",
     "react-loader-spinner": "^4.0.0",
     "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.9"
   }
 }
