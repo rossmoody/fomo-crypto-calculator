@@ -29,6 +29,8 @@ async function calculateAllCoins(marketData, date, investment) {
 }
 
 function calculateCurrentCoins(coins, investment) {
+  if (!coins) return
+
   return coins.map(coin => {
     coin.doBigBrainMath(investment)
     return coin

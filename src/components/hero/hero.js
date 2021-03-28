@@ -34,7 +34,7 @@ function handleInvestment(money, callback) {
   clearTimeout(timer)
 
   const inputSpan = document.querySelector("#fiat")
-  inputSpan.style.width = (money.length + 1) * 24 + "px"
+  inputSpan.style.width = (money.length + 2) * 24 + "px"
 
   const value = parseInt(money, 10)
   if (value < 1 || isNaN(value)) return
