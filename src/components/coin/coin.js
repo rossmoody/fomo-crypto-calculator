@@ -11,19 +11,15 @@ const Coin = ({ coin }) => {
       <S.ImageContainer>
         <S.Image src={coin.image} alt={coin.name} />
       </S.ImageContainer>
-      <S.Title>
-        <span>{coin.name}</span>
-        <S.CoinsOwned>
-          {coin.symbol} {coin.coins_owned}
-        </S.CoinsOwned>
-      </S.Title>
-      <S.Profit>
-        <span>${coin.profit_loss.toLocaleString()}</span>
-        <S.Roi positive={isPositive(coin)}>
-          {isPositive(coin) && "+"}
-          {coin.roi.toLocaleString()}%
-        </S.Roi>
-      </S.Profit>
+      <S.CoinName>{coin.name}</S.CoinName>
+      <S.CoinsOwned>
+        {coin.symbol} {coin.coins_owned}
+      </S.CoinsOwned>
+      <S.Profit>${coin.profit_loss.toLocaleString()}</S.Profit>
+      <S.Roi positive={isPositive(coin)}>
+        {isPositive(coin) && "+"}
+        {coin.roi.toLocaleString()}%
+      </S.Roi>
     </S.Coin>
   )
 }

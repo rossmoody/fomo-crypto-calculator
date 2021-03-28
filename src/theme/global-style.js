@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
   input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
+    background: none;
   }
 `
 

@@ -1,18 +1,29 @@
 import styled from "styled-components"
 
 const Coin = styled.li`
-  display: flex;
-  padding: 20px 24px;
   font-size: 18px;
   font-weight: 500;
   word-break: break-word;
   border-top: 1px solid ${props => props.theme.divider};
+  display: grid;
+  grid-template:
+    "image coin-name profit roi"
+    "image coins-owned profit roi";
+  grid-template-columns: 32px 1fr;
+  grid-column-gap: 12px;
+  align-items: center;
+  padding: 24px;
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
+    grid-template:
+      "image coin-name coin-name profit profit"
+      "image coins-owned coins-owned roi roi";
+    grid-template-columns: 32px 1fr;
+  }
 `
 
 const ImageContainer = styled.div`
-  display: flex;
-  align-items: start;
-  margin-right: 16px;
+  grid-area: image;
 `
 
 const Image = styled.img`
@@ -20,33 +31,34 @@ const Image = styled.img`
   width: 32px;
 `
 
-const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin-right: 20px;
+const CoinName = styled.span`
+  grid-area: coin-name;
 `
 
 const CoinsOwned = styled.span`
+  grid-area: coins-owned;
   text-transform: uppercase;
-  font-size: 15px;
   font-weight: 400;
+  font-size: 15px;
   color: ${props => props.theme.subdued};
 `
 
-const Profit = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  align-items: flex-end;
+const Profit = styled.span`
+  grid-area: profit;
+  width: 120px;
   text-align: end;
 `
 
 const Roi = styled.span`
-  font-weight: 400;
-  font-size: 15px;
+  grid-area: roi;
+  width: 120px;
+  text-align: end;
   color: ${props =>
     props.positive ? props.theme.positive : props.theme.negative};
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
+    font-size: 15px;
+  }
 `
 
-export { Coin, CoinsOwned, Image, ImageContainer, Profit, Roi, Title }
+export { Coin, CoinName, CoinsOwned, Image, ImageContainer, Profit, Roi }
