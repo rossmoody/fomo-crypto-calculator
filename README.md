@@ -2,15 +2,15 @@
 
 A cryptocurrency calculator to pinpoint the precise amount of regret in dollars you should have for not investing earlier.
 
-# 🚀 Quick start
+# Quick start
 
-## 1. Install dependencies
+### 1. Install dependencies
 
 ```
 npm i
 ```
 
-## 2. Startup dev environment
+### 2. Startup dev environment
 
 The site is built using Gatsby and Express to make authenticated API calls to CoinGecko API.
 
@@ -26,6 +26,6 @@ In a seperate shell startup the Express server to act as Netlify's serverless fu
 npm run server
 ```
 
-## 3. Start coding
+### 3. Start coding
 
 Editing content in the `src` directory will auto refresh in the browser at `localhost:8000`.
