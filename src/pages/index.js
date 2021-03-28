@@ -3,22 +3,17 @@ import ThemeContainer from "../theme/theme-provider"
 import getCryptoData from "../api/api"
 import { Header, Hero, ProfitLoss, Footer } from "../components"
 
-async function setProfitLoss(setCoinState, marketData, date, investment) {
-  setCoinState(false) // Set false for loader
-
+async function calculateAllCoins(marketData, date, investment) {
   if (date.hasOwnProperty("response")) {
     switch (date.response) {
       case "future":
-        setCoinState("future")
-        return
+        return "future"
 
       case "past":
-        setCoinState("past")
-        return
+        return "past"
 
       default:
-        setCoinState("error")
-        return
+        return "error"
     }
   }
 
@@ -30,12 +25,18 @@ async function setProfitLoss(setCoinState, marketData, date, investment) {
 
   let coins = processedCoins.filter(i => i)
   coins = coins.sort((a, b) => b.profit_loss - a.profit_loss)
-  setCoinState(coins)
+  return coins
+}
+
+function calculateCurrentCoins(coins, investment) {
+  return coins.map(coin => {
+    coin.doBigBrainMath(investment)
+    return coin
+  })
 }
 
 const IndexPage = () => {
   const [todaysMarketData, setTodaysMarketData] = useState()
-  const [date, setDate] = useState("01-06-2012") // dd-mm-yyyy
   const [investment, setInvestment] = useState(100)
   const [coins, setCoins] = useState()
 
@@ -43,20 +44,31 @@ const IndexPage = () => {
     if (!todaysMarketData) {
       getCryptoData().then(cryptoData => {
         setTodaysMarketData(cryptoData)
-        setProfitLoss(setCoins, cryptoData, date, investment)
+        calculateAllCoins(cryptoData, "01-06-2012", investment).then(result => {
+          setCoins(result)
+        })
       })
     }
   })
 
-  useEffect(() => {
-    if (!todaysMarketData) return
-    setProfitLoss(setCoins, todaysMarketData, date, investment)
-  }, [date, investment, todaysMarketData])
-
   return (
     <ThemeContainer>
       <Header />
-      <Hero date={setDate} investment={setInvestment} />
+      <Hero
+        setDate={async date => {
+          setCoins(false)
+          const coins = await calculateAllCoins(
+            todaysMarketData,
+            date,
+            investment
+          )
+          setCoins(coins)
+        }}
+        setInvestment={money => {
+          setInvestment(money)
+          setCoins(calculateCurrentCoins(coins, money))
+        }}
+      />
       <ProfitLoss coins={coins} />
       <Footer />
     </ThemeContainer>

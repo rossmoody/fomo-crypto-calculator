@@ -44,7 +44,7 @@ function handleInvestment(ele, callback) {
   }, 700)
 }
 
-const Hero = ({ date, investment }) => {
+const Hero = ({ setDate, setInvestment }) => {
   return (
     <S.Hero>
       <S.HeroInner>
@@ -53,7 +53,7 @@ const Hero = ({ date, investment }) => {
           <S.PseudoInput fiat>
             <S.Input
               onChange={event => {
-                handleInvestment(event, investment)
+                handleInvestment(event, setInvestment)
               }}
               type="number"
               id="fiat"
@@ -67,7 +67,7 @@ const Hero = ({ date, investment }) => {
               type="date"
               defaultValue="2012-06-01"
               id="date"
-              onChange={event => handleDate(event.target.value, date)}
+              onChange={event => handleDate(event.target.value, setDate)}
             />
           </S.PseudoInput>
           today it would be worth...
