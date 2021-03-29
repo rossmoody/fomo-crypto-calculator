@@ -1,79 +1,59 @@
-import React, { useState, useEffect } from "react"
-import ThemeContainer from "../theme/theme-provider"
-import getCryptoData from "../api/api"
+import React, { useState, useMemo } from "react"
 import { Header, Hero, ProfitLoss, Footer } from "../components"
+import ThemeContainer from "../theme/theme-provider"
+import getCoins from "../api/get-coins"
+import Coin from "../api/process-coins"
 
-async function calculateAllCoins(marketData, date, investment) {
-  if (date.hasOwnProperty("response")) {
-    switch (date.response) {
-      case "future":
-        return "future"
+async function calculateAllCoins(coinData, newDate, investment) {
+  const sortDescending = (coinOne, coinTwo) =>
+    coinTwo.profit_loss - coinOne.profit_loss
 
-      case "past":
-        return "past"
-
-      default:
-        return "error"
-    }
-  }
-
-  const processedCoins = await Promise.all(
-    marketData.map(coin => {
-      return coin.calculateProfitLoss(date, investment)
+  const coinList: Coin[] = await Promise.all(
+    coinData.map(async (coin: Coin) => {
+      await coin.getPastPrice(newDate, investment)
+      return coin
     })
   )
 
-  const coinsWithPastPrice = processedCoins.filter(i => i)
-  const sortedCoins = coinsWithPastPrice.sort(
-    (a, b) => b.profit_loss - a.profit_loss
-  )
-  return sortedCoins
+  return coinList.filter(i => i.past_price).sort(sortDescending)
 }
 
-function calculateCurrentCoins(coins, investment) {
-  if (!coins) return
-
-  return coins.map(coin => {
+function calculateCurrentCoins(coins: Coin[], investment: number): Coin[] {
+  return coins.map((coin: Coin) => {
     coin.doBigBrainMath(investment)
     return coin
   })
 }
 
-async function init() {
-  const cryptoData = await getCryptoData()
-  return calculateAllCoins(cryptoData, "01-06-2016", 100)
-}
-
 const IndexPage = () => {
-  let todaysMarketData: Array<any> | string
-  const [investment, setInvestment] = useState(100)
-  const [coins, setCoins] = useState<boolean | Array<any> | string>(false)
+  const [marketData, setMarketData] = useState<Coin[] | boolean>()
+  const [coins, setCoins] = useState<Coin[] | boolean>(false)
+  const [date, setDate] = useState<string>("01-06-2016")
+  const [investment, setInvestment] = useState<number>(100)
 
-  useEffect(() => {
-    init().then(result => {
-      todaysMarketData = result
-      setCoins(result)
-    })
-  })
+  useMemo(() => {
+    if (!marketData) {
+      getCoins().then(coinList => {
+        setMarketData(coinList)
+        calculateAllCoins(coinList, date, investment).then(setCoins)
+      })
+    }
+  }, [marketData])
+
+  useMemo(() => {
+    if (Array.isArray(coins)) calculateCurrentCoins(coins, investment)
+  }, [investment])
+
+  useMemo(() => {
+    if (!marketData) return
+    setCoins(false)
+    calculateAllCoins(marketData, date, investment).then(setCoins)
+  }, [date])
 
   return (
     <ThemeContainer>
       <Header />
-      <Hero
-        setDate={async date => {
-          setCoins(false)
-          const coins = await calculateAllCoins(
-            todaysMarketData,
-            date,
-            investment
-          )
-          setCoins(coins)
-        }}
-        setInvestment={money => {
-          setInvestment(money)
-          setCoins(calculateCurrentCoins(coins, money))
-        }}
-      />
+      <Hero setDate={setDate} setInvestment={setInvestment} />
       <ProfitLoss coins={coins} />
       <Footer />
     </ThemeContainer>

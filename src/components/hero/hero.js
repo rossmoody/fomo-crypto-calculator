@@ -45,6 +45,7 @@ function handleInvestment(money, callback) {
 }
 
 const Hero = ({ setDate, setInvestment }) => {
+  console.log("rendered Hero component")
   return (
     <S.Hero>
       <S.HeroInner>

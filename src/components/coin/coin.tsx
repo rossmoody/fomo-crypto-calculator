@@ -6,7 +6,6 @@ function isPositive(coin): boolean {
 }
 
 const Coin = ({ coin }) => {
-  console.log(coin)
   return (
     <S.Coin>
       <S.ImageContainer>

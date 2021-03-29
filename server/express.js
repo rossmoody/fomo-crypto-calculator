@@ -18,7 +18,6 @@ app.get("/.netlify/functions/top100", async (req, res) => {
     res.send(JSON.stringify(response.data))
   } catch (error) {
     console.log(error)
-    res.send(null)
   }
 })
 
@@ -31,7 +30,7 @@ app.get("/.netlify/functions/history", async (req, res) => {
     res.send(JSON.stringify(price))
   } catch (error) {
     console.log(error.message)
-    res.send(null)
+    res.send({})
   }
 })
 

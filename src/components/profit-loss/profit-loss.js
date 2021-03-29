@@ -64,6 +64,8 @@ const ProfitLoss = ({ coins }) => {
   if (coins === "future") return <PredictFuture />
   if (coins === "past") return <InThePast />
 
+  console.log(coins, "profitLoss")
+
   return (
     <ProfitLossContainer>
       <S.UnorderedList>
