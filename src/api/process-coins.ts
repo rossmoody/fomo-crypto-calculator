@@ -7,10 +7,10 @@ class Coin {
   image: string
   name: string
   symbol: string
+  past_price: number
   coins_owned?: number
   roi?: number
   profit_loss?: number
-  past_price?: number
 
   constructor(
     current_price: number,
@@ -24,14 +24,7 @@ class Coin {
     this.image = image
     this.name = name
     this.symbol = symbol
-  }
-
-  doBigBrainMath(initInvestment: number) {
-    this.coins_owned = initInvestment / this.past_price
-    this.profit_loss = Math.round(this.coins_owned * this.current_price)
-    this.roi = Math.round(
-      ((this.profit_loss - initInvestment) / initInvestment) * 100
-    )
+    this.past_price = 0
   }
 
   async getPastPrice(date: string, investment: number) {
@@ -45,11 +38,17 @@ class Coin {
     if (data.hasOwnProperty("market_data")) {
       this.past_price = data.market_data.current_price.usd
       this.doBigBrainMath(investment)
-    } else {
-      this.past_price = 0
     }
 
     return this
+  }
+
+  doBigBrainMath(initInvestment: number): void {
+    this.coins_owned = initInvestment / this.past_price
+    this.profit_loss = Math.round(this.coins_owned * this.current_price)
+    this.roi = Math.round(
+      ((this.profit_loss - initInvestment) / initInvestment) * 100
+    )
   }
 
   getBitcoinPrice(date: string, investment: number) {

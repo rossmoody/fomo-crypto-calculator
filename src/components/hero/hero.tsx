@@ -1,9 +1,9 @@
 import React from "react"
 import * as S from "./styled-hero"
 
-let timer
+let timer: ReturnType<typeof setTimeout>
 
-function handleDate(date, callback) {
+function handleDate(date: string, callback: Function) {
   clearTimeout(timer)
   const splitDate = date.split("-")
   const [year, month, day] = splitDate
@@ -30,21 +30,21 @@ function handleDate(date, callback) {
   }, 700)
 }
 
-function handleInvestment(money, callback) {
+function handleInvestment(money: number, callback: Function) {
   clearTimeout(timer)
 
-  const inputSpan = document.querySelector("#fiat")
-  inputSpan.style.width = (money.length + 2) * 24 + "px"
+  const inputSpan: HTMLSpanElement | null = document.querySelector("#fiat")
+  if (inputSpan)
+    inputSpan.style.width = (money.toString().length + 2) * 24 + "px"
 
-  const value = parseInt(money, 10)
-  if (value < 1 || isNaN(value)) return
+  if (money < 1 || isNaN(money)) return
 
   timer = setTimeout(() => {
     callback(money)
   }, 700)
 }
 
-const Hero = ({ setDate, setInvestment }) => {
+const Hero = (setDate: Function, setInvestment: Function) => {
   console.log("rendered Hero component")
   return (
     <S.Hero>
@@ -54,7 +54,7 @@ const Hero = ({ setDate, setInvestment }) => {
           <S.MoneySpan id="fiat">
             <S.MoneyInput
               onChange={event => {
-                handleInvestment(event.target.value, setInvestment)
+                handleInvestment(+event.target.value, setInvestment)
               }}
               type="number"
               defaultValue={100}
