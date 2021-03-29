@@ -10,10 +10,18 @@ const coingecko = axios.create({
 exports.handler = async function (event, context) {
   const url =
     "/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
-  const { data } = await coingecko.get(url)
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(data)
+  try {
+    const { data } = await coingecko.get(url)
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data)
+    }
+  } catch (error) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify([])
+    }
   }
 }
