@@ -35,6 +35,7 @@ class Coin {
       }
     })
 
+    this.past_price = 0
     if (data.hasOwnProperty("market_data")) {
       this.past_price = data.market_data.current_price.usd
       this.doBigBrainMath(investment)
@@ -52,13 +53,11 @@ class Coin {
   }
 
   getBitcoinPrice(date: string, investment: number) {
-    if (this.id === "bitcoin") {
-      for (const day of bitcoinData) {
-        if (date === day.date) {
-          this.past_price = day.value
-          this.doBigBrainMath(investment)
-          return this
-        }
+    for (const day of bitcoinData) {
+      if (date === day.date) {
+        this.past_price = day.value
+        this.doBigBrainMath(investment)
+        return this
       }
     }
   }

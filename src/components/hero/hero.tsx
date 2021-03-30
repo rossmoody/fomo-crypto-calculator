@@ -12,7 +12,7 @@ function handleDate(date: string, callback: Function) {
 
   timer = setTimeout(() => {
     if (!year || !day || !month) {
-      callback({ response: "error" })
+      callback("error")
       return
     }
 
@@ -44,7 +44,12 @@ function handleInvestment(money: number, callback: Function) {
   }, 700)
 }
 
-const Hero = (setDate: Function, setInvestment: Function) => {
+interface IHero {
+  setDate: Function
+  setInvestment: Function
+}
+
+const Hero = ({ setDate, setInvestment }: IHero) => {
   console.log("rendered Hero component")
   return (
     <S.Hero>

@@ -1,13 +1,14 @@
 import React, { useState, useMemo } from "react"
-import { Header, Hero, ProfitLoss, Footer } from "../components"
 import ThemeContainer from "../theme/theme-provider"
+import { Footer, Header, Hero, ProfitLoss } from "../components"
 import getCoins from "../api/get-coins"
 import Coin from "../api/process-coins"
 
-async function calculateAllCoins(coinData, newDate, investment) {
-  const sortDescending = (coinOne, coinTwo) =>
-    coinTwo.profit_loss - coinOne.profit_loss
-
+async function calculateAllCoins(
+  coinData: any,
+  newDate: string,
+  investment: number
+) {
   const coinList: Coin[] = await Promise.all(
     coinData.map(async (coin: Coin) => {
       await coin.getPastPrice(newDate, investment)
@@ -15,14 +16,9 @@ async function calculateAllCoins(coinData, newDate, investment) {
     })
   )
 
-  return coinList.filter(i => i.past_price).sort(sortDescending)
-}
-
-function calculateCurrentCoins(coins: Coin[], investment: number): Coin[] {
-  return coins.map((coin: Coin) => {
-    coin.doBigBrainMath(investment)
-    return coin
-  })
+  return coinList
+    .filter(i => i.past_price)
+    .sort((a, b) => b.profit_loss - a.profit_loss)
 }
 
 const IndexPage = () => {
@@ -41,7 +37,8 @@ const IndexPage = () => {
   }, [marketData])
 
   useMemo(() => {
-    if (Array.isArray(coins)) calculateCurrentCoins(coins, investment)
+    if (Array.isArray(coins))
+      coins.forEach(coin => coin.doBigBrainMath(investment))
   }, [investment])
 
   useMemo(() => {
@@ -54,7 +51,7 @@ const IndexPage = () => {
     <ThemeContainer>
       <Header />
       <Hero setDate={setDate} setInvestment={setInvestment} />
-      <ProfitLoss coins={coins} />
+      <ProfitLoss coins={coins} date={date} />
       <Footer />
     </ThemeContainer>
   )
