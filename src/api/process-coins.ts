@@ -44,12 +44,13 @@ class Coin {
     return this
   }
 
-  doBigBrainMath(initInvestment: number): void {
+  doBigBrainMath(initInvestment: number) {
     this.coins_owned = initInvestment / this.past_price
     this.profit_loss = Math.round(this.coins_owned * this.current_price)
     this.roi = Math.round(
       ((this.profit_loss - initInvestment) / initInvestment) * 100
     )
+    return this
   }
 
   getBitcoinPrice(date: string, investment: number) {

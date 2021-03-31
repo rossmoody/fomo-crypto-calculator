@@ -8,6 +8,7 @@ function isPositive(coin): boolean {
 }
 
 const Coin = ({ coin }: { coin: ICoin }) => {
+  console.log("coin", coin)
   return (
     <FadeIn>
       <S.Coin>

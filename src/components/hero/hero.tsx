@@ -33,9 +33,8 @@ function handleDate(date: string, callback: Function) {
 function handleInvestment(money: number, callback: Function) {
   clearTimeout(timer)
 
-  const inputSpan: HTMLSpanElement | null = document.querySelector("#fiat")
-  if (inputSpan)
-    inputSpan.style.width = (money.toString().length + 2) * 24 + "px"
+  const inputSpan: HTMLSpanElement = document.querySelector("#fiat")
+  inputSpan.style.width = (money.toString().length + 2) * 24 + "px"
 
   if (money < 1 || isNaN(money)) return
 
