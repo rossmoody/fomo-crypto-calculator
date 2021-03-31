@@ -2,20 +2,12 @@ import React from "react"
 import * as S from "./styled-profit-loss"
 import { CoinList } from "../"
 
-const coinsOrErrors = (coins, date) => {
-  switch (date) {
-    case "error":
-      return <div>Error</div>
-
-    default:
-      return <CoinList coins={coins} />
-  }
-}
-
-const ProfitLoss = ({ coins, date }) => {
+const ProfitLoss = ({ coins }) => {
   return (
     <S.Section>
-      <S.Container>{coinsOrErrors(coins, date)}</S.Container>
+      <S.Container>
+        <CoinList coins={coins} />
+      </S.Container>
     </S.Section>
   )
 }

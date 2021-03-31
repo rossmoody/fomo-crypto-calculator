@@ -51,6 +51,7 @@ interface IHero {
 
 const Hero = ({ setDate, setInvestment }: IHero) => {
   console.log("rendered Hero component")
+
   return (
     <S.Hero>
       <S.HeroInner>
@@ -81,4 +82,4 @@ const Hero = ({ setDate, setInvestment }: IHero) => {
   )
 }
 
-export default Hero
+export default React.memo(Hero)

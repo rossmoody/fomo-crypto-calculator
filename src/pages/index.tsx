@@ -1,16 +1,17 @@
-import React, { useState, useMemo } from "react"
+import React, { useState, useEffect } from "react"
 import ThemeContainer from "../theme/theme-provider"
 import { Footer, Header, Hero, ProfitLoss } from "../components"
+import Coin from "../api/process-coins"
 import getCoins from "../api/get-coins"
 
 const IndexPage = () => {
   const [marketData, setMarketData] = useState([])
   const [coins, setCoins] = useState([])
-  const [date, setDate] = useState<string>("01-06-2016")
-  const [investment, setInvestment] = useState<number>(100)
+  const [date, setDate] = useState("01-06-2016")
+  const [investment, setInvestment] = useState(100)
 
-  function updateCoins(data) {
-    data.forEach(async dailyCoin => {
+  function updateCoinList(coinArr: Coin[]) {
+    coinArr.forEach(async dailyCoin => {
       const coin = await dailyCoin.getPastPrice(date, investment)
       if (coin.past_price) {
         setCoins(prevCoins => [...prevCoins, coin])
@@ -18,31 +19,27 @@ const IndexPage = () => {
     })
   }
 
-  useMemo(() => {
-    if (!marketData.length) {
-      getCoins().then(todaysMarketData => {
-        setMarketData(todaysMarketData)
-        updateCoins(todaysMarketData)
-      })
-    }
-  }, [marketData])
+  useEffect(() => {
+    getCoins().then(todaysMarketData => {
+      setMarketData(todaysMarketData)
+      updateCoinList(todaysMarketData)
+    })
+  }, [])
 
-  useMemo(() => {
-    if (Array.isArray(coins))
-      coins.forEach(coin => coin.doBigBrainMath(investment))
+  useEffect(() => {
+    coins.forEach(coin => coin.doBigBrainMath(investment))
   }, [investment])
 
-  useMemo(() => {
-    if (!marketData.length) return
+  useEffect(() => {
     setCoins([])
-    updateCoins(marketData)
+    updateCoinList(marketData)
   }, [date])
 
   return (
     <ThemeContainer>
       <Header />
       <Hero setDate={setDate} setInvestment={setInvestment} />
-      <ProfitLoss coins={coins} date={date} />
+      <ProfitLoss coins={coins} />
       <Footer />
     </ThemeContainer>
   )

@@ -1,12 +1,13 @@
 import React from "react"
 import * as S from "./styled-coin"
-import FadeIn from "../fade-in/fade-in"
+import { FadeIn } from "../"
+import ICoin from "../../api/process-coins"
 
 function isPositive(coin): boolean {
   if (Math.sign(coin.roi) > 0) return true
 }
 
-const Coin = ({ coin }) => {
+const Coin = ({ coin }: { coin: ICoin }) => {
   return (
     <FadeIn>
       <S.Coin>
