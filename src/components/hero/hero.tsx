@@ -3,34 +3,19 @@ import * as S from "./styled-hero"
 
 let timer: ReturnType<typeof setTimeout>
 
-function handleDate(date: string, callback: Function) {
+function handleDate(date: string, callback: (arg0: string) => void) {
   clearTimeout(timer)
   const splitDate = date.split("-")
   const [year, month, day] = splitDate
   const newDate = `${day}-${month}-${year}`
-  const currentYear = new Date().getFullYear()
+  // const currentYear = new Date().getFullYear()
 
   timer = setTimeout(() => {
-    if (!year || !day || !month) {
-      callback("error")
-      return
-    }
-
-    if (parseInt(year, 10) > currentYear) {
-      callback({ response: "future" })
-      return
-    }
-
-    if (parseInt(year, 10) < 2009) {
-      callback({ response: "past" })
-      return
-    }
-
     callback(newDate)
   }, 700)
 }
 
-function handleInvestment(money: number, callback: Function) {
+function handleInvestment(money: number, callback: (arg0: number) => void) {
   clearTimeout(timer)
 
   const inputSpan: HTMLSpanElement = document.querySelector("#fiat")
@@ -44,8 +29,8 @@ function handleInvestment(money: number, callback: Function) {
 }
 
 interface IHero {
-  setDate: Function
-  setInvestment: Function
+  setDate: (arg0: string) => void
+  setInvestment: (arg0: number) => void
 }
 
 const Hero = ({ setDate, setInvestment }: IHero) => {

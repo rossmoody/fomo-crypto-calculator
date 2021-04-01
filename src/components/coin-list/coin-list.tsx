@@ -1,22 +1,25 @@
 import React from "react"
 import * as S from "./styled-coin-list"
-import ICoin from "../../api/process-coins"
-import { Coin, Loader } from "../"
+import { Coin, CoinItem, Loader } from "../"
+import { ICoinState } from "../../pages/index"
 
-interface IProfitLoss {
-  coins: ICoin[]
+function descendingOrder(coinArr: Coin[]) {
+  return coinArr.sort((a, b) => b.profit_loss - a.profit_loss)
 }
 
-const CoinList = ({ coins }: IProfitLoss) => {
-  if (!coins.length) return <Loader />
+const CoinList = ({ coinState }: { coinState: ICoinState }) => {
+  console.log(coinState, "CoinList")
 
-  const coinMap = coins => {
-    return coins.map((coin, index) => {
-      return <Coin key={index} coin={coin} />
-    })
-  }
+  if (coinState.loading) return <Loader />
+  if (!coinState.data.length) return <div>No results</div>
 
-  return <S.UnorderedList>{coinMap(coins)}</S.UnorderedList>
+  return (
+    <S.UnorderedList>
+      {descendingOrder(coinState.data).map((coin, index) => {
+        return <CoinItem key={index} coin={coin} />
+      })}
+    </S.UnorderedList>
+  )
 }
 
 export default CoinList

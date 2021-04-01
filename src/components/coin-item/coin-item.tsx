@@ -1,14 +1,12 @@
 import React from "react"
 import * as S from "./styled-coin"
-import { FadeIn } from "../"
-import ICoin from "../../api/process-coins"
+import { Coin, FadeIn } from ".."
 
-function isPositive(coin): boolean {
+function isPositive(coin: Coin): boolean {
   if (Math.sign(coin.roi) > 0) return true
 }
 
-const Coin = ({ coin }: { coin: ICoin }) => {
-  console.log("coin", coin)
+const CoinItem = ({ coin }: { coin: Coin }) => {
   return (
     <FadeIn>
       <S.Coin>
@@ -29,4 +27,4 @@ const Coin = ({ coin }: { coin: ICoin }) => {
   )
 }
 
-export default Coin
+export default CoinItem

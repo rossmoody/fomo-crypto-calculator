@@ -1,5 +1,5 @@
 const axios = require("axios")
-const bitcoinData = require("../data/bitcoin.json")
+const bitcoinData = require("../../data/bitcoin.json")
 
 class Coin {
   id: string
@@ -13,8 +13,8 @@ class Coin {
   profit_loss?: number
 
   constructor(
-    current_price: number,
     id: string,
+    current_price: number,
     image: string,
     name: string,
     symbol: string

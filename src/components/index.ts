@@ -1,4 +1,5 @@
 import Coin from "./coin/coin"
+import CoinItem from "./coin-item/coin-item"
 import CoinList from "./coin-list/coin-list"
 import FadeIn from "./fade-in/fade-in"
 import Footer from "./footer/footer"
@@ -10,6 +11,7 @@ import ProfitLoss from "./profit-loss/profit-loss"
 
 export {
   Coin,
+  CoinItem,
   CoinList,
   FadeIn,
   Footer,

@@ -1,16 +1,13 @@
 import React from "react"
 import * as S from "./styled-profit-loss"
 import { CoinList } from "../"
+import { ICoinState } from "../../pages/index"
 
-function descendingOrder(i) {
-  return i.sort((a, b) => b.profit_loss - a.profit_loss)
-}
-
-const ProfitLoss = ({ coins }) => {
+const ProfitLoss = ({ coinState }: { coinState: ICoinState }) => {
   return (
     <S.Section>
       <S.Container>
-        <CoinList coins={descendingOrder(coins)} />
+        <CoinList coinState={coinState} />
       </S.Container>
     </S.Section>
   )

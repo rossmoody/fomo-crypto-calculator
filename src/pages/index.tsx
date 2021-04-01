@@ -1,30 +1,92 @@
 import React, { useState, useEffect } from "react"
 import ThemeContainer from "../theme/theme-provider"
-import { Footer, Header, Hero, ProfitLoss } from "../components"
+import { Coin, Footer, Header, Hero, ProfitLoss } from "../components"
 import getCoins from "../api/get-coins"
-import Coin from "../api/process-coins"
+
+export interface ICoinState {
+  data: Coin[]
+  loading: boolean
+  validation: {
+    error: boolean
+    past: boolean
+    future: boolean
+  }
+}
 
 const IndexPage = () => {
-  const [marketData, setMarketData] = useState([])
-  const [coins, setCoins] = useState([])
   const [date, setDate] = useState("01-06-2016")
   const [investment, setInvestment] = useState(100)
+  const [marketData, setMarketData] = useState([])
+  const [coinState, setCoinState] = useState<ICoinState>({
+    data: [],
+    loading: true,
+    validation: {
+      error: false,
+      past: false,
+      future: false
+    }
+  })
 
-  function updateCoinList(coinList: Coin[]) {
-    setCoins([])
-    coinList.forEach(async dailyCoin => {
-      const coin = await dailyCoin.getPastPrice(date, investment)
-      if (coin.past_price) {
-        setCoins(prevCoins => [...prevCoins, coin])
+  async function updateCoinList(todaysMarketData: Coin[]) {
+    setCoinState({
+      data: [],
+      loading: true,
+      validation: {
+        error: false,
+        past: false,
+        future: false
       }
+    })
+
+    todaysMarketData.forEach((dailyCoin, index, arr) => {
+      const rateLimiterBase = 200
+
+      setTimeout(async () => {
+        const coin = await dailyCoin.getPastPrice(date, investment)
+        if (coin.past_price) {
+          setCoinState(prevState => {
+            return {
+              data: [...prevState.data, coin],
+              loading: false,
+              validation: {
+                error: false,
+                past: false,
+                future: false
+              }
+            }
+          })
+        }
+
+        if (index === arr.length - 1) {
+          setCoinState(prevState => {
+            return {
+              data: prevState.data,
+              loading: false,
+              validation: {
+                error: false,
+                past: false,
+                future: false
+              }
+            }
+          })
+        }
+      }, rateLimiterBase * index)
     })
   }
 
-  function recalculateCoinList(coinList: Coin[]) {
-    const calcCoins = coinList.map(coin => {
+  function recalculateCoinList(coinList: ICoinState) {
+    const calcCoins = coinList.data.map(coin => {
       return coin.doBigBrainMath(investment)
     })
-    setCoins(calcCoins)
+    setCoinState({
+      data: calcCoins,
+      loading: false,
+      validation: {
+        error: false,
+        past: false,
+        future: false
+      }
+    })
   }
 
   useEffect(() => {
@@ -35,10 +97,12 @@ const IndexPage = () => {
   }, [])
 
   useEffect(() => {
-    recalculateCoinList(coins)
+    if (!marketData.length) return
+    recalculateCoinList(coinState)
   }, [investment])
 
   useEffect(() => {
+    if (!marketData.length) return
     updateCoinList(marketData)
   }, [date])
 
@@ -46,7 +110,7 @@ const IndexPage = () => {
     <ThemeContainer>
       <Header />
       <Hero setDate={setDate} setInvestment={setInvestment} />
-      <ProfitLoss coins={coins} />
+      <ProfitLoss coinState={coinState} />
       <Footer />
     </ThemeContainer>
   )
