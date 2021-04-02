@@ -7,15 +7,15 @@ const coingecko = axios.create({
   }
 })
 
+axiosRetry(coingecko, {
+  retryDelay: retryCount => {
+    return retryCount * 2000
+  }
+})
+
 exports.handler = async function (event, context) {
   const url =
     "/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
-
-  axiosRetry(coingecko, {
-    retryDelay: retryCount => {
-      return retryCount * 2000
-    }
-  })
 
   try {
     const { data } = await coingecko.get(url)
@@ -26,7 +26,7 @@ exports.handler = async function (event, context) {
     }
   } catch (error) {
     return {
-      statusCode: 200,
+      statusCode: 502,
       body: JSON.stringify([])
     }
   }
