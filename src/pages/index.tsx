@@ -68,6 +68,9 @@ const IndexPage = () => {
 
   useEffect(() => {
     if (!marketData.length) return
+    if (date === "past") return setCoinState({ data: [], result: "past" })
+    if (date === "future") return setCoinState({ data: [], result: "future" })
+    if (date === "error") return setCoinState({ data: [], result: "error" })
     updateCoinList(marketData)
   }, [date])
 

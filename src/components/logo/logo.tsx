@@ -3,6 +3,7 @@ import React from "react"
 const Logo = () => {
   return (
     <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 217 31">
+      <title>FOMO Logo</title>
       <path
         fill="#E76756"
         d="M59.351 2.254l64.682-2.22.617 17.99-64.682 2.22z"

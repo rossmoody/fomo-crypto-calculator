@@ -8,7 +8,7 @@ function isPositive(coin: Coin): boolean {
 
 const CoinItem = ({ coin }: { coin: Coin }) => {
   return (
-    <FadeIn>
+    <FadeIn duration={800} delay={400}>
       <S.Coin>
         <S.ImageContainer>
           <S.Image src={coin.image} alt={coin.name} />

@@ -7,4 +7,11 @@ const UnorderedList = styled.ul`
   width: 100%;
 `
 
-export { UnorderedList }
+const Validation = styled.div`
+  display: flex;
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+`
+
+export { UnorderedList, Validation }

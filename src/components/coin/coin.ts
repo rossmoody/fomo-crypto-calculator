@@ -36,9 +36,14 @@ class Coin {
     })
 
     this.past_price = 0
+
     if (data.hasOwnProperty("market_data")) {
       this.past_price = data.market_data.current_price.usd
       this.doBigBrainMath(investment)
+    }
+
+    if (this.symbol === "btc" && !this.past_price) {
+      this.getBitcoinPrice(date, investment)
     }
 
     return this

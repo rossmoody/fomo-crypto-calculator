@@ -12,9 +12,15 @@ const coingecko = axios.create({
 })
 
 app.get("/.netlify/functions/top100", async (req, res) => {
+  axiosRetry(coingecko, {
+    retryDelay: retryCount => {
+      return retryCount * 2000
+    }
+  })
+
   try {
     const response = await coingecko.get(
-      "/markets?vs_currency=usd&order=market_cap_desc&per_page=80&page=1&sparkline=false"
+      "/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
     )
     res.send(JSON.stringify(response.data))
   } catch (error) {

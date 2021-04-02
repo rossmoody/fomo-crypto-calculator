@@ -45,7 +45,7 @@ const CoinsOwned = styled.span`
 
 const Profit = styled.span`
   grid-area: profit;
-  width: 120px;
+  width: 140px;
   text-align: end;
 
   @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
@@ -59,7 +59,7 @@ interface RoiProps {
 
 const Roi = styled.span<RoiProps>`
   grid-area: roi;
-  width: 120px;
+  width: 140px;
   text-align: end;
   color: ${props =>
     props.positive ? props.theme.positive : props.theme.negative};

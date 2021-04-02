@@ -1,32 +1,6 @@
 import React from "react"
 import * as S from "./styled-hero"
-
-let timer: ReturnType<typeof setTimeout>
-
-function handleDate(date: string, callback: (arg0: string) => void) {
-  clearTimeout(timer)
-  const splitDate = date.split("-")
-  const [year, month, day] = splitDate
-  const newDate = `${day}-${month}-${year}`
-  // const currentYear = new Date().getFullYear()
-
-  timer = setTimeout(() => {
-    callback(newDate)
-  }, 700)
-}
-
-function handleInvestment(money: number, callback: (arg0: number) => void) {
-  clearTimeout(timer)
-
-  const inputSpan: HTMLSpanElement = document.querySelector("#fiat")
-  inputSpan.style.width = (money.toString().length + 2) * 24 + "px"
-
-  if (money < 1 || isNaN(money)) return
-
-  timer = setTimeout(() => {
-    callback(money)
-  }, 700)
-}
+import { handle } from "./event-handlers"
 
 interface IHero {
   setDate: (arg0: string) => void
@@ -44,7 +18,7 @@ const Hero = ({ setDate, setInvestment }: IHero) => {
           <S.MoneySpan id="fiat">
             <S.MoneyInput
               onChange={event => {
-                handleInvestment(+event.target.value, setInvestment)
+                handle.investment(+event.target.value, setInvestment)
               }}
               type="number"
               defaultValue={100}
@@ -56,7 +30,7 @@ const Hero = ({ setDate, setInvestment }: IHero) => {
               type="date"
               defaultValue="2016-06-01"
               id="date"
-              onChange={event => handleDate(event.target.value, setDate)}
+              onChange={event => handle.date(event.target.value, setDate)}
             />
           </S.DateSpan>
           today it would be worth...

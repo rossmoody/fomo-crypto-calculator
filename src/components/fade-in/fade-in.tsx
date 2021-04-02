@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 `
 
-const FadeIn = ({ duration = 300, delay = 0, children }) => {
+const FadeIn = ({ duration = 1000, delay = 100, children }) => {
   return (
     <Wrapper
       style={{
