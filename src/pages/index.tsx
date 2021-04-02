@@ -3,75 +3,45 @@ import ThemeContainer from "../theme/theme-provider"
 import { Coin, Footer, Header, Hero, ProfitLoss } from "../components"
 import getCoins from "../api/get-coins"
 
+type Result = "loading" | "error" | "past" | "future" | "empty" | "valid"
+
 export interface ICoinState {
   data: Coin[]
-  loading: boolean
-  validation: {
-    error: boolean
-    past: boolean
-    future: boolean
-  }
+  result: Result
 }
 
 const IndexPage = () => {
+  const [coinState, setCoinState] = useState<ICoinState>({
+    data: [],
+    result: "loading"
+  })
   const [date, setDate] = useState("01-06-2016")
   const [investment, setInvestment] = useState(100)
   const [marketData, setMarketData] = useState([])
-  const [coinState, setCoinState] = useState<ICoinState>({
-    data: [],
-    loading: true,
-    validation: {
-      error: false,
-      past: false,
-      future: false
-    }
-  })
 
   async function updateCoinList(todaysMarketData: Coin[]) {
     setCoinState({
       data: [],
-      loading: true,
-      validation: {
-        error: false,
-        past: false,
-        future: false
+      result: "loading"
+    })
+
+    const promises = todaysMarketData.map(async dailyCoin => {
+      const coin = await dailyCoin.getPastPrice(date, investment)
+
+      if (coin.past_price) {
+        setCoinState(prevState => {
+          return {
+            data: [...prevState.data, coin],
+            result: "valid"
+          }
+        })
+        return coin
       }
     })
 
-    todaysMarketData.forEach((dailyCoin, index, arr) => {
-      const rateLimiterBase = 200
-
-      setTimeout(async () => {
-        const coin = await dailyCoin.getPastPrice(date, investment)
-        if (coin.past_price) {
-          setCoinState(prevState => {
-            return {
-              data: [...prevState.data, coin],
-              loading: false,
-              validation: {
-                error: false,
-                past: false,
-                future: false
-              }
-            }
-          })
-        }
-
-        if (index === arr.length - 1) {
-          setCoinState(prevState => {
-            return {
-              data: prevState.data,
-              loading: false,
-              validation: {
-                error: false,
-                past: false,
-                future: false
-              }
-            }
-          })
-        }
-      }, rateLimiterBase * index)
-    })
+    const coinPromises = await Promise.all(promises)
+    const validArray = coinPromises.filter(i => i)
+    if (!validArray.length) setCoinState({ data: [], result: "empty" })
   }
 
   function recalculateCoinList(coinList: ICoinState) {
@@ -80,12 +50,7 @@ const IndexPage = () => {
     })
     setCoinState({
       data: calcCoins,
-      loading: false,
-      validation: {
-        error: false,
-        past: false,
-        future: false
-      }
+      result: "valid"
     })
   }
 

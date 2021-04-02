@@ -1,7 +1,7 @@
 import React from "react"
 import * as S from "./styled-profit-loss"
 import { CoinList } from "../"
-import { ICoinState } from "../../pages/index"
+import { ICoinState } from "../../pages"
 
 const ProfitLoss = ({ coinState }: { coinState: ICoinState }) => {
   return (
