@@ -14,7 +14,7 @@ const coingecko = axios.create({
 app.get("/.netlify/functions/top100", async (req, res) => {
   axiosRetry(coingecko, {
     retryDelay: retryCount => {
-      return retryCount * 5000
+      return retryCount * 3000
     }
   })
 

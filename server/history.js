@@ -14,7 +14,7 @@ exports.handler = async function (event, context) {
 
   axiosRetry(coingecko, {
     retryDelay: retryCount => {
-      return retryCount * 2000
+      return retryCount * 1000
     }
   })
 
@@ -26,7 +26,7 @@ exports.handler = async function (event, context) {
     }
   } catch (error) {
     return {
-      statusCode: 200,
+      statusCode: 502,
       body: JSON.stringify({})
     }
   }

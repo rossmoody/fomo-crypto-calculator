@@ -26,16 +26,20 @@ const IndexPage = () => {
     })
 
     const promises = todaysMarketData.map(async dailyCoin => {
-      const coin = await dailyCoin.getPastPrice(date, investment)
+      try {
+        const coin = await dailyCoin.getPastPrice(date, investment)
 
-      if (coin.past_price) {
-        setCoinState(prevState => {
-          return {
-            data: [...prevState.data, coin],
-            result: "valid"
-          }
-        })
-        return coin
+        if (coin.past_price) {
+          setCoinState(prevState => {
+            return {
+              data: [...prevState.data, coin],
+              result: "valid"
+            }
+          })
+          return coin
+        }
+      } catch (error) {
+        console.log(error, "Error getting past price")
       }
     })
 
