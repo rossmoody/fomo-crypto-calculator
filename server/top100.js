@@ -1,4 +1,5 @@
 const axios = require("axios")
+const axiosRetry = require("axios-retry")
 
 const coingecko = axios.create({
   baseURL: "https://api.coingecko.com/api/v3/coins",
@@ -26,7 +27,7 @@ exports.handler = async function (event, context) {
     }
   } catch (error) {
     return {
-      statusCode: 502,
+      statusCode: 200,
       body: JSON.stringify([])
     }
   }
