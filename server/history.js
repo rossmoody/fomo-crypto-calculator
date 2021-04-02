@@ -1,4 +1,5 @@
 const axios = require("axios")
+const axiosRetry = require("axios-retry")
 
 const coingecko = axios.create({
   baseURL: "https://api.coingecko.com/api/v3/coins",
@@ -10,6 +11,12 @@ const coingecko = axios.create({
 exports.handler = async function (event, context) {
   const id = event.queryStringParameters.id
   const history = event.queryStringParameters.history
+
+  axiosRetry(coingecko, {
+    retryDelay: retryCount => {
+      return retryCount * 2000
+    }
+  })
 
   try {
     const { data } = await coingecko.get(`/${id}/history?date=${history}`)
