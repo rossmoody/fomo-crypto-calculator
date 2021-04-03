@@ -26,20 +26,16 @@ const IndexPage = () => {
     })
 
     const promises = todaysMarketData.map(async dailyCoin => {
-      try {
-        const coin = await dailyCoin.getPastPrice(date, investment)
+      const coin = await dailyCoin.getPastPrice(date, investment)
 
-        if (coin.past_price) {
-          setCoinState(prevState => {
-            return {
-              data: [...prevState.data, coin],
-              result: "valid"
-            }
-          })
-          return coin
-        }
-      } catch (error) {
-        console.log(error, "Error getting past price")
+      if (coin.past_price) {
+        setCoinState(prevState => {
+          return {
+            data: [...prevState.data, coin],
+            result: "valid"
+          }
+        })
+        return coin
       }
     })
 
@@ -66,7 +62,14 @@ const IndexPage = () => {
   }, [])
 
   useEffect(() => {
-    if (!marketData.length) return
+    if (
+      !marketData.length ||
+      coinState.result === "error" ||
+      coinState.result === "past" ||
+      coinState.result === "future" ||
+      coinState.result === "empty"
+    )
+      return
     recalculateCoinList(coinState)
   }, [investment])
 

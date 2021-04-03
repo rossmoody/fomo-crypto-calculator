@@ -1,5 +1,4 @@
 const axios = require("axios")
-const axiosRetry = require("axios-retry")
 const express = require("express")
 const app = express()
 const port = 3000
@@ -12,15 +11,11 @@ const coingecko = axios.create({
 })
 
 app.get("/.netlify/functions/top100", async (req, res) => {
-  axiosRetry(coingecko, {
-    retryDelay: retryCount => {
-      return retryCount * 3000
-    }
-  })
+  const marketDataCoinAmount = 30
 
   try {
     const response = await coingecko.get(
-      "/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      `/markets?vs_currency=usd&order=market_cap_desc&per_page=${marketDataCoinAmount}&page=1&sparkline=false`
     )
     res.send(JSON.stringify(response.data))
   } catch (error) {
@@ -29,12 +24,6 @@ app.get("/.netlify/functions/top100", async (req, res) => {
 })
 
 app.get("/.netlify/functions/history", async (req, res) => {
-  axiosRetry(coingecko, {
-    retryDelay: retryCount => {
-      return retryCount * 2000
-    }
-  })
-
   try {
     const response = await coingecko.get(
       `/${req.query.id}/history?date=${req.query.history}`

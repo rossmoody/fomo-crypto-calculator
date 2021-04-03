@@ -28,22 +28,26 @@ class Coin {
   }
 
   async getPastPrice(date: string, investment: number) {
-    const { data } = await axios.get("/.netlify/functions/history", {
-      params: {
-        id: this.id,
-        history: date
+    try {
+      const { data } = await axios.get("/.netlify/functions/history", {
+        params: {
+          id: this.id,
+          history: date
+        }
+      })
+
+      this.past_price = 0
+
+      if (data.hasOwnProperty("market_data")) {
+        this.past_price = data.market_data.current_price.usd
+        this.doBigBrainMath(investment)
       }
-    })
 
-    this.past_price = 0
-
-    if (data.hasOwnProperty("market_data")) {
-      this.past_price = data.market_data.current_price.usd
-      this.doBigBrainMath(investment)
-    }
-
-    if (this.symbol === "btc" && !this.past_price) {
-      this.getBitcoinPrice(date, investment)
+      if (this.symbol === "btc" && !this.past_price) {
+        this.getBitcoinPrice(date, investment)
+      }
+    } catch (error) {
+      console.log(error, "Error getting past price")
     }
 
     return this
