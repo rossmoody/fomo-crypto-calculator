@@ -1,5 +1,6 @@
 import React from "react"
 import * as S from "./styled-coin"
+import converter from "number-to-words"
 import { Coin, FadeIn } from ".."
 
 function isPositive(coin: Coin): boolean {
@@ -23,6 +24,8 @@ const CoinItem = ({ coin }: { coin: Coin }) => {
         </S.CoinsOwned>
         <S.ProfitContainer>
           <S.Profit isHugeNumber={isHugeNumber(coin)}>
+            {isHugeNumber(coin) &&
+              console.log(converter.toWords(coin.profit_loss))}
             ${coin.profit_loss.toLocaleString()}
           </S.Profit>
         </S.ProfitContainer>
