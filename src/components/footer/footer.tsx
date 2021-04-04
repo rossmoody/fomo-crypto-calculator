@@ -9,7 +9,7 @@ const Footer = () => {
           📣
         </span>{" "}
         Help improve this site with{" "}
-        <a href="https://github.com/rossmoody/fomo-crypto-calculator/issues/new/choose">
+        <a href="https://github.com/rossmoody/fomo-crypto-calculator">
           your ideas on GitHub.{" "}
         </a>
       </S.Item>

@@ -61,7 +61,7 @@ const DateSpan = styled(BaseInputSpan)`
   width: 250px;
 
   @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
-    width: 220px;
+    width: 230px;
   }
 
   &::before {

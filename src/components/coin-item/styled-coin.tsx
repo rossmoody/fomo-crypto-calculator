@@ -43,13 +43,28 @@ const CoinsOwned = styled.span`
   color: ${props => props.theme.subdued};
 `
 
-const Profit = styled.span`
+interface ProfitProps {
+  isHugeNumber: boolean
+}
+
+const ProfitContainer = styled.div`
   grid-area: profit;
   width: 140px;
   text-align: end;
 
   @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
     width: 160px;
+  }
+`
+
+const Profit = styled.span<ProfitProps>`
+  border-bottom: ${props =>
+    props.isHugeNumber ? `1px dashed ${props.theme.primary}` : ""};
+  padding: ${props => (props.isHugeNumber ? "4px" : "")};
+
+  &:hover {
+    background: ${props => (props.isHugeNumber ? props.theme.primary : "")};
+    color: ${props => (props.isHugeNumber ? "#fff" : "")};
   }
 `
 
@@ -70,4 +85,13 @@ const Roi = styled.span<RoiProps>`
   }
 `
 
-export { Coin, CoinName, CoinsOwned, Image, ImageContainer, Profit, Roi }
+export {
+  Coin,
+  CoinName,
+  CoinsOwned,
+  Image,
+  ImageContainer,
+  Profit,
+  ProfitContainer,
+  Roi
+}

@@ -8,9 +8,9 @@ class Coin {
   name: string
   symbol: string
   past_price: number
+  profit_loss?: number
   coins_owned?: number
   roi?: number
-  profit_loss?: number
 
   constructor(
     id: string,
