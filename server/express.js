@@ -1,22 +1,19 @@
 const axios = require("axios")
 const express = require("express")
-const rateLimit = require("axios-rate-limit")
+const updateDatabase = require("./update-database")
 
 const app = express()
 const port = 3000
 
-const coingecko = rateLimit(
-  axios.create({
-    baseURL: "https://api.coingecko.com/api/v3/coins",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }),
-  { maxRequests: 3, perMilliseconds: 1000 }
-)
+const coingecko = axios.create({
+  baseURL: "https://api.coingecko.com/api/v3/coins",
+  headers: {
+    "Content-Type": "application/json"
+  }
+})
 
 app.get("/.netlify/functions/top100", async (req, res) => {
-  const marketDataCoinAmount = 100
+  const marketDataCoinAmount = 20
 
   try {
     const response = await coingecko.get(
@@ -39,6 +36,10 @@ app.get("/.netlify/functions/history", async (req, res) => {
     console.log(error.message)
     res.send()
   }
+})
+
+app.get("/.netlify/functions/update-database", (req, res) => {
+  updateDatabase()
 })
 
 app.listen(port, () => {

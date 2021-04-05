@@ -20,7 +20,7 @@ Start up the Gatsby site which hot reloads changes to the frontend at `localhost
 npm start
 ```
 
-In a seperate shell startup the Express server to act as Netlify's serverless function calls using `node-fetch`.
+In a seperate shell startup the Express server to act as Netlify's serverless function calls using `axios`.
 
 ```
 npm run server
@@ -29,3 +29,7 @@ npm run server
 ### 3. Start coding
 
 Editing content in the `src` directory will auto refresh in the browser at `localhost:8000`.
+
+# Database
+
+The `database` folder contains code for a daily cron job that runs to update past prices of crypto coins.
