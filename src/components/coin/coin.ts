@@ -1,5 +1,4 @@
 const axios = require("axios")
-const bitcoinData = require("../../data/bitcoin.json")
 
 class Coin {
   id: string
@@ -27,7 +26,7 @@ class Coin {
     this.past_price = 0
   }
 
-  async getPastPrice(date: string, investment: number) {
+  async getPastPrice(date: string) {
     try {
       const { data } = await axios.get("/.netlify/functions/history", {
         params: {
@@ -36,17 +35,9 @@ class Coin {
         }
       })
 
-      this.past_price = 0
-
-      if (data.hasOwnProperty("market_data")) {
-        this.past_price = data.market_data.current_price.usd
-        this.doBigBrainMath(investment)
-      }
-
-      if (this.symbol === "btc" && !this.past_price) {
-        this.getBitcoinPrice(date, investment)
-      }
+      this.past_price = data
     } catch (error) {
+      this.past_price = 0
       console.log(error, "Error getting past price")
     }
 
@@ -60,16 +51,6 @@ class Coin {
       ((this.profit_loss - initInvestment) / initInvestment) * 100
     )
     return this
-  }
-
-  getBitcoinPrice(date: string, investment: number) {
-    for (const day of bitcoinData) {
-      if (date === day.date) {
-        this.past_price = day.value
-        this.doBigBrainMath(investment)
-        return this
-      }
-    }
   }
 }
 

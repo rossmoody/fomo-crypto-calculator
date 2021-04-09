@@ -1,7 +1,7 @@
 const axios = require("axios")
 
 exports.handler = async function (event, context) {
-  const marketDataCoinAmount = 10
+  const marketDataCoinAmount = 50
   const url = `/markets?vs_currency=usd&order=market_cap_desc&per_page=${marketDataCoinAmount}&page=1&sparkline=false`
 
   const coingecko = axios.create({

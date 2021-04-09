@@ -26,9 +26,12 @@ const IndexPage = () => {
     })
 
     const promises = todaysMarketData.map(async dailyCoin => {
-      const coin = await dailyCoin.getPastPrice(date, investment)
+      const coin = await dailyCoin.getPastPrice(date)
 
+      console.log(coin.past_price)
       if (coin.past_price) {
+        coin.doBigBrainMath(investment)
+
         setCoinState(prevState => {
           return {
             data: [...prevState.data, coin],

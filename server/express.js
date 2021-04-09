@@ -1,6 +1,6 @@
 const axios = require("axios")
 const express = require("express")
-const updateDatabase = require("./update-database")
+const database = require("./firebase-database")
 
 const app = express()
 const port = 3000
@@ -26,20 +26,27 @@ app.get("/.netlify/functions/top100", async (req, res) => {
 })
 
 app.get("/.netlify/functions/history", async (req, res) => {
-  try {
-    const response = await coingecko.get(
-      `/${req.query.id}/history?date=${req.query.history}`
-    )
-    const price = response.data
-    res.send(JSON.stringify(price))
-  } catch (error) {
-    console.log(error.message)
-    res.send()
-  }
-})
+  let price = 0
 
-app.get("/.netlify/functions/update-database", (req, res) => {
-  updateDatabase()
+  try {
+    const coinRef = database.ref("coins").child(req.query.id)
+    const snapshot = (await coinRef.once("value")).val()
+
+    for (const obj of snapshot) {
+      if (obj.date === req.query.history) {
+        console.log(
+          "*** Has a date match -->",
+          req.query.id,
+          req.query.history,
+          obj.price
+        )
+        price = obj.price
+      }
+    }
+  } catch (error) {
+    console.log("Request failed -->", req.query.id)
+  }
+  res.send(JSON.stringify(price))
 })
 
 app.listen(port, () => {
