@@ -35,6 +35,16 @@ const CoinName = styled.span`
   grid-area: coin-name;
 `
 
+const InfoIconContainer = styled.div`
+  height: 20px;
+  width: 20px;
+  color: ${props => props.theme.subdued};
+
+  &:hover {
+    color: ${props => props.theme.primary};
+  }
+`
+
 const CoinsOwned = styled.span`
   grid-area: coins-owned;
   text-transform: uppercase;
@@ -43,29 +53,26 @@ const CoinsOwned = styled.span`
   color: ${props => props.theme.subdued};
 `
 
-interface ProfitProps {
-  isHugeNumber: boolean
-}
-
 const ProfitContainer = styled.div`
   grid-area: profit;
   width: 140px;
   text-align: end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 
   @media screen and (max-width: ${props => props.theme.breakpoints.lg}) {
     width: 160px;
   }
 `
 
-const Profit = styled.span<ProfitProps>`
-  border-bottom: ${props =>
-    props.isHugeNumber ? `1px dashed ${props.theme.primary}` : ""};
-  padding: ${props => (props.isHugeNumber ? "4px" : "")};
+interface ProfitProps {
+  isHugeNumber: boolean
+}
 
-  &:hover {
-    background: ${props => (props.isHugeNumber ? props.theme.primary : "")};
-    color: ${props => (props.isHugeNumber ? "#fff" : "")};
-  }
+const Profit = styled.span<ProfitProps>`
+  padding: ${props => (props.isHugeNumber ? "4px" : "")};
 `
 
 interface RoiProps {
@@ -91,6 +98,7 @@ export {
   CoinsOwned,
   Image,
   ImageContainer,
+  InfoIconContainer,
   Profit,
   ProfitContainer,
   Roi

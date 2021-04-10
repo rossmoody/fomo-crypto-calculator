@@ -26,20 +26,23 @@ app.get("/.netlify/functions/market-data", async (req, res) => {
 })
 
 app.get("/.netlify/functions/price-history", async (req, res) => {
-  const coinRef = database.ref("coins").child(req.query.id)
-  const snapshot = (await coinRef.once("value")).val()
+  let price = 0
 
   try {
+    const coinRef = database.ref("coins").child(req.query.id)
+    const snapshot = (await coinRef.once("value")).val()
+
     for (const obj of Object.values(snapshot)) {
       if (obj.date === req.query.history) {
         console.log("Date match ->", req.query.id, req.query.history, obj.price)
-        res.send(JSON.stringify(obj.price))
+        price = obj.price
       }
     }
   } catch (error) {
     console.log("Request failed ->", req.query.id, req.query.history)
-    res.send(JSON.stringify(0))
   }
+
+  res.send(JSON.stringify(price))
 })
 
 app.listen(port, () => {
