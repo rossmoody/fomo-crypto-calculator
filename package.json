@@ -15,8 +15,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "server": "npx nodemon server/express.js",
-    "start": "gatsby develop",
-    "tsc": "cd ./database && npx tsc -w"
+    "start": "gatsby develop"
   },
   "dependencies": {
     "axios": "^0.21.1",

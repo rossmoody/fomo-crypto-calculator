@@ -28,7 +28,7 @@ class Coin {
 
   async getPastPrice(date: string) {
     try {
-      const { data } = await axios.get("/.netlify/functions/history", {
+      const { data } = await axios.get("/.netlify/functions/price-history", {
         params: {
           id: this.id,
           history: date

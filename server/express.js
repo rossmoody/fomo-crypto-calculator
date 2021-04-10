@@ -12,8 +12,8 @@ const coingecko = axios.create({
   }
 })
 
-app.get("/.netlify/functions/top100", async (req, res) => {
-  const marketDataCoinAmount = 20
+app.get("/.netlify/functions/market-data", async (req, res) => {
+  const marketDataCoinAmount = 100
 
   try {
     const response = await coingecko.get(
@@ -25,28 +25,21 @@ app.get("/.netlify/functions/top100", async (req, res) => {
   }
 })
 
-app.get("/.netlify/functions/history", async (req, res) => {
-  let price = 0
+app.get("/.netlify/functions/price-history", async (req, res) => {
+  const coinRef = database.ref("coins").child(req.query.id)
+  const snapshot = (await coinRef.once("value")).val()
 
   try {
-    const coinRef = database.ref("coins").child(req.query.id)
-    const snapshot = (await coinRef.once("value")).val()
-
-    for (const obj of snapshot) {
+    for (const obj of Object.values(snapshot)) {
       if (obj.date === req.query.history) {
-        console.log(
-          "*** Has a date match -->",
-          req.query.id,
-          req.query.history,
-          obj.price
-        )
-        price = obj.price
+        console.log("Date match ->", req.query.id, req.query.history, obj.price)
+        res.send(JSON.stringify(obj.price))
       }
     }
   } catch (error) {
-    console.log("Request failed -->", req.query.id)
+    console.log("Request failed ->", req.query.id, req.query.history)
+    res.send(JSON.stringify(0))
   }
-  res.send(JSON.stringify(price))
 })
 
 app.listen(port, () => {

@@ -3,7 +3,7 @@ import { Coin } from "../components"
 
 async function getCoins(): Promise<Coin[]> {
   try {
-    const { data } = await axios.get("/.netlify/functions/top100")
+    let { data } = await axios.get("/.netlify/functions/market-data")
 
     return data.map((coin: Coin) => {
       return new Coin(
