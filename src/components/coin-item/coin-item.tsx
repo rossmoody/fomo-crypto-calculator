@@ -1,6 +1,7 @@
 import React from "react"
 import * as S from "./styled-coin"
-// import converter from "number-to-words"
+import converter from "number-to-words"
+import ReactTooltip from "react-tooltip"
 import { InfoIcon } from "../icons"
 import { Coin, FadeIn } from ".."
 
@@ -25,9 +26,22 @@ const CoinItem = ({ coin }: { coin: Coin }) => {
         </S.CoinsOwned>
         <S.ProfitContainer>
           {isHugeNumber(coin) && (
-            <S.InfoIconContainer>
-              <InfoIcon />
-            </S.InfoIconContainer>
+            <>
+              <ReactTooltip
+                id={coin.id}
+                backgroundColor="#192635"
+                delayShow={100}
+                delayHide={300}
+                effect="solid"
+                place="top"
+                className="react-tooltip"
+              >
+                {`That's ${converter.toWords(coin.profit_loss)} dollars`}
+              </ReactTooltip>
+              <S.InfoIconContainer data-tip data-for={coin.id}>
+                <InfoIcon />
+              </S.InfoIconContainer>
+            </>
           )}
           <S.Profit isHugeNumber={isHugeNumber(coin)}>
             {coin.profit_loss.toLocaleString()}

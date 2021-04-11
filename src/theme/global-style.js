@@ -36,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
     -webkit-appearance: none;
     background: none;
   }
+
+  .react-tooltip {
+    max-width: 240px;
+  }
 `
 
 export default GlobalStyle

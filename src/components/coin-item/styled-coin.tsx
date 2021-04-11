@@ -42,6 +42,7 @@ const InfoIconContainer = styled.div`
 
   &:hover {
     color: ${props => props.theme.primary};
+    cursor: pointer;
   }
 `
 
@@ -55,8 +56,7 @@ const CoinsOwned = styled.span`
 
 const ProfitContainer = styled.div`
   grid-area: profit;
-  width: 140px;
-  text-align: end;
+  width: 180px;
   display: flex;
   flex-direction: row;
   align-items: center;
