@@ -5,7 +5,7 @@ import HomePage from "./home"
 
 const IndexPage = () => {
   return (
-    <>
+    <ThemeContainer>
       <Helmet>
         <html lang="en" />
         <title>FOMO Crypto Calculator</title>
@@ -27,10 +27,8 @@ const IndexPage = () => {
         <meta name="twitter:creator" content="@_rossmoody" />
         <link rel="canonical" href="http://fomocryptocalculator.com" />
       </Helmet>
-      <ThemeContainer>
-        <HomePage />
-      </ThemeContainer>
-    </>
+      <HomePage />
+    </ThemeContainer>
   )
 }
 
