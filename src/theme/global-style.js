@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -36,6 +36,8 @@ const GlobalStyle = createGlobalStyle`
     -webkit-appearance: none;
     background: none;
   }
+
+  /* Not ideal but it works for now to target the tooltip component.*/
 
   .react-tooltip {
     max-width: 240px;
