@@ -14,8 +14,6 @@ exports.handler = async function (event) {
     console.log("Error reaching database for: ", id, history, error)
   }
 
-  res.send(JSON.stringify(price))
-
   return {
     statusCode: 200,
     body: JSON.stringify(price)
