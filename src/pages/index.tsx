@@ -3,6 +3,8 @@ import ThemeContainer from "../theme/theme-provider"
 import { Helmet } from "react-helmet"
 import { HomePage } from "../components"
 
+const image = require("../images/og-image.png")
+
 const IndexPage = () => {
   return (
     <ThemeContainer>
@@ -19,10 +21,7 @@ const IndexPage = () => {
           property="og:description"
           content="Accurately quantify your crypto regret."
         />
-        <meta
-          property="og:image"
-          content="https://fomocryptocalculator.com/og-image.png"
-        />
+        <meta property="og:image" content={image} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@_rossmoody" />
         <link rel="canonical" href="http://fomocryptocalculator.com" />

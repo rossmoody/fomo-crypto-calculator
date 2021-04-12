@@ -77,12 +77,12 @@ const HomePage = () => {
   }, [date])
 
   return (
-    <div>
+    <>
       <Header />
       <Hero setDate={setDate} setInvestment={setInvestment} />
       <ProfitLoss coinState={coinState} />
       <Footer />
-    </div>
+    </>
   )
 }
 
