@@ -14,7 +14,7 @@ async function getCoins(): Promise<Coin[]> {
       )
     })
   } catch (error) {
-    console.log("Error getting market data", error)
+    console.log("Error getting market data...", error)
     return []
   }
 }

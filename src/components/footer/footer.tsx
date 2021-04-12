@@ -5,6 +5,8 @@ const Footer = () => {
   return (
     <S.Footer>
       <S.Item>
+        Made by <a href="https://www.twitter.com/_rossmoody">Ross Moody</a> for
+        fun in 2021.{" "}
         <span role="img" aria-label="Announcement">
           📣
         </span>{" "}
@@ -13,9 +15,10 @@ const Footer = () => {
           your ideas on GitHub.{" "}
         </a>
       </S.Item>
+      <S.Item></S.Item>
       <S.Item>
-        Made by <a href="https://www.twitter.com/_rossmoody">Ross Moody</a> for
-        fun in 2021
+        Cryptocurrency information is based on daily closing prices from{" "}
+        <a href="https://www.coingecko.com/en/api">CoinGecko</a>.
       </S.Item>
     </S.Footer>
   )
