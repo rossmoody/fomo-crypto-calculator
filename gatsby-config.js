@@ -24,8 +24,10 @@ module.exports = {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: "Fomo Crypto Calculator",
-        short_name: "Fomo Calculator",
-        description: "Accurately quantify your crypto regret.",
+        short_name: "Fomo Crypto Calculator",
+        description:
+          "Determine exactly how much regret you should feel for not buying cryptocurrency sooner.",
+
         icon: "./src/images/icon.png",
         start_url: "/",
         display: "standalone"
