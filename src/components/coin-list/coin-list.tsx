@@ -4,8 +4,8 @@ import { Coin, CoinItem, Loader } from "../"
 import { ICoinState } from "../../pages"
 import FadeIn from "../fade-in/fade-in"
 
-function descendingOrder(coinArr: Coin[]) {
-  return coinArr.sort((a, b) => b.profit_loss - a.profit_loss)
+function descendingOrder(a: Coin, b: Coin) {
+  return b.profit_loss - a.profit_loss
 }
 
 const CoinList = ({ coinState }: { coinState: ICoinState }) => {
@@ -19,9 +19,11 @@ const CoinList = ({ coinState }: { coinState: ICoinState }) => {
     case "past":
       return (
         <S.Validation>
-          Bitcoin was created on January 9th, 2009. The earliest pricing
-          available is from October 5th, 2009 when a single Bitcoin cost
-          $0.000764.
+          <h2>Bitcoin was created on January 9th, 2009.</h2>
+          <span>
+            The earliest pricing available is from October 5th, 2009 when a
+            single Bitcoin cost $0.000764.
+          </span>
         </S.Validation>
       )
 
@@ -46,9 +48,12 @@ const CoinList = ({ coinState }: { coinState: ICoinState }) => {
     case "valid":
       return (
         <S.UnorderedList>
-          {descendingOrder(coinState.data).map((coin, index) => {
-            return <CoinItem key={index} coin={coin} />
-          })}
+          {coinState.data
+            .filter(coin => coin.past_price)
+            .sort(descendingOrder)
+            .map((coin, index) => {
+              return <CoinItem key={index} coin={coin} />
+            })}
         </S.UnorderedList>
       )
 

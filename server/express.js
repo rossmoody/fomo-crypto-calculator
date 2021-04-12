@@ -13,7 +13,7 @@ const coingecko = axios.create({
 })
 
 app.get("/.netlify/functions/market-data", async (req, res) => {
-  const marketDataCoinAmount = 100
+  const marketDataCoinAmount = 30
 
   try {
     const response = await coingecko.get(
@@ -26,20 +26,22 @@ app.get("/.netlify/functions/market-data", async (req, res) => {
 })
 
 app.get("/.netlify/functions/price-history", async (req, res) => {
-  let price = 0
+  let price = null
 
   try {
-    const coinRef = database.ref("coins").child(req.query.id)
-    const snapshot = (await coinRef.once("value")).val()
+    const snapshot = database
+      .ref("coins")
+      .child(req.query.id)
+      .child(req.query.history)
 
-    for (const obj of Object.values(snapshot)) {
-      if (obj.date === req.query.history) {
-        console.log("Date match ->", req.query.id, req.query.history, obj.price)
-        price = obj.price
-      }
-    }
+    price = (await snapshot.once("value")).val()
   } catch (error) {
-    console.log("Request failed ->", req.query.id, req.query.history)
+    console.log(
+      "Error reaching database for: ",
+      req.query.id,
+      req.query.history,
+      error
+    )
   }
 
   res.send(JSON.stringify(price))

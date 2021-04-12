@@ -4,7 +4,6 @@ import { Coin } from "../components"
 async function getCoins(): Promise<Coin[]> {
   try {
     let { data } = await axios.get("/.netlify/functions/market-data")
-
     return data.map((coin: Coin) => {
       return new Coin(
         coin.id,

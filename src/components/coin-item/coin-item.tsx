@@ -36,7 +36,9 @@ const CoinItem = ({ coin }: { coin: Coin }) => {
                 place="top"
                 className="react-tooltip"
               >
-                {`That's ${converter.toWords(coin.profit_loss)} dollars`}
+                {`That's exactly ${converter.toWords(
+                  coin.profit_loss
+                )} dollars worth of regret.`}
               </ReactTooltip>
               <S.InfoIconContainer data-tip data-for={coin.id}>
                 <InfoIcon />
@@ -44,13 +46,15 @@ const CoinItem = ({ coin }: { coin: Coin }) => {
             </>
           )}
           <S.Profit isHugeNumber={isHugeNumber(coin)}>
-            {coin.profit_loss.toLocaleString()}
+            ${coin.profit_loss.toLocaleString()}
           </S.Profit>
         </S.ProfitContainer>
-        <S.Roi positive={isPositive(coin)}>
-          {isPositive(coin) && "+"}
-          {coin.roi.toLocaleString()}%
-        </S.Roi>
+        <S.RoiContainer>
+          <S.Roi positive={isPositive(coin)}>
+            {isPositive(coin) && "+"}
+            {coin.roi.toLocaleString()}%
+          </S.Roi>
+        </S.RoiContainer>
       </S.Coin>
     </FadeIn>
   )

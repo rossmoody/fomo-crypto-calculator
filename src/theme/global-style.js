@@ -39,6 +39,8 @@ const GlobalStyle = createGlobalStyle`
 
   .react-tooltip {
     max-width: 240px;
+    border-radius: 8px !important;
+    padding: 12px 16px !important; 
   }
 `
 

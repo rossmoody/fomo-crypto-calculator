@@ -9,7 +9,8 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   max-width: ${props => props.theme.breakpoints.lg};
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `
 
 export { Container, Section }

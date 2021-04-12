@@ -6,7 +6,7 @@ class Coin {
   image: string
   name: string
   symbol: string
-  past_price: number
+  past_price: null | number
   profit_loss?: number
   coins_owned?: number
   roi?: number
@@ -23,21 +23,23 @@ class Coin {
     this.image = image
     this.name = name
     this.symbol = symbol
-    this.past_price = 0
+    this.past_price = null
   }
 
   async getPastPrice(date: string) {
     try {
-      const { data } = await axios.get("/.netlify/functions/price-history", {
-        params: {
-          id: this.id,
-          history: date
+      const { data }: { data: number | null } = await axios.get(
+        "/.netlify/functions/price-history",
+        {
+          params: {
+            id: this.id,
+            history: date
+          }
         }
-      })
+      )
 
       this.past_price = data
     } catch (error) {
-      this.past_price = 0
       console.log(error, "Error getting past price")
     }
 
@@ -45,6 +47,8 @@ class Coin {
   }
 
   doBigBrainMath(initInvestment: number) {
+    if (!this.past_price) return this
+
     this.coins_owned = initInvestment / this.past_price
     this.profit_loss = Math.round(this.coins_owned * this.current_price)
     this.roi = Math.round(

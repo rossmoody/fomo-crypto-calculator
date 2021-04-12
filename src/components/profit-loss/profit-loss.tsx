@@ -1,6 +1,6 @@
 import React from "react"
 import * as S from "./styled-profit-loss"
-import { CoinList } from "../"
+import { CoinList, Graveyard } from "../"
 import { ICoinState } from "../../pages"
 
 const ProfitLoss = ({ coinState }: { coinState: ICoinState }) => {
@@ -8,6 +8,7 @@ const ProfitLoss = ({ coinState }: { coinState: ICoinState }) => {
     <S.Section>
       <S.Container>
         <CoinList coinState={coinState} />
+        <Graveyard coinState={coinState} />
       </S.Container>
     </S.Section>
   )

@@ -4,20 +4,17 @@ exports.handler = async function (event) {
   const id = event.queryStringParameters.id
   const history = event.queryStringParameters.history
 
-  let price = 0
+  let price = null
 
   try {
-    const coinRef = database.ref("coins").child(id)
-    const snapshot = (await coinRef.once("value")).val()
+    const snapshot = database.ref("coins").child(id).child(history)
 
-    for (const obj of Object.values(snapshot)) {
-      if (obj.date === history) {
-        price = obj.price
-      }
-    }
+    price = (await snapshot.once("value")).val()
   } catch (error) {
-    console.log(`Error getting past price of ${id} on ${history}`, error)
+    console.log("Error reaching database for: ", id, history, error)
   }
+
+  res.send(JSON.stringify(price))
 
   return {
     statusCode: 200,

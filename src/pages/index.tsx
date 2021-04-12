@@ -25,32 +25,25 @@ const IndexPage = () => {
       result: "loading"
     })
 
-    const promises = todaysMarketData.map(async dailyCoin => {
+    todaysMarketData.forEach(async dailyCoin => {
       const coin = await dailyCoin.getPastPrice(date)
 
-      console.log(coin.past_price)
-      if (coin.past_price) {
-        coin.doBigBrainMath(investment)
+      coin.doBigBrainMath(investment)
 
-        setCoinState(prevState => {
-          return {
-            data: [...prevState.data, coin],
-            result: "valid"
-          }
-        })
-        return coin
-      }
+      setCoinState(prevState => {
+        return {
+          data: [...prevState.data, coin],
+          result: "valid"
+        }
+      })
     })
-
-    const coinPromises = await Promise.all(promises)
-    const validArray = coinPromises.filter(i => i)
-    if (!validArray.length) setCoinState({ data: [], result: "empty" })
   }
 
   function recalculateCoinList(coinList: ICoinState) {
     const calcCoins = coinList.data.map(coin => {
       return coin.doBigBrainMath(investment)
     })
+
     setCoinState({
       data: calcCoins,
       result: "valid"

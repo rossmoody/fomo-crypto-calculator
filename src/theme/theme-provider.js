@@ -12,7 +12,7 @@ const defaultTheme = {
   negative: "#F94B4B",
 
   breakpoints: {
-    lg: "620px"
+    lg: "700px"
   }
 }
 
