@@ -2,8 +2,7 @@ import React from "react"
 import ThemeContainer from "../theme/theme-provider"
 import { Helmet } from "react-helmet"
 import { HomePage } from "../components"
-
-const image = require("../images/og-image.png")
+import image from "../images/og-image.png"
 
 const IndexPage = () => {
   return (

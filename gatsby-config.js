@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "FOMO Crypto Calculator",
+    title: "Fomo Crypto Calculator",
     description: "Accurately quantify your crypto regret.",
     siteUrl: "https://fomocryptocalculator.com"
   },
@@ -23,8 +23,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "FOMO Crypto Calculator",
-        short_name: "FOMO Calculator",
+        name: "Fomo Crypto Calculator",
+        short_name: "Fomo Calculator",
         description: "Accurately quantify your crypto regret.",
         icon: "./src/images/icon.png",
         start_url: "/",
