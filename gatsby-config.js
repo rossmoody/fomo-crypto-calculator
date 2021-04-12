@@ -26,7 +26,6 @@ module.exports = {
         name: "FOMO Crypto Calculator",
         short_name: "FOMO Calculator",
         description: "Accurately quantify your crypto regret.",
-        start_url: "/",
         icon: "./src/images/icon.png",
         display: "standalone"
       }

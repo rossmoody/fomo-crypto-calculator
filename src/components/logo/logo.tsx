@@ -4,7 +4,7 @@ const Logo = () => {
   return (
     <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 25">
       <title>FOMO Logo</title>
-      <g clip-path="url(#clip0)">
+      <g clipPath="url(#clip0)">
         <path
           d="M134.573 24.163H56.982a2.303 2.303 0 01-2.304-2.304V2.304A2.303 2.303 0 0156.982 0h77.591a2.303 2.303 0 012.304 2.304v19.555a2.3 2.3 0 01-2.304 2.304z"
           fill="url(#paint0_linear)"
@@ -31,8 +31,8 @@ const Logo = () => {
           y2="31.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#E76756" />
-          <stop offset="1" stop-color="#FF6753" />
+          <stop stopColor="#E76756" />
+          <stop offset="1" stopColor="#FF6753" />
         </linearGradient>
         <clipPath id="clip0">
           <path fill="#fff" d="M0 0h260v24.163H0z" />

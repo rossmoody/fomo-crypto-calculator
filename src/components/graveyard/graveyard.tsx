@@ -1,6 +1,6 @@
 import React from "react"
 import * as S from "./styled-graveyard"
-import { ICoinState } from "../../pages"
+import { ICoinState } from "../../pages/home"
 import ReactTooltip from "react-tooltip"
 
 function hasData(arr: ICoinState): boolean {
@@ -30,7 +30,7 @@ const Graveyard = ({ coinState }: { coinState: ICoinState }) => {
               .filter(coin => !coin.past_price)
               .map((coin, index) => {
                 return (
-                  <S.ImageContainer data-tip data-for={coin.id}>
+                  <S.ImageContainer data-tip data-for={coin.id} key={index}>
                     <ReactTooltip
                       id={coin.id}
                       backgroundColor="#192635"
