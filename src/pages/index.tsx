@@ -6,8 +6,8 @@ import { HomePage } from "../components"
 const meta = {
   title: "Fomo Crypto Calculator",
   description:
-    "Determine exactly how much regret you should feel for not buying cryptocurrency sooner.",
-  url: "http://fomocryptocalculator.com",
+    "Determine the dollar amount of regret you should feel for not investing in cryptocurrency sooner.",
+  url: "https://fomocryptocalculator.com",
   author: "@_rossmoody"
 }
 
