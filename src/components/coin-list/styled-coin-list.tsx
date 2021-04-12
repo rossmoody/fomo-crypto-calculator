@@ -17,4 +17,9 @@ const Validation = styled.div`
   max-width: 600px;
 `
 
-export { UnorderedList, Validation }
+const Emoji = styled.span`
+  font-size: 40px;
+  margin: 0 0 24px;
+`
+
+export { Emoji, UnorderedList, Validation }

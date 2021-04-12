@@ -17,7 +17,7 @@ const Footer = () => {
       </S.Item>
       <S.Item></S.Item>
       <S.Item>
-        Cryptocurrency information is based on daily closing prices from{" "}
+        Cryptocurrency information is based on daily closing prices on{" "}
         <a href="https://www.coingecko.com/en/api">CoinGecko</a>.
       </S.Item>
     </S.Footer>

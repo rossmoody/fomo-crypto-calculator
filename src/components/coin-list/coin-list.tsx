@@ -31,7 +31,8 @@ const CoinList = ({ coinState }: { coinState: ICoinState }) => {
       return (
         <FadeIn>
           <S.Validation>
-            Shucks, can't predict the future. <span role="img">😢</span>
+            <S.Emoji role="img">😢</S.Emoji>
+            <span>Shucks, can't predict the future.</span>
           </S.Validation>
         </FadeIn>
       )
