@@ -1,7 +1,7 @@
 import React from "react"
 import * as S from "./styled-coin-list"
 import { Coin, CoinItem, Loader } from "../"
-import { ICoinState } from "../../pages/home"
+import { ICoinState } from "../home/home"
 import FadeIn from "../fade-in/fade-in"
 
 function descendingOrder(a: Coin, b: Coin) {

@@ -6,6 +6,7 @@ import Footer from "./footer/footer"
 import Graveyard from "./graveyard/graveyard"
 import Header from "./header/header"
 import Hero from "./hero/hero"
+import HomePage from "./home/home"
 import Loader from "./loader/loader"
 import Logo from "./logo/logo"
 import ProfitLoss from "./profit-loss/profit-loss"
@@ -19,6 +20,7 @@ export {
   Graveyard,
   Header,
   Hero,
+  HomePage,
   Loader,
   Logo,
   ProfitLoss

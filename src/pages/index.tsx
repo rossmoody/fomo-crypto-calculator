@@ -1,7 +1,7 @@
 import React from "react"
 import ThemeContainer from "../theme/theme-provider"
 import { Helmet } from "react-helmet"
-import HomePage from "./home"
+import { HomePage } from "../components"
 
 const IndexPage = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { Coin, Footer, Header, Hero, ProfitLoss } from "../components"
-import getCoins from "../api/get-coins"
+import { Coin, Footer, Header, Hero, ProfitLoss } from "../"
+import getCoins from "../../api/get-coins"
 
 type Result = "loading" | "error" | "past" | "future" | "empty" | "valid"
 
@@ -77,12 +77,12 @@ const HomePage = () => {
   }, [date])
 
   return (
-    <>
+    <div>
       <Header />
       <Hero setDate={setDate} setInvestment={setInvestment} />
       <ProfitLoss coinState={coinState} />
       <Footer />
-    </>
+    </div>
   )
 }
 

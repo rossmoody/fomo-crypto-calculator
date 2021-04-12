@@ -1,6 +1,6 @@
 import React from "react"
 import * as S from "./styled-graveyard"
-import { ICoinState } from "../../pages/home"
+import { ICoinState } from "../home/home"
 import ReactTooltip from "react-tooltip"
 
 function hasData(arr: ICoinState): boolean {
