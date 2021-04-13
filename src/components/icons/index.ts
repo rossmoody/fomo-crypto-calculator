@@ -1,3 +1,3 @@
-import InfoIcon from "./info"
+import InfoIcon from './info'
 
 export { InfoIcon }

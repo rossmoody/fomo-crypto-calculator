@@ -1,9 +1,10 @@
-import React from "react"
-import * as S from "./styled-coin"
-import converter from "number-to-words"
-import ReactTooltip from "react-tooltip"
-import { InfoIcon } from "../icons"
-import { Coin, FadeIn } from ".."
+import React from 'react'
+import * as S from './styled-coin'
+import converter from 'number-to-words'
+import ReactTooltip from 'react-tooltip'
+import { InfoIcon } from '../icons'
+import { Coin, FadeIn } from '..'
+import CoinIcon from './coin-icon'
 
 function isPositive(coin: Coin): boolean {
   if (Math.sign(coin.roi) > 0) return true
@@ -17,9 +18,7 @@ const CoinItem = ({ coin }: { coin: Coin }) => {
   return (
     <FadeIn duration={600} delay={200}>
       <S.Coin>
-        <S.ImageContainer>
-          <S.Image src={coin.image} alt={coin.name} />
-        </S.ImageContainer>
+        <CoinIcon coinUrl={coin.image} coinId={coin.id} />
         <S.CoinName>{coin.name}</S.CoinName>
         <S.CoinsOwned>
           {coin.symbol} {coin.coins_owned.toFixed(3)}
@@ -51,7 +50,7 @@ const CoinItem = ({ coin }: { coin: Coin }) => {
         </S.ProfitContainer>
         <S.RoiContainer>
           <S.Roi positive={isPositive(coin)}>
-            {isPositive(coin) && "+"}
+            {isPositive(coin) && '+'}
             {coin.roi.toLocaleString()}%
           </S.Roi>
         </S.RoiContainer>

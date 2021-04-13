@@ -1,7 +1,7 @@
-import React from "react"
-import * as S from "./styled-graveyard"
-import { ICoinState } from "../home/home"
-import ReactTooltip from "react-tooltip"
+import React from 'react'
+import * as S from './styled-graveyard'
+import { ICoinState } from '../home/home'
+import ReactTooltip from 'react-tooltip'
 
 function hasData(arr: ICoinState): boolean {
   const filteredSet = arr.data.filter(coin => !coin.past_price)
@@ -10,11 +10,11 @@ function hasData(arr: ICoinState): boolean {
 
 const Graveyard = ({ coinState }: { coinState: ICoinState }) => {
   switch (coinState.result) {
-    case "error":
-    case "future":
-    case "empty":
-    case "loading":
-    case "past":
+    case 'error':
+    case 'future':
+    case 'empty':
+    case 'loading':
+    case 'past':
       return null
 
     default:
@@ -30,9 +30,9 @@ const Graveyard = ({ coinState }: { coinState: ICoinState }) => {
               .filter(coin => !coin.past_price)
               .map((coin, index) => {
                 return (
-                  <S.ImageContainer data-tip data-for={coin.id} key={index}>
+                  <S.ImageContainer data-tip data-for={coin.name} key={index}>
                     <ReactTooltip
-                      id={coin.id}
+                      id={coin.name}
                       backgroundColor="#192635"
                       delayShow={100}
                       delayHide={300}
@@ -40,7 +40,7 @@ const Graveyard = ({ coinState }: { coinState: ICoinState }) => {
                       place="top"
                       className="react-tooltip"
                     >
-                      {coin.id}
+                      {coin.name}
                     </ReactTooltip>
                     <S.Image src={coin.image} key={index} />
                   </S.ImageContainer>

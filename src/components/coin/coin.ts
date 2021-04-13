@@ -1,4 +1,4 @@
-const axios = require("axios")
+const axios = require('axios')
 
 class Coin {
   id: string
@@ -29,7 +29,7 @@ class Coin {
   async getPastPrice(date: string) {
     try {
       const { data }: { data: number | null } = await axios.get(
-        "/.netlify/functions/price-history",
+        '/.netlify/functions/price-history',
         {
           params: {
             id: this.id,
@@ -40,7 +40,7 @@ class Coin {
 
       this.past_price = data
     } catch (error) {
-      console.log(error, "Error getting past price")
+      console.log(error, 'Error getting past price')
     }
 
     return this
