@@ -1,17 +1,20 @@
-const database = require("./firebase-database")
+const database = require('./firebase-database')
 
-exports.handler = async function (event) {
-  const id = event.queryStringParameters.id
-  const history = event.queryStringParameters.history
+exports.handler = async function (req) {
+  const [year, month, day] = req.queryStringParameters.history.split('-')
+  const reformattedDate = `${day}-${month}-${year}`
 
   let price = null
 
   try {
-    const snapshot = database.ref("coins").child(id).child(history)
+    const snapshot = database
+      .ref('coins')
+      .child(req.queryStringParameters.id)
+      .child(reformattedDate)
 
-    price = (await snapshot.once("value")).val()
+    price = (await snapshot.once('value')).val()
   } catch (error) {
-    console.log("Error reaching database for: ", id, history, error)
+    console.log('Error reaching database for: ', id, history, error)
   }
 
   return {
