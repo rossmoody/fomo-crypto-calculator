@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'fomo-website'
+    title: 'fomo-website',
+    description: 'Accurately quantify your crypto regret.',
+    siteUrl: 'https://fomocryptocalculator.com'
   },
   proxy: {
     prefix: '/.netlify/functions',
@@ -20,7 +22,14 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: 'src/images/icon.png'
+        name: 'Fomo Crypto Calculator',
+        short_name: 'Fomo Crypto Calculator',
+        description:
+          'Determine exactly how much regret you should feel for not buying cryptocurrency sooner.',
+
+        icon: './src/images/icon.png',
+        start_url: '/',
+        display: 'standalone'
       }
     },
     'gatsby-plugin-sharp',
