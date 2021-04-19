@@ -31,7 +31,7 @@ export function validateDate(value: string, callback: any): boolean {
 
   if (validDate && !rangeDate) {
     error.title = `Pick a date later than Oct 5th, 2009`
-    error.description = `The earliest pricing available is from October 5th, 2009 when a
+    error.description = `The earliest pricing available is from October 6th, 2009 when a
       single Bitcoin cost $0.000764.`
   }
 

@@ -17,7 +17,8 @@ const meta = {
   author: '@_rossmoody'
 }
 
-const IndexPage = () => {
+const IndexPage = (props) => {
+  console.log(props)
   return (
     <Layout>
       <Helmet>
