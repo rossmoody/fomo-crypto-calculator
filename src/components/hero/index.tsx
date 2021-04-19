@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { getContext } from '../'
 import { validateDate } from './validate'
+import * as utils from './utils'
 import { Field, Formik, Form } from 'formik'
 import {
   Box,
@@ -15,28 +16,30 @@ import {
   useToast
 } from '@chakra-ui/react'
 
-const addCurrency = (val) => `$` + val
-const removeCurrency = (string: string) => parseInt(string.replace('$', ''), 10)
-
 export const Hero = () => {
-  const { dispatch } = getContext()
+  const { state, dispatch } = getContext()
 
   const toast = useToast()
+
+  useEffect(() => {
+    utils.resizeInput()
+  }, [])
 
   return (
     <Box as='header'>
       <Formik
         initialValues={{
-          investment: '$100',
-          date: '2018-01-20'
+          investment: `$${state.investment}`,
+          date: state.date
         }}
         validateOnChange={false}
         validateOnBlur={false}
         onSubmit={(values, actions) => {
           const { date, investment } = values
+
           dispatch({
             type: 'update',
-            investment: removeCurrency(investment),
+            investment: utils.removeCurrency(investment),
             date
           })
 
@@ -59,15 +62,12 @@ export const Hero = () => {
                 <Field name='investment'>
                   {({ form, field }) => (
                     <FormControl
+                      id='investment-input'
                       isRequired
                       mx={4}
                       w='auto'
                       display='inline-flex'
-                      onKeyUp={(event) => {
-                        const ele = event.target as HTMLInputElement
-                        const width = (ele.value.length + 1) * 26
-                        ele.style.width = width.toString() + 'px'
-                      }}
+                      onKeyUp={utils.resizeInput}
                     >
                       <NumberInput
                         {...field}
@@ -76,10 +76,10 @@ export const Hero = () => {
                         color={useColorModeValue('brand.500', 'brand.300')}
                         display='flex'
                         min={1}
-                        max={1000000}
+                        max={100000000}
                         step={20}
                         onChange={(e) => {
-                          form.setFieldValue('investment', addCurrency(e))
+                          form.setFieldValue('investment', utils.addCurrency(e))
                         }}
                       >
                         <NumberInputField

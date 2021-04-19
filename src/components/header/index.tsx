@@ -14,7 +14,7 @@ export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
-    <Box as='nav'>
+    <Box as='nav' zIndex={1}>
       <Grid h='88px' templateColumns='repeat(3, 1fr)' px={[2, 4]}>
         <GridItem minW='48px' />
         <GridItem display='flex' alignItems='center' justifyContent='center'>

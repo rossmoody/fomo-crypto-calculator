@@ -1044,8 +1044,8 @@ export const cryptoIcons = {
       d='M7.8555 8.2395L11.691 20.2822L6 16.7167L7.8555 8.2395L11.691 3V6.675L6 16.7167H17.3872L11.6962 6.675V3L15.531 8.2395L17.3872 16.7167L11.6962 20.2822L15.531 8.2395'
       stroke='white'
       strokeWidth='0.64'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeLinecap='round'
+      strokeLinejoin='round'
     />
   ],
   'ethereum': [

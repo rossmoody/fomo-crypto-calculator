@@ -6,7 +6,8 @@ import {
   Footer,
   Graveyard,
   Header,
-  Hero
+  Hero,
+  QueryRouter
 } from '../components'
 
 const meta = {
@@ -17,30 +18,31 @@ const meta = {
   author: '@_rossmoody'
 }
 
-const IndexPage = (props) => {
-  console.log(props)
+const IndexPage = () => {
   return (
-    <Layout>
-      <Helmet>
-        <html lang='en' />
-        <meta charSet='utf-8' />
-        <link rel='canonical' href={meta.url} />
-        <title>{meta.title}</title>
-        <meta property='og:title' content={meta.title} />
-        <meta name='description' content={meta.description} />
-        <meta property='og:image' content={`${meta.url}/og-image.png`} />
-        <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:site' content={meta.author} />
-        <meta name='twitter:title' content={meta.title} />
-        <meta property='twitter:description' content={meta.description} />
-        <meta property='twitter:image' content={`${meta.url}/og-image.png`} />
-      </Helmet>
-      <Header />
-      <Hero />
-      <CoinList />
-      <Graveyard />
-      <Footer />
-    </Layout>
+    <QueryRouter>
+      <Layout>
+        <Helmet>
+          <html lang='en' />
+          <meta charSet='utf-8' />
+          <link rel='canonical' href={meta.url} />
+          <title>{meta.title}</title>
+          <meta property='og:title' content={meta.title} />
+          <meta name='description' content={meta.description} />
+          <meta property='og:image' content={`${meta.url}/og-image.png`} />
+          <meta name='twitter:card' content='summary_large_image' />
+          <meta name='twitter:site' content={meta.author} />
+          <meta name='twitter:title' content={meta.title} />
+          <meta property='twitter:description' content={meta.description} />
+          <meta property='twitter:image' content={`${meta.url}/og-image.png`} />
+        </Helmet>
+        <Header />
+        <Hero />
+        <CoinList />
+        <Graveyard />
+        <Footer />
+      </Layout>
+    </QueryRouter>
   )
 }
 

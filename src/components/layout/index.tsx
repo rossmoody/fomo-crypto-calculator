@@ -1,24 +1,33 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react'
+import { useQueryParam, NumberParam, StringParam } from 'use-query-params'
 import { ChakraProvider } from '@chakra-ui/react'
 import { reducer, State, Action } from './reducer'
 import { getCoins } from '../'
 import theme from '../../theme/theme'
+
+const Context = createContext(null)
+
+export const getContext = () => useContext<Context>(Context)
 
 interface Context {
   state: State
   dispatch: React.Dispatch<Action>
 }
 
-const initialState: State = {
-  marketData: [],
-  investment: 100,
-  date: '2018-01-20',
-  coins: []
-}
-
-const Context = createContext(null)
-
 export const Layout: React.FC = ({ children }) => {
+  const [queryInvestment, setQueryInvestment] = useQueryParam(
+    'investment',
+    NumberParam
+  )
+  const [queryDate, setQueryDate] = useQueryParam('date', StringParam)
+
+  const initialState: State = {
+    marketData: [],
+    investment: queryInvestment || 100,
+    date: queryDate || '2018-01-20',
+    coins: []
+  }
+
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
@@ -36,12 +45,14 @@ export const Layout: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (!state || !state.coins.length) return
+    setQueryInvestment(state.investment)
     dispatch({ type: 'reinvest' })
   }, [state?.investment])
 
   useEffect(() => {
     if (!state) return
     dispatch({ type: 'reset' })
+    setQueryDate(state.date)
     setTimeout(() => {
       state.marketData.forEach(async (dailyCoin) => {
         const coin = await dailyCoin.getPastPrice(state.date)
@@ -59,5 +70,3 @@ export const Layout: React.FC = ({ children }) => {
     </ChakraProvider>
   )
 }
-
-export const getContext = () => useContext<Context>(Context)
