@@ -2,8 +2,7 @@ import React from 'react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import {
   Box,
-  Grid,
-  GridItem,
+  Center,
   Divider,
   IconButton,
   useColorMode
@@ -14,21 +13,19 @@ export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
-    <Box as='nav' zIndex={1}>
-      <Grid h='88px' templateColumns='repeat(3, 1fr)' px={[2, 4]}>
-        <GridItem minW='48px' />
-        <GridItem display='flex' alignItems='center' justifyContent='center'>
-          <Logo />
-        </GridItem>
-        <GridItem display='flex' alignItems='center' justifyContent='flex-end'>
-          <IconButton
-            variant='ghost'
-            aria-label='Search database'
-            icon={colorMode == 'light' ? <MoonIcon /> : <SunIcon />}
-            onClick={toggleColorMode}
-          />
-        </GridItem>
-      </Grid>
+    <Box as='nav'>
+      <Center py='24px' pos='relative'>
+        <Logo />
+        <IconButton
+          position='absolute'
+          my='auto'
+          right={[2, 4]}
+          variant='ghost'
+          aria-label='Search database'
+          icon={colorMode == 'light' ? <MoonIcon /> : <SunIcon />}
+          onClick={toggleColorMode}
+        />
+      </Center>
       <Divider />
     </Box>
   )
