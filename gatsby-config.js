@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'fomo-website',
+    title: 'Fomo Crypto Calculator',
     description: 'Accurately quantify your crypto regret.',
     siteUrl: 'https://fomocryptocalculator.com'
   },
