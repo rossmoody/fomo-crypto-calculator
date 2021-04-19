@@ -1,6 +1,12 @@
 import { Coin } from '../'
 
-type ActionType = 'update' | 'init' | 'addCoin' | 'reinvest' | 'reset'
+type ActionType =
+  | 'update'
+  | 'init'
+  | 'addCoin'
+  | 'reinvest'
+  | 'reset'
+  | 'replaceCoins'
 
 export interface State {
   marketData: Coin[]
@@ -15,10 +21,11 @@ export interface Action {
   investment?: number
   marketData?: Coin[]
   coin?: Coin
+  coins?: any
 }
 
 export const reducer = (prevState: State, action: Action) => {
-  const { type, date, investment, marketData, coin } = action
+  const { type, date, investment, marketData, coin, coins } = action
 
   switch (type) {
     case 'update':
@@ -32,6 +39,12 @@ export const reducer = (prevState: State, action: Action) => {
       return {
         ...prevState,
         marketData
+      }
+
+    case 'replaceCoins':
+      return {
+        ...prevState,
+        coins
       }
 
     case 'addCoin':
