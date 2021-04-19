@@ -41,7 +41,8 @@ export function validateDate(value: string, callback: any): boolean {
     status: 'error',
     duration: 9000,
     position: 'top',
-    isClosable: true
+    isClosable: true,
+    variant: 'left-accent'
   })
 
   return true

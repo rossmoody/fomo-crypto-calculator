@@ -8,7 +8,7 @@ export const Tombstone = ({ coin }: { coin: Coin }) => {
       <Circle
         p={1}
         my='4px'
-        ml='-8px'
+        ml='-6px'
         border='1px solid'
         bg={useColorModeValue('white', 'gray.800')}
         borderColor={useColorModeValue('gray.200', 'gray.600')}

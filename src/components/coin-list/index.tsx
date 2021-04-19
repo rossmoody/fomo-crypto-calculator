@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  Center,
   Flex,
   Skeleton,
   SkeletonCircle,
@@ -21,9 +22,40 @@ interface Data {
   coins: Coin[]
   label: string
   sort: any
+  slice: any
+  filter: any
 }
 
-const CoinContainer = ({ data }: { data: Data[] }) => {
+const CoinPanel = ({ data }: { data: Data }) => {
+  const coinArr = data.coins
+    .filter((a) => a.past_price)
+    .filter(data.filter)
+    .slice(0, data.slice)
+    .sort(data.sort)
+
+  if (coinArr.length) {
+    return (
+      <SlideFade offsetY='20px' in={true} style={{ width: '100%' }}>
+        <VStack
+          spacing='20px'
+          divider={
+            <StackDivider
+              borderColor={useColorModeValue('gray.200', 'gray.600')}
+            />
+          }
+        >
+          {coinArr.map((coin, index) => (
+            <CoinItem coin={coin} key={index} />
+          ))}
+        </VStack>
+      </SlideFade>
+    )
+  }
+
+  return <Center mt={12}>🧐 No coins to show...</Center>
+}
+
+const TabContainer = ({ data }: { data: Data[] }) => {
   return (
     <Tabs
       variant='soft-rounded'
@@ -40,28 +72,7 @@ const CoinContainer = ({ data }: { data: Data[] }) => {
       <TabPanels>
         {data.map((obj, index) => (
           <TabPanel key={index} px={0} py={8}>
-            <VStack
-              spacing='20px'
-              divider={
-                <StackDivider
-                  borderColor={useColorModeValue('gray.200', 'gray.600')}
-                />
-              }
-            >
-              {obj.coins
-                .filter((a) => a.past_price)
-                .sort(obj.sort)
-                .map((coin, index) => (
-                  <SlideFade
-                    offsetY='20px'
-                    in={true}
-                    style={{ width: '100%' }}
-                    key={index.toString()}
-                  >
-                    <CoinItem coin={coin} />
-                  </SlideFade>
-                ))}
-            </VStack>
+            <CoinPanel data={obj} />
           </TabPanel>
         ))}
       </TabPanels>
@@ -74,26 +85,34 @@ export const CoinList = () => {
 
   const data = [
     {
-      label: 'All assets',
+      label: 'All coins',
       coins: state.coins,
-      sort: (a: Coin, b: Coin) => b.name < a.name
+      sort: (a: Coin, b: Coin) => {
+        if (a.name < b.name) return -1
+      },
+      slice: state.coins.length,
+      filter: (coin: Coin) => coin.roi
     },
     {
       label: 'Top gains',
       coins: state.coins,
-      sort: (a: Coin, b: Coin) => b.profit_loss - a.profit_loss
+      sort: (a: Coin, b: Coin) => b.profit_loss - a.profit_loss,
+      slice: 25,
+      filter: (coin: Coin) => coin.roi > 0
     },
     {
       label: 'Top losses',
       coins: state.coins,
-      sort: (a: Coin, b: Coin) => a.profit_loss - b.profit_loss
+      sort: (a: Coin, b: Coin) => a.profit_loss - b.profit_loss,
+      slice: 25,
+      filter: (coin: Coin) => coin.roi <= 0
     }
   ]
 
   if (state.coins.length)
     return (
       <Flex justifyContent='center' as='main' mb={12}>
-        <CoinContainer data={data} />
+        <TabContainer data={data} />
       </Flex>
     )
 

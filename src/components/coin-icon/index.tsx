@@ -12,7 +12,7 @@ export const CoinIcon = ({
 }) => {
   if (Object.keys(cryptoIcons).includes(coin.id)) {
     return (
-      <Icon boxSize='32px'>
+      <Icon boxSize={size}>
         {cryptoIcons[coin.id].map((icon: JSX.Element, index: number) =>
           React.cloneElement(icon, { key: index })
         )}
@@ -20,6 +20,9 @@ export const CoinIcon = ({
     )
   }
 
+  {
+    console.log(coin.id, coin.name)
+  }
   return (
     <Image
       src={coin.image}

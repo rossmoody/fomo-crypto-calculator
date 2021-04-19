@@ -2,14 +2,7 @@ import React from 'react'
 import { Coin, CoinIcon } from '../'
 import converter from 'number-to-words'
 import { InfoIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Grid,
-  GridItem,
-  Text,
-  Tooltip,
-  useColorModeValue
-} from '@chakra-ui/react'
+import { Box, Grid, GridItem, Text, Tooltip } from '@chakra-ui/react'
 
 export const CoinItem = ({ coin }: { coin: Coin }) => {
   const isPositive: boolean = Math.sign(coin.roi) > 0
@@ -36,7 +29,7 @@ export const CoinItem = ({ coin }: { coin: Coin }) => {
           <Text
             fontSize='md'
             lineHeight='20px'
-            color={useColorModeValue('gray.500', 'gray.300')}
+            color='gray.500'
             casing='uppercase'
           >
             {coin.symbol} {coin.coins_owned.toFixed(3)}

@@ -21,7 +21,7 @@ export const Footer = () => {
         py={8}
         px={4}
       >
-        <Text fontSize={12} color={useColorModeValue('gray.500', 'gray.300')}>
+        <Text fontSize={12} color='gray.500'>
           Made by{' '}
           <Link href='https://www.twitter.com/_rossmoody' color={color}>
             Ross Moody
@@ -37,7 +37,7 @@ export const Footer = () => {
           <Link href='https://www.coingecko.com/en/api' color={color}>
             CoinGecko
           </Link>
-          . Made using the incredible (and accessible) component library from{' '}
+          . Made using the incredible component library from{' '}
           <Link href='https://chakra-ui.com/' color={color}>
             Chakra UI
           </Link>{' '}

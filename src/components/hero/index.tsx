@@ -128,7 +128,7 @@ export const Hero = () => {
                 isLoading={isSubmitting}
                 m={4}
               >
-                Generate FOMO
+                Calculate FOMO
               </Button>
             </Center>
           </Form>
