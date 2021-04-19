@@ -20,9 +20,7 @@ export const CoinIcon = ({
     )
   }
 
-  {
-    console.log(coin.id, coin.name)
-  }
+  // console.log(coin.id)
   return (
     <Image
       src={coin.image}
