@@ -17,7 +17,7 @@ const meta = {
   author: '@_rossmoody'
 }
 
-const IndexPage = () => {
+const IndexPage = (): JSX.Element => {
   return (
     <Layout>
       <Helmet>
