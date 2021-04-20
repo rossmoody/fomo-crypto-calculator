@@ -103,7 +103,12 @@ export const Hero = (): JSX.Element => {
                   validate={(string: string) => validateDate(string, toast)}
                 >
                   {({ field, form }) => (
-                    <FormControl ml={4} w={[240, 230]} display='inline-flex'>
+                    <FormControl
+                      ml={4}
+                      w={[240, 230]}
+                      display='inline-flex'
+                      textAlign='center'
+                    >
                       <Input
                         isRequired
                         isInvalid={form.touched.date & form.errors.date}
@@ -115,7 +120,6 @@ export const Hero = (): JSX.Element => {
                         p={0}
                         fontSize='inherit'
                         fontWeight='inherit'
-                        textAlign='center !important'
                         display='flex'
                         {...field}
                       />

@@ -18,5 +18,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint", "radar"],
-  "rules": {}
+  "rules": {
+    "react/prop-types": 0
+  }
 }

@@ -17,7 +17,7 @@ export const Header = (): JSX.Element => {
 
   return (
     <Box as='nav'>
-      <Center py='24px' pos='relative'>
+      <Center py='24px' pos='relative' height='96px'>
         {isSmallScreen ? (
           <Box width='124px' height='48px'>
             <StackedLogo />
