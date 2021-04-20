@@ -16,7 +16,7 @@ import {
   useToast
 } from '@chakra-ui/react'
 
-export const Hero = () => {
+export const Hero = (): JSX.Element => {
   const { state, dispatch } = getContext()
 
   const toast = useToast()
@@ -103,7 +103,7 @@ export const Hero = () => {
                   validate={(string: string) => validateDate(string, toast)}
                 >
                   {({ field, form }) => (
-                    <FormControl ml={4} w={[240, 230]} display='inline-block'>
+                    <FormControl ml={4} w={[240, 230]} display='inline-flex'>
                       <Input
                         isRequired
                         isInvalid={form.touched.date & form.errors.date}
@@ -115,7 +115,8 @@ export const Hero = () => {
                         p={0}
                         fontSize='inherit'
                         fontWeight='inherit'
-                        textAlign='center'
+                        textAlign='center !important'
+                        display='flex'
                         {...field}
                       />
                     </FormControl>
