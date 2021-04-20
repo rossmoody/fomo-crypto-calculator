@@ -9,7 +9,7 @@ module.exports = {
     url: 'http://localhost:3000'
   },
   plugins: [
-    'gatsby-plugin-netlify-cms',
+    'gatsby-plugin-use-query-params',
     'gatsby-plugin-image',
     {
       resolve: 'gatsby-plugin-google-analytics',
