@@ -1,4 +1,4 @@
-const axios = require('axios')
+import axios from 'axios'
 
 export class Coin {
   id: string
@@ -26,7 +26,7 @@ export class Coin {
     this.past_price = null
   }
 
-  async getPastPrice(date: string) {
+  async getPastPrice(date: string): Promise<this> {
     try {
       const { data }: { data: number | null } = await axios.get(
         '/.netlify/functions/price-history',
@@ -45,7 +45,7 @@ export class Coin {
     return this
   }
 
-  doBigBrainMath(initInvestment: number) {
+  doBigBrainMath(initInvestment: number): this {
     if (!this.past_price) return this
 
     this.coins_owned = initInvestment / this.past_price
@@ -59,7 +59,7 @@ export class Coin {
 
 export async function getCoins(): Promise<Coin[]> {
   try {
-    let { data } = await axios.get('/.netlify/functions/market-data')
+    const { data } = await axios.get('/.netlify/functions/market-data')
     return data.map((coin: Coin) => {
       return new Coin(
         coin.id,

@@ -4,7 +4,7 @@ import { getContext, Coin } from '../'
 import { TabContainer } from './tab-container'
 import { CoinLoader } from './coin-loader'
 
-export const CoinList = () => {
+export const CoinList = (): JSX.Element => {
   const { state } = getContext()
 
   const data = [
@@ -15,7 +15,7 @@ export const CoinList = () => {
         if (a.name < b.name) return -1
       },
       slice: state.coins.length,
-      filter: (coin: Coin) => coin.roi
+      filter: (coin: Coin) => !!coin.roi
     },
     {
       label: 'Gainers',

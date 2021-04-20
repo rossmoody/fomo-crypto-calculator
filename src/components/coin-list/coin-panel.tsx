@@ -11,12 +11,12 @@ import {
 export interface Data {
   coins: Coin[]
   label: string
-  sort: any
-  slice: any
-  filter: any
+  sort: (a: Coin, b: Coin) => number
+  slice: number
+  filter: (coin: Coin) => boolean
 }
 
-export const CoinPanel = ({ data }: { data: Data }) => {
+export const CoinPanel = ({ data }: { data: Data }): JSX.Element => {
   const coinArr = data.coins
     .filter((a) => a.past_price)
     .filter(data.filter)

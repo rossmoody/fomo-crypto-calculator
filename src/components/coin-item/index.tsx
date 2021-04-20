@@ -4,7 +4,7 @@ import converter from 'number-to-words'
 import { InfoIcon } from '@chakra-ui/icons'
 import { Box, Grid, GridItem, Text, Tooltip } from '@chakra-ui/react'
 
-export const CoinItem = ({ coin }: { coin: Coin }) => {
+export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
   const isPositive: boolean = Math.sign(coin.roi) > 0
   const isHugeNumber = coin.profit_loss.toString().length > 7
 

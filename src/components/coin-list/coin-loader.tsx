@@ -16,7 +16,7 @@ const CoinLoaderItem = () => (
   </HStack>
 )
 
-export const CoinLoader = () => (
+export const CoinLoader = (): JSX.Element => (
   <Flex as='main' mb={12} px={4} justifyContent='center'>
     <VStack spacing='20px' w='2xl'>
       <CoinLoaderItem />

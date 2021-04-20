@@ -3,7 +3,7 @@ import { Data } from './coin-panel'
 import { CoinPanel } from './coin-panel'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
 
-export const TabContainer = ({ data }: { data: Data[] }) => {
+export const TabContainer = ({ data }: { data: Data[] }): JSX.Element => {
   return (
     <Tabs
       variant='soft-rounded'

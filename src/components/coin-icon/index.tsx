@@ -9,7 +9,7 @@ export const CoinIcon = ({
 }: {
   coin: Coin
   size?: string
-}) => {
+}): JSX.Element => {
   if (Object.keys(cryptoIcons).includes(coin.id)) {
     return (
       <Icon boxSize={size}>
@@ -20,7 +20,6 @@ export const CoinIcon = ({
     )
   }
 
-  // console.log(coin.id)
   return (
     <Image
       src={coin.image}
