@@ -17,6 +17,7 @@ export const Logo = () => {
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 112 35'
         height='40px'
+        width='124px'
       >
         <path
           d='M109.617 17.425H53.661A1.66 1.66 0 0152 15.764V1.66A1.66 1.66 0 0153.661 0h55.956c.918 0 1.662.743 1.662 1.661v14.103a1.66 1.66 0 01-1.662 1.661z'
@@ -80,7 +81,8 @@ export const Logo = () => {
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 260 25'
-      width='300px'
+      width='280px'
+      height='29px'
     >
       <g clipPath='url(#clip0)'>
         <path

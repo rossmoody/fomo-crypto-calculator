@@ -61,10 +61,11 @@ const TabContainer = ({ data }: { data: Data[] }) => {
       variant='soft-rounded'
       colorScheme='brand'
       defaultIndex={1}
-      isLazy
       w='2xl'
+      isLazy
+      size='sm'
     >
-      <TabList>
+      <TabList px={4}>
         {data.map((tab) => (
           <Tab key={tab.label}>{tab.label}</Tab>
         ))}
@@ -94,14 +95,14 @@ export const CoinList = () => {
       filter: (coin: Coin) => coin.roi
     },
     {
-      label: 'Top gains',
+      label: 'Gainers',
       coins: state.coins,
       sort: (a: Coin, b: Coin) => b.profit_loss - a.profit_loss,
       slice: 25,
       filter: (coin: Coin) => coin.roi > 0
     },
     {
-      label: 'Top losses',
+      label: 'Losers',
       coins: state.coins,
       sort: (a: Coin, b: Coin) => a.profit_loss - b.profit_loss,
       slice: 25,
