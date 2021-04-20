@@ -25,7 +25,7 @@ export const CoinPanel = ({ data }: { data: Data }): JSX.Element => {
 
   if (coinArr.length) {
     return (
-      <SlideFade offsetY='20px' in={true} style={{ width: '100%' }}>
+      <SlideFade offsetY='40px' in={true} style={{ width: '100%' }}>
         <VStack
           spacing='20px'
           divider={

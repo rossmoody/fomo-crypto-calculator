@@ -116,6 +116,7 @@ export const Hero = (): JSX.Element => {
                         focusBorderColor={'brand.300'}
                         variant='flushed'
                         type='date'
+                        textAlign='inherit'
                         h='initial'
                         p={0}
                         fontSize='inherit'

@@ -21,7 +21,7 @@ export interface Action {
   investment?: number
   marketData?: Coin[]
   coin?: Coin
-  coins?: any
+  coins?: Coin[]
 }
 
 export const reducer = (prevState: State, action: Action): State => {
