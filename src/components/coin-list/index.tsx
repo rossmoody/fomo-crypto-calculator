@@ -1,85 +1,8 @@
 import React from 'react'
-import {
-  Center,
-  Flex,
-  Skeleton,
-  SkeletonCircle,
-  StackDivider,
-  SlideFade,
-  useColorModeValue,
-  HStack,
-  VStack,
-  TabList,
-  Tab,
-  Tabs,
-  TabPanels,
-  TabPanel
-} from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { getContext, Coin } from '../'
-import { CoinItem } from '../coin-item'
-
-interface Data {
-  coins: Coin[]
-  label: string
-  sort: any
-  slice: any
-  filter: any
-}
-
-const CoinPanel = ({ data }: { data: Data }) => {
-  const coinArr = data.coins
-    .filter((a) => a.past_price)
-    .filter(data.filter)
-    .slice(0, data.slice)
-    .sort(data.sort)
-
-  if (coinArr.length) {
-    return (
-      <SlideFade offsetY='20px' in={true} style={{ width: '100%' }}>
-        <VStack
-          spacing='20px'
-          divider={
-            <StackDivider
-              borderColor={useColorModeValue('gray.200', 'gray.600')}
-            />
-          }
-        >
-          {coinArr.map((coin, index) => (
-            <CoinItem coin={coin} key={index} />
-          ))}
-        </VStack>
-      </SlideFade>
-    )
-  }
-
-  return <Center mt={12}>🧐 No coins to show...</Center>
-}
-
-const TabContainer = ({ data }: { data: Data[] }) => {
-  return (
-    <Tabs
-      variant='soft-rounded'
-      colorScheme='brand'
-      defaultIndex={1}
-      w='2xl'
-      isLazy
-      size='sm'
-    >
-      <TabList px={4}>
-        {data.map((tab) => (
-          <Tab key={tab.label}>{tab.label}</Tab>
-        ))}
-      </TabList>
-      <TabPanels>
-        {data.map((obj, index) => (
-          <TabPanel key={index} px={0} py={8}>
-            <CoinPanel data={obj} />
-          </TabPanel>
-        ))}
-      </TabPanels>
-    </Tabs>
-  )
-}
+import { TabContainer } from './tab-container'
+import { CoinLoader } from './coin-loader'
 
 export const CoinList = () => {
   const { state } = getContext()
@@ -117,28 +40,5 @@ export const CoinList = () => {
       </Flex>
     )
 
-  return (
-    <Flex as='main' mb={12} px={4} justifyContent='center'>
-      <VStack spacing='20px' w='2xl'>
-        <HStack spacing={4} width='100%'>
-          <SkeletonCircle size='8' />
-          <Skeleton h='24px' flex='2' />
-          <Skeleton h='24px' flex='1' />
-          <Skeleton h='24px' flex='1' />
-        </HStack>
-        <HStack spacing={4} width='100%'>
-          <SkeletonCircle size='8' />
-          <Skeleton h='24px' flex='2' />
-          <Skeleton h='24px' flex='1' />
-          <Skeleton h='24px' flex='1' />
-        </HStack>
-        <HStack spacing={4} width='100%'>
-          <SkeletonCircle size='8' />
-          <Skeleton h='24px' flex='2' />
-          <Skeleton h='24px' flex='1' />
-          <Skeleton h='24px' flex='1' />
-        </HStack>
-      </VStack>
-    </Flex>
-  )
+  return <CoinLoader />
 }

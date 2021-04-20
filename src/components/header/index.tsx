@@ -15,7 +15,9 @@ export const Header = () => {
   return (
     <Box as='nav'>
       <Center py='24px' pos='relative'>
-        <Logo />
+        <Box width={['124px', '280px']} height={['40px', '29px']}>
+          <Logo />
+        </Box>
         <IconButton
           position='absolute'
           my='auto'

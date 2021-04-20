@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { getContext } from '../'
-import { validateDate } from './validate'
 import * as utils from './utils'
+import { validateDate } from './validate'
+import { getContext } from '../'
 import { Field, Formik, Form } from 'formik'
 import {
   Box,
@@ -50,7 +50,7 @@ export const Hero = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <Center pt={[8, 12]} pb={[10, 16]} px={4} flexDir='column'>
+            <Center pt={[12, 16]} pb={20} px={4} flexDir='column'>
               <Heading
                 as='h1'
                 size='xl'
@@ -87,6 +87,8 @@ export const Hero = () => {
                           fontSize='inherit'
                           fontWeight='inherit'
                           textAlign='center'
+                          display='flex'
+                          alignItems='center'
                           inputMode='numeric'
                           w={108}
                           {...field}
