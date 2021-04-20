@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Flex, VStack, Text, SlideFade, Divider } from '@chakra-ui/react'
 import { getContext, Tombstone } from '../'
 
-export const Graveyard = () => {
+export const Graveyard = (): JSX.Element => {
   const { state } = getContext()
 
   const [open, setOpen] = useState(false)

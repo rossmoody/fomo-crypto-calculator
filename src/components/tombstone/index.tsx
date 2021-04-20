@@ -2,7 +2,7 @@ import React from 'react'
 import { Coin, CoinIcon } from '../'
 import { Circle, useColorModeValue, Tooltip } from '@chakra-ui/react'
 
-export const Tombstone = ({ coin }: { coin: Coin }) => {
+export const Tombstone = ({ coin }: { coin: Coin }): JSX.Element => {
   return (
     <Tooltip label={coin.name} placement='top' hasArrow>
       <Circle

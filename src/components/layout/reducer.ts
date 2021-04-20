@@ -24,7 +24,7 @@ export interface Action {
   coins?: any
 }
 
-export const reducer = (prevState: State, action: Action) => {
+export const reducer = (prevState: State, action: Action): State => {
   const { type, date, investment, marketData, coin, coins } = action
 
   switch (type) {
