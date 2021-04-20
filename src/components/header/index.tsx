@@ -7,7 +7,7 @@ import {
   IconButton,
   useColorMode
 } from '@chakra-ui/react'
-import { Logo, StackedLogo } from '../'
+import { Logo } from '../'
 
 export const Header = (): JSX.Element => {
   const { colorMode, toggleColorMode } = useColorMode()
