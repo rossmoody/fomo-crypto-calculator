@@ -1,11 +1,15 @@
 import { isValid, isPast, isAfter } from 'date-fns'
+import { UseToastOptions } from '@chakra-ui/react'
 
 interface Error {
   title: string
   description: string
 }
 
-export function validateDate(value: string, callback: any): boolean {
+export function validateDate(
+  value: string,
+  callback: (arg0: UseToastOptions) => void
+): boolean {
   const date = new Date(value)
 
   const validDate = isValid(date)
@@ -14,7 +18,7 @@ export function validateDate(value: string, callback: any): boolean {
 
   if (validDate && pastDate && rangeDate) return false
 
-  let error: Error = {
+  const error: Error = {
     title: '',
     description: ''
   }
@@ -41,8 +45,7 @@ export function validateDate(value: string, callback: any): boolean {
     status: 'error',
     duration: 9000,
     position: 'top',
-    isClosable: true,
-    variant: 'left-accent'
+    isClosable: true
   })
 
   return true
