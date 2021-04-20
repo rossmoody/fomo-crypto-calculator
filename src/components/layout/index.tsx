@@ -14,16 +14,6 @@ interface Context {
   dispatch: React.Dispatch<Action>
 }
 
-const coinUpdate = async (state: State) => {
-  const coins: Promise<Coin>[] = state.marketData.map(async (coin: Coin) => {
-    await coin.getPastPrice(state.date)
-    coin.doBigBrainMath(state.investment)
-    return coin
-  })
-
-  return await Promise.all(coins)
-}
-
 export const Layout: React.FC = ({ children }) => {
   const [qInvestment, setQInvestment] = useQueryParam('investment', NumberParam)
   const [qDate, setQDate] = useQueryParam('date', StringParam)
@@ -37,23 +27,30 @@ export const Layout: React.FC = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  useEffect(() => {
-    async function init() {
-      const marketData = await getCoins()
-      dispatch({ type: 'init', marketData })
-      dispatch({ type: 'replaceCoins', coins: await coinUpdate(state) })
-    }
+  function updateCoins() {
+    state.marketData.forEach(async (coin: Coin) => {
+      await coin.getPastPrice(state.date)
+      coin.doBigBrainMath(state.investment)
+      dispatch({ type: 'addCoin', coin })
+    })
+  }
 
-    init()
+  useEffect(() => {
+    getCoins().then((marketData) => {
+      dispatch({ type: 'init', marketData })
+    })
   }, [])
+
+  useEffect(() => {
+    if (!state) return
+    updateCoins()
+  }, [state?.marketData])
 
   useEffect(() => {
     if (!state) return
     dispatch({ type: 'reset' })
     setQDate(state.date)
-    coinUpdate(state).then((result) =>
-      dispatch({ type: 'replaceCoins', coins: result })
-    )
+    updateCoins()
   }, [state?.date])
 
   useEffect(() => {
