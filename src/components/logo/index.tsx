@@ -9,7 +9,7 @@ export const Logo = (): JSX.Element => {
   )
   return (
     <svg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 25'>
-      <g clipPath='url(#clip0)'>
+      <g clipPath='url(#fomo-clip-1)'>
         <path
           d='M134.573 24.163H56.982a2.303 2.303 0 01-2.304-2.304V2.304A2.303 2.303 0 0156.982 0h77.591a2.303 2.303 0 012.304 2.304v19.555a2.3 2.3 0 01-2.304 2.304z'
           fill={shape}
@@ -66,7 +66,7 @@ export const Logo = (): JSX.Element => {
         />
       </g>
       <defs>
-        <clipPath id='clip0'>
+        <clipPath id='fomo-clip-1'>
           <path fill='#fff' d='M0 0h260v24.163H0z' />
         </clipPath>
       </defs>
@@ -83,7 +83,7 @@ export const StackedLogo = (): JSX.Element => {
 
   return (
     <svg viewBox='0 0 112 35' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <g clipPath='url(#clip0)'>
+      <g clipPath='url(#fomo-clip-0)'>
         <path
           d='M109.617 17.425H53.661A1.66 1.66 0 0152 15.764V1.66A1.66 1.66 0 0153.661 0h55.956c.918 0 1.662.743 1.662 1.661v14.103a1.66 1.66 0 01-1.662 1.661z'
           fill={shape}
@@ -140,7 +140,7 @@ export const StackedLogo = (): JSX.Element => {
         />
       </g>
       <defs>
-        <clipPath id='clip0'>
+        <clipPath id='fomo-clip-0'>
           <path fill='#fff' d='M0 0h111.279v34.343H0z' />
         </clipPath>
       </defs>

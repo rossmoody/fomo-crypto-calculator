@@ -1,18 +1,19 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react'
+import theme from '../../theme/theme'
 import { useQueryParam, NumberParam, StringParam } from 'use-query-params'
 import { ChakraProvider } from '@chakra-ui/react'
 import { reducer, State, Action } from './reducer'
-import { getCoins, Coin } from '../'
-import theme from '../../theme/theme'
-
-const Context = createContext(null)
-
-export const getContext = (): Context => useContext<Context>(Context)
+import { getCoins } from '../'
+import { updateCoins } from './update-coins'
 
 interface Context {
   state: State
   dispatch: React.Dispatch<Action>
 }
+
+const Context = createContext(null)
+
+export const getContext = (): Context => useContext<Context>(Context)
 
 export const Layout: React.FC = ({ children }) => {
   const [qInvestment, setQInvestment] = useQueryParam('investment', NumberParam)
@@ -27,14 +28,6 @@ export const Layout: React.FC = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  function updateCoins() {
-    state.marketData.forEach(async (coin: Coin) => {
-      await coin.getPastPrice(state.date)
-      coin.doBigBrainMath(state.investment)
-      dispatch({ type: 'addCoin', coin })
-    })
-  }
-
   useEffect(() => {
     getCoins().then((marketData) => {
       dispatch({ type: 'init', marketData })
@@ -43,14 +36,14 @@ export const Layout: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (!state) return
-    updateCoins()
+    updateCoins(state, dispatch)
   }, [state?.marketData])
 
   useEffect(() => {
     if (!state) return
     dispatch({ type: 'reset' })
     setQDate(state.date)
-    updateCoins()
+    updateCoins(state, dispatch)
   }, [state?.date])
 
   useEffect(() => {
