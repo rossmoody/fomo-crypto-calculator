@@ -46,13 +46,13 @@ export const Hero = (): JSX.Element => {
           })
 
           setTimeout(actions.setSubmitting, 1000, false)
-          setTimeout(setShowButton, 1600, false)
-          setTimeout(setShowSocial, 2400, true)
+          setTimeout(setShowButton, 1400, false)
+          setTimeout(setShowSocial, 2000, true)
         }}
       >
         {({ isSubmitting }) => (
           <Form>
-            <Center pt={[12, 16]} pb={20} px={4} flexDir='column'>
+            <Center pt={[12, 16]} pb={12} px={4} flexDir='column'>
               <Heading
                 as='h1'
                 size='xl'
@@ -81,8 +81,8 @@ export const Hero = (): JSX.Element => {
                         max={100000000}
                         step={20}
                         onFocus={() => {
-                          setTimeout(setShowSocial, 600, false)
-                          setTimeout(setShowButton, 1000, true)
+                          setTimeout(setShowSocial, 300, false)
+                          setTimeout(setShowButton, 700, true)
                         }}
                         onChange={(e) => {
                           form.setFieldValue('investment', utils.addCurrency(e))
@@ -126,8 +126,8 @@ export const Hero = (): JSX.Element => {
                         h='initial'
                         p={0}
                         onFocus={() => {
-                          setTimeout(setShowSocial, 600, false)
-                          setTimeout(setShowButton, 1000, true)
+                          setTimeout(setShowSocial, 300, false)
+                          setTimeout(setShowButton, 700, true)
                         }}
                         fontSize='inherit'
                         fontWeight='inherit'
