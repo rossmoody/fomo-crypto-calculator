@@ -8,7 +8,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
-export const Footer = () => {
+export const Footer = (): JSX.Element => {
   const color = useColorModeValue('brand.500', 'brand.300')
 
   return (

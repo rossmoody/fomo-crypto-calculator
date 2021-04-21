@@ -1,3 +1,4 @@
+export { ButtonBar } from './button-bar'
 export { Coin, getCoins } from './coin'
 export { CoinList } from './coin-list'
 export { CoinIcon } from './coin-icon'

@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as utils from './utils'
 import { validateDate } from './validate'
-import { getContext } from '../'
+import { getContext, ButtonBar } from '../'
 import { Field, Formik, Form } from 'formik'
 import {
   Box,
-  Button,
   Center,
   FormControl,
   Heading,
@@ -18,6 +17,9 @@ import {
 
 export const Hero = (): JSX.Element => {
   const { state, dispatch } = getContext()
+
+  const [showButton, setShowButton] = useState(true)
+  const [showSocial, setShowSocial] = useState(false)
 
   const toast = useToast()
 
@@ -43,9 +45,9 @@ export const Hero = (): JSX.Element => {
             date
           })
 
-          setTimeout(() => {
-            actions.setSubmitting(false)
-          }, 1000)
+          setTimeout(actions.setSubmitting, 1000, false)
+          setTimeout(setShowButton, 1600, false)
+          setTimeout(setShowSocial, 2400, true)
         }}
       >
         {({ isSubmitting }) => (
@@ -78,6 +80,10 @@ export const Hero = (): JSX.Element => {
                         min={1}
                         max={100000000}
                         step={20}
+                        onFocus={() => {
+                          setTimeout(setShowSocial, 600, false)
+                          setTimeout(setShowButton, 1000, true)
+                        }}
                         onChange={(e) => {
                           form.setFieldValue('investment', utils.addCurrency(e))
                         }}
@@ -119,6 +125,10 @@ export const Hero = (): JSX.Element => {
                         textAlign='inherit'
                         h='initial'
                         p={0}
+                        onFocus={() => {
+                          setTimeout(setShowSocial, 600, false)
+                          setTimeout(setShowButton, 1000, true)
+                        }}
                         fontSize='inherit'
                         fontWeight='inherit'
                         display='flex'
@@ -129,15 +139,11 @@ export const Hero = (): JSX.Element => {
                 </Field>
                 , today it would be worth...
               </Heading>
-              <Button
-                size={'lg'}
-                colorScheme='brand'
-                type='submit'
-                isLoading={isSubmitting}
-                m={4}
-              >
-                Calculate FOMO
-              </Button>
+              <ButtonBar
+                isSubmitting={isSubmitting}
+                showButton={showButton}
+                showSocial={showSocial}
+              />
             </Center>
           </Form>
         )}
