@@ -1,6 +1,7 @@
 import React from 'react'
 import { Center, Button, SlideFade, Flex } from '@chakra-ui/react'
-import { CopyIcon, TwitterIcon } from '../icons'
+import { CopyButton } from './copy-button'
+import { TweetButton } from './tweet-button'
 
 export const ButtonBar = ({
   isSubmitting,
@@ -28,17 +29,8 @@ export const ButtonBar = ({
       <Flex>
         <SlideFade in={showSocial} offsetY='-50px' unmountOnExit>
           <Flex wrap='wrap' justifyContent='center'>
-            <Button
-              mx={2}
-              my={2}
-              leftIcon={<TwitterIcon />}
-              colorScheme='twitter'
-            >
-              Tweet the pain
-            </Button>
-            <Button mx={2} my={2} leftIcon={<CopyIcon />}>
-              Copy link to result
-            </Button>
+            <TweetButton />
+            <CopyButton />
           </Flex>
         </SlideFade>
       </Flex>
