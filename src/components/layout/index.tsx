@@ -26,7 +26,7 @@ export const Layout: React.FC = ({ children }) => {
   const [queryDate, setQueryDate] = useQueryParam('date', StringParam)
 
   const initialState: State = {
-    marketData: [],
+    marketData: null,
     investment: queryInv || 100,
     date: queryDate || '2018-01-20',
     coins: []
@@ -41,25 +41,25 @@ export const Layout: React.FC = ({ children }) => {
   }, [])
 
   useMemo(() => {
+    if (!state.marketData) return
+
     updateCoins(state, dispatch)
-  }, [state?.marketData])
+  }, [state.marketData])
 
   useMemo(() => {
-    if (!state.marketData.length) return
+    if (!state.marketData) return
 
     dispatch({ type: 'reset' })
     setQueryDate(state.date)
     updateCoins(state, dispatch)
-  }, [state?.date])
+  }, [state.date])
 
   useMemo(() => {
-    if (!state.marketData.length) return
+    if (!state.marketData) return
 
     setQueryInv(state.investment)
-    setTimeout(() => {
-      dispatch({ type: 'reinvest' })
-    }, 1000)
-  }, [state?.investment])
+    setTimeout(dispatch, 1000, { type: 'reinvest' })
+  }, [state.investment])
 
   return (
     <ChakraProvider theme={theme}>

@@ -1,3 +1,4 @@
+export { Banner } from './banner'
 export { ButtonBar } from './button-bar'
 export { Coin, getCoins } from './coin'
 export { CoinList } from './coin-list'
