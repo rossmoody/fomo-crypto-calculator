@@ -5,6 +5,10 @@ const theme = extendTheme({
     initialColorMode: 'light',
     useSystemColorMode: true
   },
+  fontSizes: {
+    '3xl': '2.1rem',
+    '4xl': '2.45rem'
+  },
   colors: {
     brand: {
       50: '#f0e8ff',
