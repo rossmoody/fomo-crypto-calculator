@@ -6,7 +6,7 @@ export const TweetButton = (): JSX.Element => {
   const tweet = {
     text: 'Check out how rich I could have been...',
     url: document.URL,
-    hashtag: 'fomocryptocalculator'
+    hashtag: 'fomo'
   }
 
   const url = `https://twitter.com/intent/tweet?url=${tweet.url}&text=${tweet.text}&hashtags=${tweet.hashtag}`
@@ -17,7 +17,7 @@ export const TweetButton = (): JSX.Element => {
       mx={2}
       my={2}
       leftIcon={<TwitterIcon />}
-      colorScheme='twitter'
+      colorScheme='brand'
       href={url}
     >
       Tweet the regret
