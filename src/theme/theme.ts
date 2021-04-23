@@ -33,6 +33,10 @@ const theme = extendTheme({
       },
       'input[type="date"]::-webkit-calendar-picker-indicator': {
         display: 'none'
+      },
+      'input[type="date"]': {
+        display: 'block',
+        textAlign: 'center'
       }
     }
   }
