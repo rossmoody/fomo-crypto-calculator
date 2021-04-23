@@ -130,15 +130,17 @@ export const Hero = (): JSX.Element => {
                         focusBorderColor={'brand.300'}
                         variant='flushed'
                         type='date'
-                        textAlign='inherit'
+                        textAlign='center'
+                        fontSize='inherit'
+                        fontWeight='inherit'
                         h='initial'
                         p={0}
+                        paddingEnd={0}
+                        paddingInlineEnd={0}
                         onFocus={() => {
                           setTimeout(setShowSocial, 300, false)
                           setTimeout(setShowButton, 700, true)
                         }}
-                        fontSize='inherit'
-                        fontWeight='inherit'
                         display='flex'
                         {...field}
                       />
