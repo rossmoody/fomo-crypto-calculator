@@ -10,7 +10,8 @@ export const CopyButton = (): JSX.Element => {
   const handleClick = () => {
     onCopy()
     toast({
-      description: 'Go forth and share the FOMO...'
+      description: 'Go forth and share the FOMO...',
+      variant: 'left-accent'
     })
   }
 

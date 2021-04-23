@@ -1,17 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Flex, VStack, Text, SlideFade, Divider } from '@chakra-ui/react'
 import { getContext, Tombstone } from '../'
 
-const debounce = (callback, wait) => {
-  let timeoutId = null
-
-  return (...args) => {
-    window.clearTimeout(timeoutId)
-    timeoutId = window.setTimeout(() => {
-      callback(args)
-    }, wait)
-  }
-}
+let timer
 
 export const Graveyard = (): JSX.Element => {
   const { state } = getContext()
@@ -19,22 +10,19 @@ export const Graveyard = (): JSX.Element => {
   const [open, setOpen] = useState(false)
   const [tombstones, setTombstones] = useState([])
 
+  const filteredTombstones = state.coins
+    .filter((coin) => !coin.past_price)
+    .sort((a, b) => {
+      if (a.id < b.id) return -1
+    })
+
   useEffect(() => {
     setOpen(false)
-
-    const debounceTombstones = debounce(() => {
-      setTombstones(
-        state.coins
-          .filter((coin) => !coin.past_price)
-          .sort((a, b) => {
-            if (a.id < b.id) return -1
-          })
-      )
-
-      setTimeout(setOpen, 1000, true)
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      setTombstones(filteredTombstones)
+      setOpen(true)
     }, 1000)
-
-    debounceTombstones()
   }, [state.coins])
 
   return (
