@@ -7,12 +7,14 @@ import {
   Box,
   Center,
   FormControl,
+  FormLabel,
   Heading,
   Input,
   NumberInput,
   NumberInputField,
   useColorModeValue,
-  useToast
+  useToast,
+  VisuallyHidden
 } from '@chakra-ui/react'
 
 export const Hero = (): JSX.Element => {
@@ -45,7 +47,7 @@ export const Hero = (): JSX.Element => {
             date
           })
 
-          setTimeout(actions.setSubmitting, 1000, false)
+          setTimeout(actions.setSubmitting, 500, false)
           setTimeout(setShowButton, 1400, false)
           setTimeout(setShowSocial, 2000, true)
         }}
@@ -71,6 +73,9 @@ export const Hero = (): JSX.Element => {
                       display='inline-flex'
                       onKeyUp={utils.resizeInput}
                     >
+                      <VisuallyHidden>
+                        <FormLabel>Investment amount</FormLabel>
+                      </VisuallyHidden>
                       <NumberInput
                         {...field}
                         variant='flushed'
@@ -115,6 +120,9 @@ export const Hero = (): JSX.Element => {
                       display='inline-flex'
                       textAlign='center'
                     >
+                      <VisuallyHidden>
+                        <FormLabel>Date</FormLabel>
+                      </VisuallyHidden>
                       <Input
                         isRequired
                         isInvalid={form.touched.date & form.errors.date}

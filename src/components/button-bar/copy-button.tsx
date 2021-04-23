@@ -17,7 +17,7 @@ export const CopyButton = (): JSX.Element => {
 
   return (
     <Button mx={2} my={2} leftIcon={<CopyIcon />} onClick={handleClick}>
-      Copy link to result
+      Copy link to results
     </Button>
   )
 }

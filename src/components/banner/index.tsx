@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useStickyState } from './sticky-state'
 import { Box, Collapse, HStack, Stack, Text } from '@chakra-ui/react'
 import { CallToActionLink } from './call-to-action'
 import { CloseButton } from './close-button'
 
 export const Banner = (): JSX.Element => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [value, setValue] = useStickyState(true, 'product-hunt-banner')
 
   return (
-    <Collapse in={isOpen} animateOpacity>
+    <Collapse in={value} animateOpacity>
       <Box as='section'>
         <Box
           bgGradient='linear(to-r, blue.500, purple.500)'
@@ -31,7 +32,7 @@ export const Banner = (): JSX.Element => {
             </Stack>
             <CloseButton
               aria-label='Close banner'
-              onClick={() => setIsOpen(false)}
+              onClick={() => setValue(false)}
             />
           </HStack>
         </Box>

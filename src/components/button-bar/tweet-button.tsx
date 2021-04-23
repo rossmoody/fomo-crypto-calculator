@@ -20,7 +20,7 @@ export const TweetButton = (): JSX.Element => {
       colorScheme='twitter'
       href={url}
     >
-      Tweet the pain
+      Tweet the regret
     </Button>
   )
 }

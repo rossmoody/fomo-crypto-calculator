@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import {
-  Banner,
   CoinList,
   Layout,
   Footer,
@@ -35,7 +34,6 @@ const IndexPage = (): JSX.Element => {
         <meta property='twitter:description' content={meta.description} />
         <meta property='twitter:image' content={`${meta.url}/og-image.png`} />
       </Helmet>
-      <Banner />
       <Header />
       <Hero />
       <CoinList />

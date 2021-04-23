@@ -5,19 +5,28 @@ import {
   Center,
   Divider,
   IconButton,
-  useColorMode
+  useColorMode,
+  useMediaQuery
 } from '@chakra-ui/react'
-import { Logo } from '../'
+import { Logo, StackedLogo } from '../'
 
 export const Header = (): JSX.Element => {
   const { colorMode, toggleColorMode } = useColorMode()
+  const [isSmallScreen] = useMediaQuery('(max-width: 480px)')
 
   return (
     <Box as='nav'>
       <Center py='24px' pos='relative' height='96px'>
-        <Box width='280px' height='29px'>
-          <Logo />
-        </Box>
+        {isSmallScreen ? (
+          <Box width='150px' height='48px'>
+            <StackedLogo />
+          </Box>
+        ) : (
+          <Box width='280px' height='29px'>
+            <Logo />
+          </Box>
+        )}
+
         <IconButton
           position='absolute'
           my='auto'

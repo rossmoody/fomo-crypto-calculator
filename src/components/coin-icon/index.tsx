@@ -25,6 +25,7 @@ export const CoinIcon = ({
       src={coin.image}
       alt={coin.name}
       boxSize={size}
+      pointerEvents='none'
       fallbackSrc={Placeholder}
     />
   )
