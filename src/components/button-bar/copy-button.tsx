@@ -10,8 +10,7 @@ export const CopyButton = (): JSX.Element => {
   const handleClick = () => {
     onCopy()
     toast({
-      title: 'URL copied to clipboard',
-      description: 'Go forth and share the fomo...'
+      description: 'Go forth and share the FOMO...'
     })
   }
 

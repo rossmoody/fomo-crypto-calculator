@@ -12,7 +12,7 @@ import { Logo, StackedLogo } from '../'
 
 export const Header = (): JSX.Element => {
   const { colorMode, toggleColorMode } = useColorMode()
-  const [isSmallScreen] = useMediaQuery('(max-width: 480px)')
+  const [isSmallScreen] = useMediaQuery('(max-width: 520px)')
 
   return (
     <Box as='nav'>
