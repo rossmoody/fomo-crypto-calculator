@@ -11,7 +11,8 @@ export const CopyButton = (): JSX.Element => {
     onCopy()
     toast({
       description: 'Go forth and share the FOMO...',
-      variant: 'left-accent'
+      variant: 'left-accent',
+      status: 'success'
     })
   }
 
