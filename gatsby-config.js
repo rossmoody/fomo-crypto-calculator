@@ -12,7 +12,7 @@ module.exports = {
     'gatsby-plugin-use-query-params',
     'gatsby-plugin-image',
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingId: 'G-H8W9KDDE2S'
       }
