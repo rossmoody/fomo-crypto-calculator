@@ -28,7 +28,7 @@ export const Footer = (): JSX.Element => {
           </Link>{' '}
           for fun in 2021. Help improve this site with{' '}
           <Link
-            href='https://github.com/rossmoody/fomo-crypto-calculator'
+            href='https://github.com/rossmoody/fomo-crypto-calculator/issues/new/choose'
             color={color}
           >
             your ideas on GitHub.
