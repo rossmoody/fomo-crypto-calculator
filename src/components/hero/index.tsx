@@ -48,7 +48,7 @@ export const Hero = (): JSX.Element => {
           })
 
           setTimeout(actions.setSubmitting, 500, false)
-          setTimeout(setShowButton, 1400, false)
+          setTimeout(setShowButton, 1000, false)
           setTimeout(setShowSocial, 2000, true)
         }}
       >

@@ -17,6 +17,8 @@ export const Graveyard = (): JSX.Element => {
     })
 
   useEffect(() => {
+    if (!state.coins) return
+
     setOpen(false)
     clearTimeout(timer)
     timer = setTimeout(() => {
