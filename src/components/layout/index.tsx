@@ -28,7 +28,7 @@ export const Layout: React.FC = ({ children }) => {
   const initialState: State = {
     marketData: null,
     investment: queryInv || 100,
-    date: queryDate || '2018-01-20',
+    date: queryDate || '2010-01-20',
     coins: []
   }
 

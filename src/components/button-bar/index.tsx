@@ -13,8 +13,13 @@ export const ButtonBar = ({
   showSocial: boolean
 }): JSX.Element => {
   return (
-    <Center width='100%' minH='100px' py={4}>
-      <SlideFade in={showButton} offsetY='-50px' unmountOnExit>
+    <Center width='100%' minH='100px' py={4} position='relative'>
+      <SlideFade
+        in={showButton}
+        offsetY='-50px'
+        unmountOnExit
+        style={{ position: 'absolute' }}
+      >
         <Button
           size={'lg'}
           colorScheme='brand'
@@ -24,7 +29,12 @@ export const ButtonBar = ({
           Calculate FOMO
         </Button>
       </SlideFade>
-      <SlideFade in={showSocial} offsetY='-50px' unmountOnExit>
+      <SlideFade
+        in={showSocial}
+        offsetY='-50px'
+        unmountOnExit
+        style={{ position: 'absolute' }}
+      >
         <Flex wrap='wrap' justifyContent='center'>
           <TweetButton />
           <CopyButton />
