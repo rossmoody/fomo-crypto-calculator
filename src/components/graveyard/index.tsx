@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Box, Flex, VStack, Text, SlideFade, Divider } from '@chakra-ui/react'
 import { getContext, Tombstone } from '../'
 
-let timer
-
 export const Graveyard = (): JSX.Element => {
   const { state } = getContext()
 
@@ -18,25 +16,14 @@ export const Graveyard = (): JSX.Element => {
 
   useEffect(() => {
     if (!state.coins) return
-
-    setOpen(false)
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      setTombstones(filteredTombstones)
-      setOpen(true)
-    }, 1000)
+    setTombstones(filteredTombstones)
+    filteredTombstones.length === 0 ? setOpen(false) : setOpen(true)
   }, [state.coins])
 
   return (
-    <Flex
-      justifyContent='center'
-      my={8}
-      px={4}
-      minH='200px'
-      display={open ? 'flex' : 'none'}
-    >
+    <Flex justifyContent='center' my={8} px={4} minH='200px'>
       <Box width='2xl'>
-        <SlideFade in={open} offsetY='20px'>
+        <SlideFade in={open} offsetY='20px' unmountOnExit>
           <VStack px={[2, 4]} spacing={4}>
             <Divider mb={8} />
             <Text mb={3} textAlign='center' color='gray.500'>
