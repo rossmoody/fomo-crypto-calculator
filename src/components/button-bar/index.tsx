@@ -14,26 +14,22 @@ export const ButtonBar = ({
 }): JSX.Element => {
   return (
     <Center width='100%' minH='100px' py={4}>
-      <Flex>
-        <SlideFade in={showButton} offsetY='-50px' unmountOnExit>
-          <Button
-            size={'lg'}
-            colorScheme='brand'
-            type='submit'
-            isLoading={isSubmitting}
-          >
-            Calculate FOMO
-          </Button>
-        </SlideFade>
-      </Flex>
-      <Flex>
-        <SlideFade in={showSocial} offsetY='-50px' unmountOnExit>
-          <Flex wrap='wrap' justifyContent='center'>
-            <TweetButton />
-            <CopyButton />
-          </Flex>
-        </SlideFade>
-      </Flex>
+      <SlideFade in={showButton} offsetY='-50px' unmountOnExit>
+        <Button
+          size={'lg'}
+          colorScheme='brand'
+          type='submit'
+          isLoading={isSubmitting}
+        >
+          Calculate FOMO
+        </Button>
+      </SlideFade>
+      <SlideFade in={showSocial} offsetY='-50px' unmountOnExit>
+        <Flex wrap='wrap' justifyContent='center'>
+          <TweetButton />
+          <CopyButton />
+        </Flex>
+      </SlideFade>
     </Center>
   )
 }
