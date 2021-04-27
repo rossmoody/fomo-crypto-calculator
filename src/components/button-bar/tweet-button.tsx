@@ -4,7 +4,8 @@ import { TwitterIcon } from '../icons'
 
 export const TweetButton = (): JSX.Element => {
   const tweet = {
-    text: 'Check out how rich I could have been...',
+    text:
+      'FOMO: anxiety that an exciting or interesting event may currently be happening elsewhere, often aroused by posts seen on social media.',
     url: document.URL,
     hashtag: 'fomo'
   }
