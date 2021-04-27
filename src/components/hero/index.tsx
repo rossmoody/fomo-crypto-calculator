@@ -41,15 +41,15 @@ export const Hero = (): JSX.Element => {
         onSubmit={(values, actions) => {
           const { date, investment } = values
 
+          setTimeout(actions.setSubmitting, 500, false)
+          setTimeout(setShowButton, 1000, false)
+          setTimeout(setShowSocial, 2000, true)
+
           dispatch({
             type: 'update',
             investment: utils.removeCurrency(investment),
             date
           })
-
-          setTimeout(actions.setSubmitting, 500, false)
-          setTimeout(setShowButton, 1000, false)
-          setTimeout(setShowSocial, 2000, true)
         }}
       >
         {({ isSubmitting }) => (
