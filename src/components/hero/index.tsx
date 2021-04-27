@@ -114,13 +114,13 @@ export const Hero = (): JSX.Element => {
                   validate={(string: string) => validateDate(string, toast)}
                 >
                   {({ field, form }) => (
-                    <FormControl ml={4} w={[240, 230]} display='inline-flex'>
+                    <FormControl ml={4} w={[250, 280]} display='inline-flex'>
                       <VisuallyHidden>
                         <FormLabel>Date</FormLabel>
                       </VisuallyHidden>
                       <Input
-                        isRequired
                         type='date'
+                        isRequired
                         isInvalid={form.touched.date & form.errors.date}
                         color={useColorModeValue('brand.500', 'brand.300')}
                         focusBorderColor={'brand.300'}
