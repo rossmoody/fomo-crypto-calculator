@@ -1,24 +1,24 @@
 import React from 'react'
-import { Data } from './coin-panel'
-import { CoinPanel } from './coin-panel'
 import {
   Tabs,
   TabList,
   Tab,
   TabPanels,
   TabPanel,
-  useBreakpointValue
+  useBreakpointValue,
 } from '@chakra-ui/react'
+
+import { Data, CoinPanel } from './coin-panel'
 
 export const TabContainer = ({ data }: { data: Data[] }): JSX.Element => {
   const size = useBreakpointValue({ base: 'sm', md: 'md' })
 
   return (
     <Tabs
-      variant='soft-rounded'
-      colorScheme='brand'
+      variant="soft-rounded"
+      colorScheme="brand"
       defaultIndex={1}
-      w='2xl'
+      w="2xl"
       isLazy
       size={size}
     >
@@ -28,9 +28,9 @@ export const TabContainer = ({ data }: { data: Data[] }): JSX.Element => {
         ))}
       </TabList>
       <TabPanels>
-        {data.map((obj, index) => (
+        {data.map((object, index) => (
           <TabPanel key={index} px={0} py={8}>
-            <CoinPanel data={obj} />
+            <CoinPanel data={object} />
           </TabPanel>
         ))}
       </TabPanels>

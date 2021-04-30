@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, useClipboard, useToast } from '@chakra-ui/react'
+
 import { CopyIcon } from '../icons'
 
 export const CopyButton = (): JSX.Element => {
@@ -12,7 +13,7 @@ export const CopyButton = (): JSX.Element => {
     toast({
       description: 'Go forth and share the FOMO...',
       variant: 'left-accent',
-      status: 'success'
+      status: 'success',
     })
   }
 

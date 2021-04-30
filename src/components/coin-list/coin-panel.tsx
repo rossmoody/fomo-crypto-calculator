@@ -1,12 +1,13 @@
 import React from 'react'
-import { Coin, CoinItem } from '../'
 import {
   Center,
   SlideFade,
   VStack,
   StackDivider,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react'
+
+import { Coin, CoinItem } from '..'
 
 export interface Data {
   coins: Coin[]
@@ -17,24 +18,24 @@ export interface Data {
 }
 
 export const CoinPanel = ({ data }: { data: Data }): JSX.Element => {
-  const coinArr = data.coins
+  const coinArray = data.coins
     .filter((a) => a.past_price)
     .filter(data.filter)
     .slice(0, data.slice)
     .sort(data.sort)
 
-  if (coinArr.length) {
+  if (coinArray.length > 0) {
     return (
-      <SlideFade offsetY='40px' in={true} style={{ width: '100%' }}>
+      <SlideFade offsetY="40px" in={true} style={{ width: '100%' }}>
         <VStack
-          spacing='20px'
+          spacing="20px"
           divider={
             <StackDivider
               borderColor={useColorModeValue('gray.200', 'gray.600')}
             />
           }
         >
-          {coinArr.map((coin, index) => (
+          {coinArray.map((coin, index) => (
             <CoinItem coin={coin} key={index} />
           ))}
         </VStack>

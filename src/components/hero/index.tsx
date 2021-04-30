@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import * as utils from './utils'
-import { validateDate } from './validate'
-import { getContext, ButtonBar } from '../'
 import { Field, Formik, Form } from 'formik'
 import {
   Box,
@@ -14,8 +11,13 @@ import {
   NumberInputField,
   useColorModeValue,
   useToast,
-  VisuallyHidden
+  VisuallyHidden,
 } from '@chakra-ui/react'
+
+import { getContext, ButtonBar } from '..'
+
+import * as utils from './utils'
+import { validateDate } from './validate'
 
 export const Hero = (): JSX.Element => {
   const { state, dispatch } = getContext()
@@ -30,11 +32,11 @@ export const Hero = (): JSX.Element => {
   }, [])
 
   return (
-    <Box as='header'>
+    <Box as="header">
       <Formik
         initialValues={{
           investment: `$${state.investment}`,
-          date: state.date
+          date: state.date,
         }}
         validateOnChange={false}
         validateOnBlur={false}
@@ -48,29 +50,29 @@ export const Hero = (): JSX.Element => {
           dispatch({
             type: 'update',
             investment: utils.removeCurrency(investment),
-            date
+            date,
           })
         }}
       >
         {({ isSubmitting }) => (
           <Form>
-            <Center pt={[12, 16]} pb={12} px={4} flexDir='column'>
+            <Center pt={[12, 16]} pb={12} px={4} flexDir="column">
               <Heading
-                as='h1'
-                size='xl'
+                as="h1"
+                size="xl"
                 sx={{ textAlign: 'center' }}
-                maxW='2xl'
+                maxW="2xl"
                 mb={[4, 8]}
               >
                 If I invested
-                <Field name='investment'>
+                <Field name="investment">
                   {({ form, field }) => (
                     <FormControl
-                      id='investment-input'
+                      id="investment-input"
                       isRequired
                       mx={4}
-                      w='auto'
-                      display='inline-flex'
+                      w="auto"
+                      display="inline-flex"
                       onKeyUp={utils.resizeInput}
                     >
                       <VisuallyHidden>
@@ -78,10 +80,10 @@ export const Hero = (): JSX.Element => {
                       </VisuallyHidden>
                       <NumberInput
                         {...field}
-                        variant='flushed'
+                        variant="flushed"
                         focusBorderColor={'brand.300'}
                         color={useColorModeValue('brand.500', 'brand.300')}
-                        display='flex'
+                        display="flex"
                         min={1}
                         max={100000000}
                         step={20}
@@ -95,12 +97,12 @@ export const Hero = (): JSX.Element => {
                       >
                         <NumberInputField
                           p={0}
-                          fontSize='inherit'
-                          fontWeight='inherit'
-                          textAlign='center'
-                          display='flex'
-                          alignItems='center'
-                          inputMode='numeric'
+                          fontSize="inherit"
+                          fontWeight="inherit"
+                          textAlign="center"
+                          display="flex"
+                          alignItems="center"
+                          inputMode="numeric"
                           w={108}
                           {...field}
                         />
@@ -110,24 +112,24 @@ export const Hero = (): JSX.Element => {
                 </Field>
                 into one cryptocurrency on
                 <Field
-                  name='date'
+                  name="date"
                   validate={(string: string) => validateDate(string, toast)}
                 >
                   {({ field, form }) => (
-                    <FormControl ml={4} w={[250, 280]} display='inline-flex'>
+                    <FormControl ml={4} w={[250, 280]} display="inline-flex">
                       <VisuallyHidden>
                         <FormLabel>Date</FormLabel>
                       </VisuallyHidden>
                       <Input
-                        type='date'
+                        type="date"
                         isRequired
                         isInvalid={form.touched.date & form.errors.date}
                         color={useColorModeValue('brand.500', 'brand.300')}
                         focusBorderColor={'brand.300'}
-                        variant='flushed'
-                        fontSize='inherit'
-                        fontWeight='inherit'
-                        h='initial'
+                        variant="flushed"
+                        fontSize="inherit"
+                        fontWeight="inherit"
+                        h="initial"
                         p={0}
                         onFocus={() => {
                           setTimeout(setShowSocial, 300, false)

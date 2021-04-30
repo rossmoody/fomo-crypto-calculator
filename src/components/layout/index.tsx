@@ -3,13 +3,15 @@ import React, {
   useContext,
   useReducer,
   useEffect,
-  useMemo
+  useMemo,
 } from 'react'
-import theme from '../../theme/theme'
 import { useQueryParam, NumberParam, StringParam } from 'use-query-params'
 import { ChakraProvider } from '@chakra-ui/react'
+
+import theme from '../../theme/theme'
+import { getCoins } from '..'
+
 import { reducer, State, Action } from './reducer'
-import { getCoins } from '../'
 import { updateCoins } from './update-coins'
 
 interface Context {
@@ -29,7 +31,7 @@ export const Layout: React.FC = ({ children }) => {
     marketData: null,
     investment: queryInv || 100,
     date: queryDate || '2020-01-20',
-    coins: []
+    coins: [],
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)

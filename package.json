@@ -4,9 +4,6 @@
   "private": true,
   "description": "fomo-website",
   "author": "rossmoody",
-  "keywords": [
-    "gatsby"
-  ],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -15,6 +12,7 @@
     "clean": "gatsby clean",
     "server": "npx nodemon server/express.js"
   },
+  "prettier": "prettier-config-rossmoody",
   "dependencies": {
     "@chakra-ui/icons": "^1.0.10",
     "@chakra-ui/react": "^1.5.0",
@@ -22,7 +20,7 @@
     "@emotion/styled": "^11.3.0",
     "axios": "^0.21.1",
     "date-fns": "^2.21.0",
-    "eslint-plugin-radar": "^0.2.1",
+    "eslint-config-rossmoody": "^1.1.1",
     "express": "^4.17.1",
     "firebase-admin": "^9.6.0",
     "formik": "^2.2.6",
@@ -41,18 +39,12 @@
     "gatsby-transformer-sharp": "^3.2.0",
     "nodemon": "^2.0.7",
     "number-to-words": "^1.2.4",
-    "prettier": "^2.2.1",
+    "prettier-config-rossmoody": "^1.0.2",
     "query-string": "^7.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "typescript": "^4.2.4",
     "use-query-params": "^1.2.2"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
-    "eslint": "^7.24.0",
-    "eslint-plugin-react": "^7.23.2"
   }
 }

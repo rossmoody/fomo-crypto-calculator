@@ -1,11 +1,13 @@
 import React from 'react'
-import { Coin, cryptoIcons } from '../'
 import { Icon, Image } from '@chakra-ui/react'
+
+import { Coin, cryptoIcons } from '..'
+
 import Placeholder from './placeholder.png'
 
 export const CoinIcon = ({
   coin,
-  size = '32px'
+  size = '32px',
 }: {
   coin: Coin
   size?: string
@@ -25,7 +27,7 @@ export const CoinIcon = ({
       src={coin.image}
       alt={coin.name}
       boxSize={size}
-      pointerEvents='none'
+      pointerEvents="none"
       fallbackSrc={Placeholder}
     />
   )

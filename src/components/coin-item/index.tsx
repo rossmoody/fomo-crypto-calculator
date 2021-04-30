@@ -1,8 +1,9 @@
 import React from 'react'
-import { Coin, CoinIcon } from '../'
 import converter from 'number-to-words'
 import { InfoIcon } from '@chakra-ui/icons'
 import { Box, Grid, GridItem, Text, Tooltip } from '@chakra-ui/react'
+
+import { Coin, CoinIcon } from '..'
 
 export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
   const isPositive: boolean = Math.sign(coin.roi) > 0
@@ -10,7 +11,7 @@ export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
 
   return (
     <Grid
-      w='100%'
+      w="100%"
       templateRows={['repeat(2, 1fr)', 'repeat(1, 1fr)']}
       templateColumns={['32px 2fr 3fr', '32px 2fr 3fr 2fr']}
       columnGap={[2, 3]}
@@ -21,16 +22,16 @@ export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
       </GridItem>
       <GridItem rowSpan={[2, 1]}>
         <Box>
-          <Text fontWeight='500' fontSize='lg' lineHeight='24px'>
+          <Text fontWeight="500" fontSize="lg" lineHeight="24px">
             {coin.name}
           </Text>
         </Box>
         <Box>
           <Text
-            fontSize='md'
-            lineHeight='20px'
-            color='gray.500'
-            casing='uppercase'
+            fontSize="md"
+            lineHeight="20px"
+            color="gray.500"
+            casing="uppercase"
           >
             {coin.symbol} {coin.coins_owned.toFixed(3)}
           </Text>
@@ -38,12 +39,12 @@ export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
       </GridItem>
       <GridItem
         colSpan={1}
-        fontWeight='500'
-        fontSize='lg'
-        lineHeight='18px'
-        display='flex'
-        justifyContent='flex-end'
-        alignItems='center'
+        fontWeight="500"
+        fontSize="lg"
+        lineHeight="18px"
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="center"
       >
         {isHugeNumber && (
           <Tooltip
@@ -53,10 +54,10 @@ export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
               coin.profit_loss
             )} dollars worth of regret.`}
             hasArrow
-            placement='top'
+            placement="top"
           >
             <InfoIcon
-              color='gray.400'
+              color="gray.400"
               _hover={{ color: 'brand.400', cursor: 'pointer' }}
             />
           </Tooltip>
@@ -66,8 +67,8 @@ export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
       <GridItem
         isTruncated
         colSpan={1}
-        display='flex'
-        justifyContent='flex-end'
+        display="flex"
+        justifyContent="flex-end"
         alignItems={['start', 'center']}
       >
         <Text

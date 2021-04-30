@@ -1,6 +1,7 @@
 import React from 'react'
-import { useStickyState } from './sticky-state'
 import { Box, Collapse, HStack, Stack, Text } from '@chakra-ui/react'
+
+import { useStickyState } from './sticky-state'
 import { CallToActionLink } from './call-to-action'
 import { CloseButton } from './close-button'
 
@@ -9,20 +10,20 @@ export const Banner = (): JSX.Element => {
 
   return (
     <Collapse in={value} animateOpacity>
-      <Box as='section'>
+      <Box as="section">
         <Box
-          bgGradient='linear(to-r, blue.500, purple.500)'
-          color='white'
-          py='2'
+          bgGradient="linear(to-r, blue.500, purple.500)"
+          color="white"
+          py="2"
           px={{ base: '3', md: '6', lg: '8' }}
         >
-          <HStack spacing='3'>
+          <HStack spacing="3">
             <Stack
               direction={{ base: 'column', sm: 'row' }}
-              justifyContent='center'
-              alignItems='center'
+              justifyContent="center"
+              alignItems="center"
               spacing={{ base: '3', md: '6' }}
-              width='full'
+              width="full"
             >
               <Text>
                 <b>Did you buy a license yet? </b>
@@ -31,7 +32,7 @@ export const Banner = (): JSX.Element => {
               <CallToActionLink>Check it out</CallToActionLink>
             </Stack>
             <CloseButton
-              aria-label='Close banner'
+              aria-label="Close banner"
               onClick={() => setValue(false)}
             />
           </HStack>
