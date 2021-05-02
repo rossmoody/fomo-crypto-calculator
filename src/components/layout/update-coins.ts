@@ -1,5 +1,6 @@
+import { Coin } from '..'
+
 import { State, Action } from './reducer'
-import { Coin } from '../'
 
 export function updateCoins(
   state: State,

@@ -3,11 +3,11 @@ import { extendTheme } from '@chakra-ui/react'
 const theme = extendTheme({
   config: {
     initialColorMode: 'light',
-    useSystemColorMode: true
+    useSystemColorMode: true,
   },
   fontSizes: {
     '3xl': '2.1rem',
-    '4xl': '2.45rem'
+    '4xl': '2.45rem',
   },
   colors: {
     brand: {
@@ -20,26 +20,26 @@ const theme = extendTheme({
       600: '#411d96',
       700: '#2e146d',
       800: '#1b0c43',
-      900: '#0b021c'
-    }
+      900: '#0b021c',
+    },
   },
   shadows: {
-    outline: '0 0 0 3px rgba(79, 42, 162, 0.3)'
+    outline: '0 0 0 3px rgba(79, 42, 162, 0.3)',
   },
   styles: {
     global: {
       'input[type="date"]::-webkit-inner-spin-button': {
-        display: 'none'
+        display: 'none',
       },
       'input[type="date"]::-webkit-calendar-picker-indicator': {
-        display: 'none'
+        display: 'none',
       },
       'input[type="date"]': {
         display: 'block',
-        textAlign: 'center'
-      }
-    }
-  }
+        textAlign: 'center',
+      },
+    },
+  },
 })
 
 export default theme

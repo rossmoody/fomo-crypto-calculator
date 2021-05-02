@@ -8,7 +8,7 @@ interface Error {
 
 export function validateDate(
   value: string,
-  callback: (arg0: UseToastOptions) => void
+  callback: (argument0: UseToastOptions) => void
 ): boolean {
   const date = new Date(value)
 
@@ -20,7 +20,7 @@ export function validateDate(
 
   const error: Error = {
     title: '',
-    description: ''
+    description: '',
   }
 
   if (!validDate) {
@@ -45,7 +45,7 @@ export function validateDate(
     status: 'error',
     duration: 9000,
     position: 'top',
-    isClosable: true
+    isClosable: true,
   })
 
   return true

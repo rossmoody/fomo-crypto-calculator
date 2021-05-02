@@ -1,5 +1,5 @@
 import { Box, BoxProps } from '@chakra-ui/react'
-import * as React from 'react'
+import React from 'react'
 
 export const CallToActionLink = (properties: BoxProps): JSX.Element => (
   <Box

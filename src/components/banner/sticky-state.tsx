@@ -6,7 +6,10 @@ export function useStickyState(
 ): [boolean, React.Dispatch<boolean>] {
   const [value, setValue] = React.useState(() => {
     const stickyValue = window.localStorage.getItem(key)
-    return stickyValue !== null ? JSON.parse(stickyValue) : defaultValue
+
+    if (stickyValue) return JSON.parse(stickyValue)
+
+    return defaultValue
   })
 
   useEffect(() => {

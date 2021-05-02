@@ -10,7 +10,8 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "server": "npx nodemon server/express.js"
+    "server": "npx nodemon server/express.js",
+    "lint": "npx eslint . --ext .tsx,.ts --fix"
   },
   "prettier": "prettier-config-rossmoody",
   "dependencies": {

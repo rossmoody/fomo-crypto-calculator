@@ -33,8 +33,8 @@ export class Coin {
         {
           params: {
             id: this.id,
-            history: date
-          }
+            history: date,
+          },
         }
       )
       this.past_price = data

@@ -1,4 +1,4 @@
-import { Coin } from '../'
+import { Coin } from '..'
 
 type ActionType =
   | 'update'
@@ -24,47 +24,47 @@ export interface Action {
   coins?: Coin[]
 }
 
-export const reducer = (prevState: State, action: Action): State => {
+export const reducer = (previousState: State, action: Action): State => {
   const { type, date, investment, marketData, coin, coins } = action
 
   switch (type) {
     case 'update':
       return {
-        ...prevState,
+        ...previousState,
         date,
-        investment
+        investment,
       }
 
     case 'init':
       return {
-        ...prevState,
-        marketData
+        ...previousState,
+        marketData,
       }
 
     case 'replaceCoins':
       return {
-        ...prevState,
-        coins
+        ...previousState,
+        coins,
       }
 
     case 'addCoin':
       return {
-        ...prevState,
-        coins: [...prevState.coins, coin]
+        ...previousState,
+        coins: [...previousState.coins, coin],
       }
 
     case 'reinvest':
       return {
-        ...prevState,
-        coins: prevState.coins.map((coin) =>
-          coin.doBigBrainMath(prevState.investment)
-        )
+        ...previousState,
+        coins: previousState.coins.map((coin) =>
+          coin.doBigBrainMath(previousState.investment)
+        ),
       }
 
     case 'reset':
       return {
-        ...prevState,
-        coins: []
+        ...previousState,
+        coins: [],
       }
   }
 }
