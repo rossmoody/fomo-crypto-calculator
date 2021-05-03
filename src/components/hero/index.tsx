@@ -22,6 +22,7 @@ import { validateDate } from './validate'
 
 export const Hero = (): JSX.Element => {
   const { state, dispatch } = GetContext()
+  const color = useColorModeValue('brand.500', 'brand.300')
 
   const [showButton, setShowButton] = useState(true)
   const [showSocial, setShowSocial] = useState(false)
@@ -83,7 +84,7 @@ export const Hero = (): JSX.Element => {
                         {...field}
                         variant="flushed"
                         focusBorderColor={'brand.300'}
-                        color={useColorModeValue('brand.500', 'brand.300')}
+                        color={color}
                         display="flex"
                         min={1}
                         max={100000000}
@@ -92,8 +93,11 @@ export const Hero = (): JSX.Element => {
                           setTimeout(setShowSocial, 300, false)
                           setTimeout(setShowButton, 700, true)
                         }}
-                        onChange={(e) => {
-                          form.setFieldValue('investment', utils.addCurrency(e))
+                        onChange={(event) => {
+                          form.setFieldValue(
+                            'investment',
+                            utils.addCurrency(event)
+                          )
                         }}
                       >
                         <NumberInputField
@@ -125,7 +129,7 @@ export const Hero = (): JSX.Element => {
                         type="date"
                         isRequired
                         isInvalid={form.touched.date & form.errors.date}
-                        color={useColorModeValue('brand.500', 'brand.300')}
+                        color={color}
                         focusBorderColor={'brand.300'}
                         variant="flushed"
                         fontSize="inherit"

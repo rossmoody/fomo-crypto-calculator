@@ -1,4 +1,4 @@
-import { Coin } from '..'
+import { Coin } from '../coin'
 
 type ActionType =
   | 'update'

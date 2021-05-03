@@ -11,11 +11,11 @@ import { ChakraProvider } from '@chakra-ui/react'
 import theme from '../../theme/theme'
 import { getCoins } from '../coin'
 
-import { reducer, State } from './reducer'
+import { reducer, State, Action } from './reducer'
 
 interface Context {
   state: State
-  dispatch: React.Dispatch<State>
+  dispatch: React.Dispatch<Action>
 }
 
 const Context = createContext({})
