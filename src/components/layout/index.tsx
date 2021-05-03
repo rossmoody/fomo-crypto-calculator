@@ -28,7 +28,7 @@ export const Layout: React.FC = ({ children }) => {
   const [queryDate, setQueryDate] = useQueryParam('date', StringParam)
 
   const initialState: State = {
-    marketData: null,
+    marketData: [],
     investment: queryInv || 100,
     date: queryDate || '2020-01-20',
     coins: [],
@@ -37,19 +37,21 @@ export const Layout: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    getCoins().then((marketData) => {
-      dispatch({ type: 'init', marketData })
-    })
+    getCoins()
+      .then((marketData) => {
+        return dispatch({ type: 'init', marketData })
+      })
+      .catch(() => {})
   }, [])
 
   useMemo(() => {
-    if (!state.marketData) return
+    if (state.marketData.length === 0) return
 
     updateCoins(state, dispatch)
   }, [state.marketData])
 
   useMemo(() => {
-    if (!state.marketData) return
+    if (state.marketData.length === 0) return
 
     dispatch({ type: 'reset' })
     setQueryDate(state.date)
@@ -57,7 +59,7 @@ export const Layout: React.FC = ({ children }) => {
   }, [state.date])
 
   useMemo(() => {
-    if (!state.marketData) return
+    if (state.marketData.length === 0) return
 
     setQueryInv(state.investment)
     setTimeout(dispatch, 1000, { type: 'reinvest' })

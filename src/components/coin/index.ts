@@ -6,7 +6,7 @@ export class Coin {
   image: string
   name: string
   symbol: string
-  past_price: null | number
+  past_price: undefined | number
   profit_loss?: number
   coins_owned?: number
   roi?: number
@@ -23,12 +23,12 @@ export class Coin {
     this.image = image
     this.name = name
     this.symbol = symbol
-    this.past_price = null
+    this.past_price = undefined
   }
 
   async getPastPrice(date: string): Promise<this> {
     try {
-      const { data }: { data: number | null } = await axios.get(
+      const { data }: { data: number | undefined } = await axios.get(
         '/.netlify/functions/price-history',
         {
           params: {
@@ -38,8 +38,8 @@ export class Coin {
         }
       )
       this.past_price = data
-    } catch (error) {
-      console.log(error, 'Error getting past price')
+    } catch {
+      this.past_price = undefined
     }
 
     return this
@@ -69,8 +69,7 @@ export async function getCoins(): Promise<Coin[]> {
         coin.symbol
       )
     })
-  } catch (error) {
-    console.log('Error getting market data...', error)
+  } catch {
     return []
   }
 }

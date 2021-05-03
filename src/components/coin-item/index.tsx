@@ -6,8 +6,10 @@ import { Box, Grid, GridItem, Text, Tooltip } from '@chakra-ui/react'
 import { Coin, CoinIcon } from '..'
 
 export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
-  const isPositive: boolean = Math.sign(coin.roi) > 0
-  const isHugeNumber = coin.profit_loss.toString().length > 7
+  const isPositive = Boolean(coin.roi && Math.sign(coin.roi) > 0)
+  const isHugeNumber = Boolean(
+    coin.profit_loss && coin.profit_loss.toString().length > 7
+  )
 
   return (
     <Grid
@@ -33,7 +35,7 @@ export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
             color="gray.500"
             casing="uppercase"
           >
-            {coin.symbol} {coin.coins_owned.toFixed(3)}
+            {coin.symbol} {coin.coins_owned && coin.coins_owned.toFixed(3)}
           </Text>
         </Box>
       </GridItem>
@@ -62,7 +64,9 @@ export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
             />
           </Tooltip>
         )}
-        <Text ml={1}>${coin.profit_loss.toLocaleString()}</Text>
+        <Text ml={1}>
+          ${coin.profit_loss && coin.profit_loss.toLocaleString()}
+        </Text>
       </GridItem>
       <GridItem
         isTruncated
@@ -77,7 +81,7 @@ export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
           color={isPositive ? 'green.400' : 'red.400'}
         >
           {isPositive && '+'}
-          {coin.roi.toLocaleString()}%
+          {coin.roi && coin.roi.toLocaleString()}%
         </Text>
       </GridItem>
     </Grid>
