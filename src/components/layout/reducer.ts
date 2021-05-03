@@ -17,9 +17,9 @@ export interface State {
 
 export interface Action {
   type: ActionType
+  marketData?: Coin[]
   date?: string
   investment?: number
-  marketData?: Coin[]
   coin?: Coin
   coins?: Coin[]
 }
@@ -29,29 +29,37 @@ export const reducer = (previousState: State, action: Action): State => {
 
   switch (type) {
     case 'update':
-      return {
-        ...previousState,
-        date,
-        investment,
-      }
+      if (date && investment)
+        return {
+          ...previousState,
+          date,
+          investment,
+        }
+      break
 
     case 'init':
-      return {
-        ...previousState,
-        marketData,
-      }
+      if (marketData)
+        return {
+          ...previousState,
+          marketData,
+        }
+      break
 
     case 'replaceCoins':
-      return {
-        ...previousState,
-        coins,
-      }
+      if (coins)
+        return {
+          ...previousState,
+          coins,
+        }
+      break
 
     case 'addCoin':
-      return {
-        ...previousState,
-        coins: [...previousState.coins, coin],
-      }
+      if (coin)
+        return {
+          ...previousState,
+          coins: [...previousState.coins, coin],
+        }
+      break
 
     case 'reinvest':
       return {
@@ -66,5 +74,9 @@ export const reducer = (previousState: State, action: Action): State => {
         ...previousState,
         coins: [],
       }
+  }
+
+  return {
+    ...previousState,
   }
 }

@@ -8,7 +8,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 
-import { Coin } from '..'
+import { Coin } from '../coin'
 
 import { CoinPanel } from './coin-panel'
 
@@ -36,10 +36,11 @@ export const TabContainer = ({ coins }: CoinsProperties) => {
       filterCoin: (coin: Coin) => Boolean(coin.roi && coin.roi > 0),
     },
     Losers: {
-      sort: (coinA: Coin, coinB: Coin) => {
-        if (coinA.name < coinB.name) return -1
-        return 1
-      },
+      sort: (coinA: Coin, coinB: Coin) =>
+        coinB.profit_loss &&
+        coinA.profit_loss &&
+        coinA.profit_loss - coinB.profit_loss,
+
       filterCoin: (coin: Coin) => Boolean(coin.roi && coin.roi <= 0),
     },
   }

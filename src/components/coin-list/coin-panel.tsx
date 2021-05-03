@@ -7,7 +7,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 
-import { Coin, CoinItem } from '..'
+import { Coin } from '../coin'
+import { CoinItem } from '../coin-item'
 
 export const CoinPanel = ({ data }: { data: Coin[] }) => {
   const borderColor = useColorModeValue('gray.200', 'gray.600')

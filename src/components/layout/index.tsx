@@ -9,28 +9,30 @@ import { useQueryParam, NumberParam, StringParam } from 'use-query-params'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import theme from '../../theme/theme'
-import { getCoins } from '..'
+import { getCoins } from '../coin'
 
-import { reducer, State, Action } from './reducer'
-import { updateCoins } from './update-coins'
+import { reducer, State } from './reducer'
 
 interface Context {
   state: State
-  dispatch: React.Dispatch<Action>
+  dispatch: React.Dispatch<State>
 }
 
-const Context = createContext(null)
+const Context = createContext({})
 
-export const getContext = (): Context => useContext<Context>(Context)
+export const GetContext = () => useContext<Context>(Context)
 
 export const Layout: React.FC = ({ children }) => {
   const [queryInv, setQueryInv] = useQueryParam('investment', NumberParam)
   const [queryDate, setQueryDate] = useQueryParam('date', StringParam)
 
+  const initialInvestment = queryInv ? queryInv : 100
+  const initialDate = queryDate ? queryDate : '2020-01-20'
+
   const initialState: State = {
     marketData: [],
-    investment: queryInv || 100,
-    date: queryDate || '2020-01-20',
+    investment: initialInvestment,
+    date: initialDate,
     coins: [],
   }
 
@@ -38,16 +40,27 @@ export const Layout: React.FC = ({ children }) => {
 
   useEffect(() => {
     getCoins()
-      .then((marketData) => {
-        return dispatch({ type: 'init', marketData })
-      })
-      .catch(() => {})
+      .then((marketData) => dispatch({ type: 'init', marketData }))
+      .catch(() => dispatch({ type: 'init', marketData: [] }))
   }, [])
+
+  function updateCoins() {
+    for (const coin of state.marketData) {
+      coin
+        .getPastPrice(state.date)
+        .then((roundOneCoin) => {
+          return roundOneCoin.doBigBrainMath(state.investment)
+        })
+        .then((roundTwoCoin) =>
+          dispatch({ type: 'addCoin', coin: roundTwoCoin })
+        )
+        .catch(() => {})
+    }
+  }
 
   useMemo(() => {
     if (state.marketData.length === 0) return
-
-    updateCoins(state, dispatch)
+    updateCoins()
   }, [state.marketData])
 
   useMemo(() => {
@@ -55,7 +68,7 @@ export const Layout: React.FC = ({ children }) => {
 
     dispatch({ type: 'reset' })
     setQueryDate(state.date)
-    updateCoins(state, dispatch)
+    updateCoins()
   }, [state.date])
 
   useMemo(() => {

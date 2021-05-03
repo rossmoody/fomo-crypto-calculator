@@ -1,13 +1,13 @@
 import React from 'react'
 import { Flex } from '@chakra-ui/react'
 
-import { getContext } from '..'
+import { GetContext } from '../layout'
 
 import { TabContainer } from './tab-container'
 import { CoinLoader } from './coin-loader'
 
-export const CoinList = (): JSX.Element => {
-  const { state } = getContext()
+export const CoinList = () => {
+  const { state } = GetContext()
 
   if (state.coins.length > 0)
     return (

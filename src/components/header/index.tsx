@@ -9,7 +9,7 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react'
 
-import { Logo, StackedLogo } from '..'
+import { Logo, StackedLogo } from '../logo'
 
 export const Header = (): JSX.Element => {
   const { colorMode, toggleColorMode } = useColorMode()

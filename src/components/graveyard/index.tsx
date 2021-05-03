@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Flex, VStack, Text, SlideFade, Divider } from '@chakra-ui/react'
 
-import { getContext, Tombstone, Coin } from '..'
+import { GetContext } from '../layout'
+import { Coin } from '../coin'
+import { Tombstone } from '../tombstone'
 
 const filteredTombstones = (coins: Coin[]): Coin[] | undefined =>
   coins
@@ -12,7 +14,7 @@ const filteredTombstones = (coins: Coin[]): Coin[] | undefined =>
     })
 
 export const Graveyard = (): JSX.Element => {
-  const { state } = getContext()
+  const { state } = GetContext()
 
   const [tombstones, setTombstones] = useState<Coin[]>()
 

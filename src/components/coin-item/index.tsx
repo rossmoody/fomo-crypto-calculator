@@ -3,7 +3,8 @@ import converter from 'number-to-words'
 import { InfoIcon } from '@chakra-ui/icons'
 import { Box, Grid, GridItem, Text, Tooltip } from '@chakra-ui/react'
 
-import { Coin, CoinIcon } from '..'
+import { Coin } from '../coin'
+import { CoinIcon } from '../coin-icon'
 
 export const CoinItem = ({ coin }: { coin: Coin }): JSX.Element => {
   const isPositive = Boolean(coin.roi && Math.sign(coin.roi) > 0)

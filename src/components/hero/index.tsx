@@ -14,13 +14,14 @@ import {
   VisuallyHidden,
 } from '@chakra-ui/react'
 
-import { getContext, ButtonBar } from '..'
+import { GetContext } from '../layout'
+import { ButtonBar } from '../button-bar'
 
 import * as utils from './utils'
 import { validateDate } from './validate'
 
 export const Hero = (): JSX.Element => {
-  const { state, dispatch } = getContext()
+  const { state, dispatch } = GetContext()
 
   const [showButton, setShowButton] = useState(true)
   const [showSocial, setShowSocial] = useState(false)

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Circle, useColorModeValue, Tooltip } from '@chakra-ui/react'
 
-import { Coin, CoinIcon } from '..'
+import { Coin } from '../coin'
+import { CoinIcon } from '../coin-icon'
 
 export const Tombstone = ({ coin }: { coin: Coin }): JSX.Element => {
   return (

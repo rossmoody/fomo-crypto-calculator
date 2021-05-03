@@ -1,7 +1,8 @@
 import React from 'react'
 import { Icon, Image } from '@chakra-ui/react'
 
-import { Coin, cryptoIcons } from '..'
+import { Coin } from '../coin'
+import { cryptoIcons } from '../crypto-icons'
 
 import Placeholder from './placeholder.png'
 
