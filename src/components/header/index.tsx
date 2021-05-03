@@ -34,7 +34,7 @@ export const Header = (): JSX.Element => {
           right={[2, 4]}
           variant="ghost"
           aria-label="Search database"
-          icon={colorMode == 'light' ? <MoonIcon /> : <SunIcon />}
+          icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
           onClick={toggleColorMode}
         />
       </Center>
