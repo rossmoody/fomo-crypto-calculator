@@ -26,6 +26,7 @@ export const TabContainer = ({ coins }: CoinsProperties) => {
         return 1
       },
       filterCoin: (coin: Coin) => Boolean(coin.profit_loss),
+      slice: coins.length,
     },
     Gainers: {
       sort: (coinA: Coin, coinB: Coin) =>
@@ -34,6 +35,7 @@ export const TabContainer = ({ coins }: CoinsProperties) => {
         coinB.profit_loss - coinA.profit_loss,
 
       filterCoin: (coin: Coin) => Boolean(coin.roi && coin.roi > 0),
+      slice: 25,
     },
     Losers: {
       sort: (coinA: Coin, coinB: Coin) =>
@@ -42,6 +44,7 @@ export const TabContainer = ({ coins }: CoinsProperties) => {
         coinA.profit_loss - coinB.profit_loss,
 
       filterCoin: (coin: Coin) => Boolean(coin.roi && coin.roi <= 0),
+      slice: 25,
     },
   }
 
@@ -70,7 +73,8 @@ export const TabContainer = ({ coins }: CoinsProperties) => {
                     Boolean(coin.past_price) &&
                     tabs[tab].filterCoin(coin)
                 )
-                .sort(tabs[tab].sort)}
+                .sort(tabs[tab].sort)
+                .slice(0, tabs[tab].slice)}
             />
           </TabPanel>
         ))}

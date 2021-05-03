@@ -5,7 +5,7 @@ import { GetContext } from '../layout'
 import { Coin } from '../coin'
 import { Tombstone } from '../tombstone'
 
-const filteredTombstones = (coins: Coin[]): Coin[] | undefined =>
+const filteredTombstones = (coins: Coin[]): Coin[] =>
   coins
     .filter((coin) => !coin.past_price)
     .sort((CoinA, CoinB) => {
@@ -13,13 +13,18 @@ const filteredTombstones = (coins: Coin[]): Coin[] | undefined =>
       return 1
     })
 
+let timer
+
 export const Graveyard = (): JSX.Element => {
   const { state } = GetContext()
 
-  const [tombstones, setTombstones] = useState<Coin[]>()
+  const [tombstones, setTombstones] = useState<Coin[]>([])
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    setTombstones(filteredTombstones(state.coins))
+    clearTimeout(timer)
+    setTimeout(setTombstones, 1000, filteredTombstones(state.coins))
+    if (filteredTombstones.length > 0) setTimeout(setOpen, 3000, true)
   }, [state.coins])
 
   return (
@@ -28,13 +33,14 @@ export const Graveyard = (): JSX.Element => {
       my={8}
       px={4}
       minH="200px"
-      display={tombstones && tombstones.length > 0 ? 'flex' : 'none'}
+      display={open ? 'flex' : 'none'}
     >
       <Box width="2xl">
         <SlideFade
-          in={tombstones && tombstones.length > 0}
+          in={open}
           offsetY="20px"
           unmountOnExit
+          style={{ transitionDelay: '500ms' }}
         >
           <VStack px={[2, 4]} spacing={4}>
             <Divider mb={8} />
@@ -48,10 +54,9 @@ export const Graveyard = (): JSX.Element => {
               flexWrap="wrap"
               maxW="xl"
             >
-              {tombstones &&
-                tombstones.map((coin, index) => {
-                  return <Tombstone coin={coin} key={index} />
-                })}
+              {tombstones.map((coin, index) => {
+                return <Tombstone coin={coin} key={index} />
+              })}
             </Flex>
           </VStack>
         </SlideFade>
