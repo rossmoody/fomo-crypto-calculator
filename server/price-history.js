@@ -19,6 +19,6 @@ exports.handler = async function (req) {
 
   return {
     statusCode: 200,
-    body: JSON.stringify(price)
+    body: JSON.stringify(price),
   }
 }

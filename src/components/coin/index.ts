@@ -57,18 +57,10 @@ export class Coin {
   }
 }
 
-export async function getCoins(): Promise<Coin[]> {
+export async function getCoins(): Promise<any[]> {
   try {
     const { data } = await axios.get('/.netlify/functions/market-data')
-    return data.map((coin: Coin) => {
-      return new Coin(
-        coin.id,
-        coin.current_price,
-        coin.image,
-        coin.name,
-        coin.symbol
-      )
-    })
+    return data
   } catch {
     return []
   }

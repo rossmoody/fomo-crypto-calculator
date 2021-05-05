@@ -9,7 +9,7 @@ import { useQueryParam, NumberParam, StringParam } from 'use-query-params'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import theme from '../../theme/theme'
-import { getCoins } from '../coin'
+import { getCoins, Coin } from '../coin'
 
 import { reducer, State, Action } from './reducer'
 
@@ -40,7 +40,20 @@ export const Layout: React.FC = ({ children }) => {
 
   useEffect(() => {
     getCoins()
-      .then((marketData) => dispatch({ type: 'init', marketData }))
+      .then((data) => {
+        return data.map((coin: Coin) => {
+          return new Coin(
+            coin.id,
+            coin.current_price,
+            coin.image,
+            coin.name,
+            coin.symbol
+          )
+        })
+      })
+      .then((marketData) => {
+        return dispatch({ type: 'init', marketData })
+      })
       .catch(() => dispatch({ type: 'init', marketData: [] }))
   }, [])
 
